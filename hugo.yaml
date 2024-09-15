@@ -18,7 +18,7 @@ params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Ahmed Elaraby
   description: "My personal Website"
-  keywords: [Blog, Portfolio, PaperMod]
+  keywords: [Blog, Portfolio, Ahmed Elaraby, Elaraby, 3araby]
   author: Me
   # author: ["Me", "You"] # multiple authors
   images: ["<link or path of image for opengraph, twitter-cards>"]
@@ -42,14 +42,15 @@ params:
   showtoc: false
   tocopen: false
 
+
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
     favicon: "<link / abs url>"
-    favicon16x16: "<link / abs url>"
-    favicon32x32: "<link / abs url>"
-    apple_touch_icon: "<link / abs url>"
-    safari_pinned_tab: "<link / abs url>"
+    favicon16x16: E:\mywebsite\elaraby.me\assets\icons\diver16.png
+    favicon32x32: E:\mywebsite\elaraby.me\assets\icons\diver32.png
+    apple_touch_icon: E:\mywebsite\elaraby.me\assets\icons\diver24.png
+    safari_pinned_tab: E:\mywebsite\elaraby.me\assets\icons\diver24.png
 
   label:
     text: "Home"
@@ -61,7 +62,7 @@ params:
     enabled: true # needs to be explicitly set
     title: Ahmed Elaraby
     subtitle: "That's My Personal Website"
-    #imageUrl: "<img location>"
+    imageUrl: E:\mywebsite\elaraby.me\assets\icons\diver512.png
     imageWidth: 120
     imageHeight: 120
     imageTitle: my image
