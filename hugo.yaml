@@ -62,7 +62,7 @@ params:
     enabled: true # needs to be explicitly set
     title: Ahmed Elaraby
     subtitle: "That's My Personal Website"
-    imageUrl: E:\mywebsite\elaraby.me\assets\icons\diver512.png
+    imageUrl: assets/icons/diver512.png
     imageWidth: 120
     imageHeight: 120
     imageTitle: my image
