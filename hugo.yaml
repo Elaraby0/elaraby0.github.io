@@ -86,6 +86,8 @@ params:
       url: "https://www.linkedin.com/in/elarabymd/" 
     - name: upwork
       url: "https://www.upwork.com/freelancers/~01dbbce2fc678ad517" 
+    - name: cv
+      url: "google.com"   
     
   analytics:
     google:
