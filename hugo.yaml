@@ -81,7 +81,11 @@ params:
     - name: x
       url: "https://x.com/ElarabyMD"
     - name: email
-      url: "aelarabymd@gmail.com"    
+      url: "mailto:aelarabymd@gmail.com"  
+    - name: linkedin
+      url: "https://www.linkedin.com/in/elarabymd/" 
+    - name: upwork
+      url: "https://www.upwork.com/freelancers/~01dbbce2fc678ad517" 
     
   analytics:
     google:
