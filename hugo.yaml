@@ -80,6 +80,8 @@ params:
   socialIcons:
     - name: x
       url: "https://x.com/ElarabyMD"
+    - name: email
+      url: "aelarabymd@gmail.com"    
     
   analytics:
     google:
