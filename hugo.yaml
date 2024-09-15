@@ -46,7 +46,7 @@ params:
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "<link / abs url>"
+    favicon: "icons/diver512.png"
     favicon16x16: "icons/diver16.png"
     favicon32x32: "icons/diver32.png"
     apple_touch_icon: "icons/diver24.png"
@@ -62,7 +62,7 @@ params:
     enabled: true # needs to be explicitly set
     title: Ahmed Elaraby
     subtitle: "That's My Personal Website"
-    imageUrl: "assets/icons/diver512.png"
+    imageUrl: "icons/diver512.png"
     imageWidth: 120
     imageHeight: 120
     imageTitle: my image
