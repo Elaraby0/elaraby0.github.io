@@ -1,6 +1,6 @@
-baseURL: "https://elaraby.me/"
-title: Ahmed Elaraby
-paginate: 5
+baseURL: "https://examplesite.com/"
+title: ExampleSite
+pagerSize: 5
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -16,9 +16,9 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: Ahmed Elaraby
-  description: "My personal Website"
-  keywords: [Blog, Portfolio, Ahmed Elaraby, Elaraby, 3araby]
+  title: ExampleSite
+  description: "ExampleSite description"
+  keywords: [Blog, Portfolio, PaperMod]
   author: Me
   # author: ["Me", "You"] # multiple authors
   images: ["<link or path of image for opengraph, twitter-cards>"]
@@ -30,7 +30,7 @@ params:
   ShowShareButtons: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
-  ShowCodeCopyButtons: true
+  ShowCodeCopyButtons: false
   ShowWordCount: true
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
@@ -42,15 +42,14 @@ params:
   showtoc: false
   tocopen: false
 
-
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
-    favicon: "icons/diver512.png"
-    favicon16x16: "icons/diver16.png"
-    favicon32x32: "icons/diver32.png"
-    apple_touch_icon: "icons/diver24.png"
-    safari_pinned_tab: "icons/diver24.png"
+    favicon: "<link / abs url>"
+    favicon16x16: "<link / abs url>"
+    favicon32x32: "<link / abs url>"
+    apple_touch_icon: "<link / abs url>"
+    safari_pinned_tab: "<link / abs url>"
 
   label:
     text: "Home"
@@ -59,18 +58,18 @@ params:
 
   # profile-mode
   profileMode:
-    enabled: true # needs to be explicitly set
-    title: Ahmed Elaraby
-    subtitle: "That's My Personal Website"
-    imageUrl: "icons/diver512.png"
+    enabled: false # needs to be explicitly set
+    title: ExampleSite
+    subtitle: "This is subtitle"
+    imageUrl: "<img location>"
     imageWidth: 120
     imageHeight: 120
     imageTitle: my image
     buttons:
       - name: Posts
-        url: /posts
-      - name: CV
-        url: google.com
+        url: posts
+      - name: Tags
+        url: tags
 
   # home-info mode
   homeInfoParams:
@@ -79,16 +78,12 @@ params:
 
   socialIcons:
     - name: x
-      url: "https://x.com/ElarabyMD"
-    - name: email
-      url: "mailto:aelarabymd@gmail.com"  
-    - name: linkedin
-      url: "https://www.linkedin.com/in/elarabymd/" 
-    - name: upwork
-      url: "https://www.upwork.com/freelancers/~01dbbce2fc678ad517" 
-    - name: cv
-      url: "google.com"   
-    
+      url: "https://x.com/"
+    - name: stackoverflow
+      url: "https://stackoverflow.com"
+    - name: github
+      url: "https://github.com/"
+
   analytics:
     google:
       SiteVerificationTag: "XYZabc"
@@ -98,9 +93,9 @@ params:
       SiteVerificationTag: "XYZabc"
 
   cover:
-    hidden: false # hide everywhere but not in structured data
-    hiddenInList: false # hide on list pages and home
-    hiddenInSingle: false # hide on single page
+    hidden: true # hide everywhere but not in structured data
+    hiddenInList: true # hide on list pages and home
+    hiddenInSingle: true # hide on single page
 
   editPost:
     URL: "https://github.com/<path_to_repo>/content"
@@ -120,17 +115,17 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
-    - identifier: Blog
-      name: Blog
-      url: /Blog/
+    - identifier: categories
+      name: categories
+      url: /categories/
       weight: 10
     - identifier: tags
       name: tags
       url: /tags/
       weight: 20
-    - identifier: CV
-      name: CV
-      url: /cv/
+    - identifier: example
+      name: example.org
+      url: https://example.org
       weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
@@ -142,8 +137,3 @@ markup:
     # guessSyntax: true
     # lineNos: true
     # style: monokai
-outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON # necessary for search
