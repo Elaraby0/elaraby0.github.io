@@ -1,0 +1,5 @@
+/* Load order tip: prefix with 'z-' if you want this to be last */
+:root, html, body {
+  font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial, "Noto Sans Arabic", sans-serif;
+}

@@ -1,0 +1,84 @@
+/* z-brand.css — sitewide tweaks for PaperMod
+   - Black links in light mode
+   - Minimal, Material-ish outlined button
+   - Dark-mode hover FIX: white glow with black text
+   - RSS menu icon alignment + sr-only helper
+*/
+
+/* --- Accent tokens ------------------------------------------------------ */
+:root {
+  --primary: #111111;        /* link & accent in LIGHT */
+  --primary-contrast: #ffffff;
+  --code-bg: #f7faff;
+}
+[data-theme="dark"] {
+  --primary: #8ab4ff;        /* accent in DARK (links etc.) */
+  --primary-contrast: #0b1221;
+  --code-bg: #0d1321;
+}
+
+/* --- Links -------------------------------------------------------------- */
+a {
+  color: var(--primary);
+  text-decoration-color: var(--primary);
+}
+a:hover {
+  color: var(--primary);
+  text-decoration-color: var(--primary);
+}
+
+/* --- Profile-mode button (outlined, minimal) --------------------------- */
+.button,
+.buttons .button,
+a.button {
+  background: transparent;
+  color: var(--primary) !important;
+  border: 1px solid var(--primary);
+  padding: .6rem 1.1rem;
+  border-radius: .75rem;
+  box-shadow: none;
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease,
+    transform .02s ease,
+    box-shadow .2s ease;
+}
+
+/* Hover/focus in LIGHT mode: fill black, text white */
+html:not([data-theme="dark"]) .button:hover,
+html:not([data-theme="dark"]) .buttons .button:hover,
+html:not([data-theme="dark"]) a.button:hover,
+html:not([data-theme="dark"]) .button:focus-visible,
+html:not([data-theme="dark"]) .buttons .button:focus-visible,
+html:not([data-theme="dark"]) a.button:focus-visible {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border-color: #111111 !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.24), 0 3px 8px rgba(0,0,0,.18);
+}
+
+/* Hover/focus in DARK mode: **FIX** white glow with black text */
+[data-theme="dark"] .button:hover,
+[data-theme="dark"] .buttons .button:hover,
+[data-theme="dark"] a.button:hover,
+[data-theme="dark"] .button:focus-visible,
+[data-theme="dark"] .buttons .button:focus-visible,
+[data-theme="dark"] a.button:focus-visible,
+[data-theme="dark"] .profile .buttons .button:hover,
+[data-theme="dark"] .profile .buttons a.button:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(255,255,255,.14), 0 3px 8px rgba(255,255,255,.10);
+}
+
+/* Active press nudge */
+.button:active { transform: translateY(1px); }
+
+/* --- Header RSS icon alignment + accessible hidden text ---------------- */
+#menu svg { vertical-align: middle; margin-top: -2px; display: inline-block; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}

@@ -1,139 +1,140 @@
 baseURL: "https://elaraby.me/"
-title: Ahmed Elaraby
-pagerSize: 5
-theme: PaperMod
-
+title: "Ahmed Elaraby"
+theme: "PaperMod"
+pagerSize: 10
 enableRobotsTXT: true
-buildDrafts: false
-buildFuture: false
-buildExpired: false
 
-googleAnalytics: UA-123-45
+# Multilingual
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: true  # site served at /en/ and /ar/
 
-minify:
-  disableXML: true
-  minifyOutput: true
+# Build outputs (section RSS enabled)
+outputs:
+  home:    [HTML, RSS]
+  section: [HTML, RSS]
+  taxonomy: [HTML]
+  term: [HTML]
+
+# RSS service (optional limit)
+services:
+  rss:
+    limit: 50
+
+# Taxonomies (optional)
+taxonomies:
+  category: categories
+  tag: tags
+
+# Pretty permalinks for blog posts
+permalinks:
+  blog: "/blog/:slug/"
+
+# Allow HTML inside Markdown (for CV button etc.)
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
 
 params:
-  env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: ExampleSite
-  description: "ExampleSite description"
-  keywords: [Blog, Portfolio, PaperMod]
-  author: Me
-  # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
-  DateFormat: "January 2, 2006"
-  defaultTheme: auto # dark, light
-  disableThemeToggle: false
-
+  env: production
+  defaultTheme: auto
   ShowReadingTime: true
   ShowShareButtons: true
-  ShowPostNavLinks: true
-  ShowBreadCrumbs: true
-  ShowCodeCopyButtons: false
-  ShowWordCount: true
+  ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
-  UseHugoToc: true
-  disableSpecial1stPost: false
-  disableScrollToTop: false
-  comments: false
-  hidemeta: false
-  hideSummary: false
-  showtoc: false
-  tocopen: false
+  ShowFullTextinRSS: true
+  displayFullLangName: true
 
-  assets:
-    # disableHLJS: true # to disable highlight.js
-    # disableFingerprinting: true
-    favicon: "<link / abs url>"
-    favicon16x16: "<link / abs url>"
-    favicon32x32: "<link / abs url>"
-    apple_touch_icon: "<link / abs url>"
-    safari_pinned_tab: "<link / abs url>"
-
-  label:
-    text: "Home"
-    icon: /apple-touch-icon.png
-    iconHeight: 35
-
-  # profile-mode
+  # Profile Mode enabled globally; per-language titles/buttons below
   profileMode:
-    enabled: false # needs to be explicitly set
-    title: ExampleSite
-    subtitle: "This is subtitle"
-    imageUrl: "<img location>"
-    imageWidth: 120
-    imageHeight: 120
-    imageTitle: my image
-    buttons:
-      - name: Posts
-        url: posts
-      - name: Tags
-        url: tags
+    enabled: true
 
-  # home-info mode
-  homeInfoParams:
-    Title: "Hi there \U0001F44B"
-    Content: Welcome to my blog
+  # FAVICONS (absolute paths + cache-busting)
+  assets:
+    favicon: "/favicon.ico?v=3"
+    favicon16x16: "/favicon-16x16.png?v=3"
+    favicon32x32: "/favicon-32x32.png?v=3"
+    apple_touch_icon: "/apple-touch-icon.png?v=3"
 
+  # Social icons under the avatar
   socialIcons:
-    - name: x
-      url: "https://x.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
-    - name: github
-      url: "https://github.com/"
+    - name: "facebook"
+      url: "https://facebook.com/your.username"
+    - name: "x"
+      url: "https://x.com/your_handle"
+    - name: "telegram"
+      url: "https://t.me/your_username"
+    - name: "linkedin"
+      url: "https://www.linkedin.com/in/your-id/"
+    - name: "github"
+      url: "https://github.com/your-handle"
+    - name: "orcid"
+      url: "https://orcid.org/0000-0000-0000-0000"
+    - name: "researchgate"
+      url: "https://www.researchgate.net/profile/Your-Name"
+    - name: "googlescholar"
+      url: "https://scholar.google.com/citations?user=YOUR_GOOGLE_SCHOLAR_ID"
+    - name: "upwork"                          # custom icon handled by partial override
+      url: "https://www.upwork.com/freelancers/~your-upwork-id"
 
-  analytics:
-    google:
-      SiteVerificationTag: "XYZabc"
-    bing:
-      SiteVerificationTag: "XYZabc"
-    yandex:
-      SiteVerificationTag: "XYZabc"
+languages:
+  en:
+    weight: 1
+    languageName: "English"
+    languageCode: "en-US"
+    contentDir: "content/en"
+    title: "Ahmed Elaraby"
+    menus:
+      main:
+        - name: "Home"
+          pageRef: "/"
+          weight: 10
+        - name: "Blog"              # language-aware internal link
+          pageRef: "/blog"
+          weight: 20
+        # (About removed from top menu)
+        - identifier: "rss"
+          name: ""                  # icon only
+          url: "/en/blog/index.xml" # English blog feed
+          weight: 40
+          pre: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg><span class="sr-only">RSS</span>'
+    params:
+      profileMode:
+        title: "Ahmed Elaraby"
+        subtitle: "Physician • Researcher • Writer"
+        imageUrl: "images/profile.jpg"   # put image at /static/images/profile.jpg
+        imageTitle: "Ahmed"
+        buttons:
+          - name: "About Me"             # single center button on home
+            url: "/en/about/"
 
-  cover:
-    hidden: true # hide everywhere but not in structured data
-    hiddenInList: true # hide on list pages and home
-    hiddenInSingle: true # hide on single page
-
-  editPost:
-    URL: "https://github.com/<path_to_repo>/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
-
-  # for search
-  # https://fusejs.io/api/options.html
-  fuseOpts:
-    isCaseSensitive: false
-    shouldSort: true
-    location: 0
-    distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
-    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
-    keys: ["title", "permalink", "summary", "content"]
-menu:
-  main:
-    - identifier: categories
-      name: categories
-      url: /categories/
-      weight: 10
-    - identifier: tags
-      name: tags
-      url: /tags/
-      weight: 20
-    - identifier: example
-      name: example.org
-      url: https://example.org
-      weight: 30
-# Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
-pygmentsUseClasses: true
-markup:
-  highlight:
-    noClasses: false
-    # anchorLineNos: true
-    # codeFences: true
-    # guessSyntax: true
-    # lineNos: true
-    # style: monokai
+  ar:
+    weight: 2
+    languageName: "العربية"
+    languageCode: "ar-EG"
+    languageDirection: "rtl"
+    contentDir: "content/ar"
+    title: "أحمد العربي"
+    menus:
+      main:
+        - name: "الرئيسية"
+          pageRef: "/"
+          weight: 10
+        - name: "المدونة"
+          pageRef: "/blog"
+          weight: 20
+        # (About removed from top menu)
+        - identifier: "rss"
+          name: ""                  # icon only
+          url: "/ar/blog/index.xml" # Arabic blog feed
+          weight: 40
+          pre: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg><span class="sr-only">الخلاصة</span>'
+    params:
+      profileMode:
+        title: "أحمد العربي"
+        subtitle: "طبيب • باحث • كاتب"
+        imageUrl: "images/profile.jpg"
+        imageTitle: "Ahmed"
+        buttons:
+          - name: "نبذة عني"
+            url: "/ar/about/"
