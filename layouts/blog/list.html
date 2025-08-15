@@ -1,0 +1,42 @@
+{{ define "main" }}
+
+<section class="blog-hero" {{ if eq .Lang "ar" }}dir="rtl"{{ end }}>
+  <h1>{{ i18n "blog_title" | default .Title }}</h1>
+  <p class="blog-sub">{{ i18n "blog_sub" | default "" }}</p>
+
+  <div class="blog-filters">
+    {{/* Show up to 8 popular tags; safe even if no tags exist */}}
+    {{ with .Site.Taxonomies.tags }}
+      {{ range first 8 (.ByCount) }}
+        <a class="chip" href="{{ .Page.RelPermalink }}">#{{ .Page.Title }}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>
+
+{{ $p := .Paginate (.Pages.ByDate.Reverse) }}
+<section class="post-grid" {{ if eq .Lang "ar" }}dir="rtl"{{ end }}>
+  {{ range $p.Pages }}
+    <article class="post-card">
+      <a class="card-title" href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
+
+      <div class="meta">
+        <time datetime="{{ .Date }}">{{ .Date.Format "2006-01-02" }}</time>
+        · {{ .ReadingTime }} {{ i18n "min_read" | default "min" }}
+        {{ with .Params.categories }} · {{ delimit . ", " }}{{ end }}
+      </div>
+
+      <p class="summary">{{ .Summary | plainify | truncate 180 }}</p>
+
+      <div class="tags">
+        {{ range first 6 .Params.tags }}
+          <a class="chip" href="{{ (printf "/tags/%s/" (urlize .)) | relLangURL }}">#{{ . }}</a>
+        {{ end }}
+      </div>
+    </article>
+  {{ end }}
+</section>
+
+{{ template "_internal/pagination.html" . }}
+
+{{ end }}

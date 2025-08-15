@@ -1,0 +1,7 @@
+# i18n/en.yaml
+- id: blog_title
+  translation: "Blog"
+- id: blog_sub
+  translation: "Medicine, clinical research, biostatistics, R/STATA, productivity."
+- id: min_read
+  translation: "min read"

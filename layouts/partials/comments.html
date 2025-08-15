@@ -1,0 +1,18 @@
+{{- if and (or .Params.comments site.Params.comments) (not .IsHome) -}}
+  <div id="comments" class="post-comments">
+    <script src="https://giscus.app/client.js"
+      data-repo="{{ site.Params.giscus.repo }}"
+      data-repo-id="{{ site.Params.giscus.repoID }}"
+      data-category="{{ site.Params.giscus.category }}"
+      data-category-id="{{ site.Params.giscus.categoryID }}"
+      data-mapping="{{ site.Params.giscus.mapping | default "pathname" }}"
+      data-reactions-enabled="{{ site.Params.giscus.reactionsEnabled | default "1" }}"
+      data-emit-metadata="0"
+      data-input-position="{{ site.Params.giscus.inputPosition | default "bottom" }}"
+      data-theme="preferred_color_scheme"
+      data-lang="{{ site.Params.giscus.lang | default .Lang }}"
+      crossorigin="anonymous" async>
+    </script>
+    <noscript>Enable JavaScript to view the comments powered by Giscus.</noscript>
+  </div>
+{{- end -}}

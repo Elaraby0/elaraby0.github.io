@@ -1,0 +1,7 @@
+# i18n/ar.yaml
+- id: blog_title
+  translation: "المدوّنة"
+- id: blog_sub
+  translation: "الطب، البحث السريري، الإحصاء الحيوي، R/STATA، الإنتاجية."
+- id: min_read
+  translation: "دقيقة قراءة"

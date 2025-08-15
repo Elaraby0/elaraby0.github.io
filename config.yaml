@@ -24,6 +24,7 @@ services:
 taxonomies:
   category: categories
   tag: tags
+  series: series
 
 # Pretty permalinks for blog posts
 permalinks:
@@ -44,6 +45,16 @@ params:
   ShowRssButtonInSectionTermList: true
   ShowFullTextinRSS: true
   displayFullLangName: true
+  comments: true           # let PaperMod render the partial below
+  giscus:
+    repo: "Elaraby0/elaraby0.github.io"   # repo that has Discussions enabled
+    repoID: "R_kgDOMqsTIg"
+    category: "General"               # or the name you picked
+    categoryID: "DIC_kwDOMqsTIs4CuOe6"
+    mapping: "pathname"               # good default
+    reactionsEnabled: "1"
+    inputPosition: "bottom"
+    lang: "auto"
 
   # Profile Mode enabled globally; per-language titles/buttons below
   profileMode:
@@ -97,7 +108,11 @@ languages:
           name: ""                  # icon only
           url: "/en/blog/index.xml" # English blog feed
           weight: 40
-          pre: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg><span class="sr-only">RSS</span>'
+          pre: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg><span class="sr-only"></span>'
+        
+        - name: "Contact" 
+          pageRef: "/contact"
+          weight: 30
     params:
       profileMode:
         title: "Ahmed Elaraby"
@@ -128,7 +143,10 @@ languages:
           name: ""                  # icon only
           url: "/ar/blog/index.xml" # Arabic blog feed
           weight: 40
-          pre: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg><span class="sr-only">الخلاصة</span>'
+          pre: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg><span class="sr-only"></span>'
+        - name: "تواصل"   
+          pageRef: "/contact"
+          weight: 30
     params:
       profileMode:
         title: "أحمد العربي"
