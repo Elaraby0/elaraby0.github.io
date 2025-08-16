@@ -19,7 +19,8 @@ outputs:
 services:
   rss:
     limit: 50
-
+  googleAnalytics:
+    id: "G-84X3SM99NY"
 # Taxonomies (optional)
 taxonomies:
   category: categories
@@ -45,12 +46,14 @@ params:
   ShowRssButtonInSectionTermList: true
   ShowFullTextinRSS: true
   displayFullLangName: true
-  comments: true           # let PaperMod render the partial below
+  comments: false           # let PaperMod render the partial below
+  cusdis:
+    appid: "30ba217f-9f26-4a3d-8c6a-6539916658d3"
   giscus:
     repo: "Elaraby0/elaraby0.github.io"   # repo that has Discussions enabled
     repoID: "R_kgDOMqsTIg"
-    category: "General"               # or the name you picked
-    categoryID: "DIC_kwDOMqsTIs4CuOe6"
+    category: "Blog Comments"               # or the name you picked
+    categoryID: "DIC_kwDOMqsTIs4CuOe5"
     mapping: "pathname"               # good default
     reactionsEnabled: "1"
     inputPosition: "bottom"

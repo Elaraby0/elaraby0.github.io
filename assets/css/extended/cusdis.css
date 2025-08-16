@@ -1,0 +1,41 @@
+/* PaperMod auto-bundles any CSS in assets/css/extended/ */
+:root{
+  /* Light mode tokens */
+  --c-bg: #ffffff;              /* card surface (light) */
+  --c-text: #0b1220;            /* near-black body text */
+  --c-border: #d1d5db;          /* visible border in light mode */
+  --c-shadow: 0 10px 28px rgba(0,0,0,.06);
+}
+
+html.dark, :root[data-theme="dark"]{
+  /* Dark mode tokens */
+  --c-bg: #111827;              /* slate-900-ish card (dark) */
+  --c-text: #e5e7eb;            /* light gray text */
+  --c-border: rgba(255,255,255,.22);
+  --c-shadow: 0 14px 34px rgba(0,0,0,.55);
+}
+
+/* Card wrapper — obvious in light, clean in dark */
+.cbox{
+  margin-top: 2rem;
+  border-radius: 16px;
+  background: var(--c-bg);
+  color: var(--c-text);
+  border: 1.5px solid var(--c-border);
+  box-shadow: var(--c-shadow);
+  overflow: hidden;
+}
+
+/* Make the embedded iframe roomy; JS grows it further */
+#cusdis_thread iframe{
+  display: block;
+  width: 100%;
+  min-height: 880px;
+  border: 0;
+}
+
+/* Strong, accessible focus outlines on anything inside the wrapper */
+.cbox :where(button,[type="submit"],a,input,textarea):focus{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.25);
+}

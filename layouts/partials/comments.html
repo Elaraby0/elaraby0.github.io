@@ -1,18 +1,55 @@
-{{- if and (or .Params.comments site.Params.comments) (not .IsHome) -}}
-  <div id="comments" class="post-comments">
-    <script src="https://giscus.app/client.js"
-      data-repo="{{ site.Params.giscus.repo }}"
-      data-repo-id="{{ site.Params.giscus.repoID }}"
-      data-category="{{ site.Params.giscus.category }}"
-      data-category-id="{{ site.Params.giscus.categoryID }}"
-      data-mapping="{{ site.Params.giscus.mapping | default "pathname" }}"
-      data-reactions-enabled="{{ site.Params.giscus.reactionsEnabled | default "1" }}"
-      data-emit-metadata="0"
-      data-input-position="{{ site.Params.giscus.inputPosition | default "bottom" }}"
-      data-theme="preferred_color_scheme"
-      data-lang="{{ site.Params.giscus.lang | default .Lang }}"
-      crossorigin="anonymous" async>
-    </script>
-    <noscript>Enable JavaScript to view the comments powered by Giscus.</noscript>
-  </div>
-{{- end -}}
+<section class="cbox">
+  <div id="cusdis_thread"
+       data-host="https://cusdis.com"
+       data-app-id="{{ site.Params.cusdis.appid }}"
+       data-page-id="{{ .RelPermalink }}"
+       data-page-url="{{ .Permalink }}"
+       data-page-title="{{ .Title }}"
+       data-language="{{ .Site.Language.Lang }}"
+       data-theme="auto"></div>
+</section>
+
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
+<script>
+(function () {
+  const thread = document.getElementById('cusdis_thread');
+
+  // --- Auto-resize so there's no inner scroll ---
+  function setHeight(h) {
+    const f = thread && thread.querySelector('iframe');
+    if (f && h) f.style.height = Math.max(~~h, 860) + 'px';
+  }
+  window.addEventListener('message', (e) => {
+    if (!e.origin.includes('cusdis')) return;
+    const d = e.data || {};
+    const h = d.height || d.offsetHeight || (d.payload && d.payload.height) || (d.data && d.data.height);
+    if (h) setHeight(h);
+  });
+
+  // --- Keep Cusdis theme in sync with PaperMod ---
+  function isDark() {
+    const html = document.documentElement;
+    return html.classList.contains('dark') || html.getAttribute('data-theme') === 'dark';
+  }
+  function syncCusdisTheme() {
+    const theme = isDark() ? 'dark' : 'light';
+    if (window.CUSDIS && typeof window.CUSDIS.setTheme === 'function') {
+      window.CUSDIS.setTheme(theme);
+    } else {
+      // if SDK not ready yet, retry a few times
+      let tries = 0;
+      const t = setInterval(() => {
+        if (window.CUSDIS && typeof window.CUSDIS.setTheme === 'function') {
+          clearInterval(t);
+          window.CUSDIS.setTheme(theme);
+        }
+        if (++tries > 10) clearInterval(t);
+      }, 250);
+    }
+  }
+  window.addEventListener('load', () => setTimeout(syncCusdisTheme, 200));
+  new MutationObserver(syncCusdisTheme)
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['class','data-theme'] });
+})();
+</script>
