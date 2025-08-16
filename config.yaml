@@ -73,23 +73,23 @@ params:
   # Social icons under the avatar
   socialIcons:
     - name: "facebook"
-      url: "https://facebook.com/your.username"
+      url: "https://facebook.com/ElarabyMD"
     - name: "x"
-      url: "https://x.com/your_handle"
+      url: "https://x.com/ElarabyMD"
     - name: "telegram"
-      url: "https://t.me/your_username"
+      url: "https://t.me/ElarabyBlog"
     - name: "linkedin"
-      url: "https://www.linkedin.com/in/your-id/"
+      url: "https://www.linkedin.com/in/elarabymd/"
     - name: "github"
-      url: "https://github.com/your-handle"
+      url: "https://github.com/Elaraby0"
     - name: "orcid"
-      url: "https://orcid.org/0000-0000-0000-0000"
+      url: "https://orcid.org/0000-0001-6963-7307"
     - name: "researchgate"
-      url: "https://www.researchgate.net/profile/Your-Name"
+      url: "https://www.researchgate.net/profile/Ahmed-Elaraby-11"
     - name: "googlescholar"
-      url: "https://scholar.google.com/citations?user=YOUR_GOOGLE_SCHOLAR_ID"
+      url: "https://scholar.google.com/citations?user=dFUfLfAAAAAJ&hl=en"
     - name: "upwork"                          # custom icon handled by partial override
-      url: "https://www.upwork.com/freelancers/~your-upwork-id"
+      url: "https://upwork.com/freelancers/elarabymd"
 
 languages:
   en:
