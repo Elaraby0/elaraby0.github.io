@@ -2,6 +2,15 @@
 - id: blog_title
   translation: "المدوّنة"
 - id: blog_sub
-  translation: "الطب، البحث السريري، الإحصاء الحيوي، R/STATA، الإنتاجية."
+  translation: "أكتب في الطب، التقنيه والتاريخ والمزيد..."
 - id: min_read
   translation: "دقيقة قراءة"
+# i18n/ar.yaml
+- id: all_tags
+  translation: "جميع الوسوم"
+- id: all_tags_sub
+  translation: "تصفّح المواضيع حسب الوسم"
+- id: search_tags
+  translation: "ابحث ضمن الوسوم..."
+- id: no_tags
+  translation: "لا توجد وسوم بعد."

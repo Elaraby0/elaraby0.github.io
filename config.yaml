@@ -116,6 +116,11 @@ languages:
         - name: "Contact" 
           pageRef: "/contact"
           weight: 30
+        
+        - identifier: tags
+          name: "Tags"
+          pageRef: "/tags"
+          weight: 22
     params:
       profileMode:
         title: "Ahmed Elaraby"
@@ -150,6 +155,10 @@ languages:
         - name: "تواصل"   
           pageRef: "/contact"
           weight: 30
+        - identifier: tags
+          name: "الوسوم"
+          pageRef: "/tags"
+          weight: 22
     params:
       profileMode:
         title: "أحمد العربي"

@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section class="tag-term" {{ if eq .Lang "ar" }}dir="rtl"{{ end }}>
+  <h1 class="tag-term-title">#{{ .Title }}</h1>
+  {{ with .Pages }}
+    <ul class="tag-posts">
+      {{ range .ByDate.Reverse }}
+      <li class="tag-post">
+        <a class="tp-link" href="{{ .RelPermalink }}">
+          <h2 class="tp-title">{{ .Title }}</h2>
+          <div class="tp-meta">
+            <time datetime="{{ .Date }}">{{ .Date.Format "2006-01-02" }}</time>
+            {{ with .ReadingTime }}<span aria-hidden="true">·</span><span>{{ . }} {{ i18n "min_read" | default "min read" }}</span>{{ end }}
+          </div>
+          {{ with .Params.summary }}<p class="tp-summary">{{ . }}</p>{{ end }}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p class="tags-empty">{{ i18n "no_posts" | default "No posts for this tag yet." }}</p>
+  {{ end }}
+</section>
+{{ end }}

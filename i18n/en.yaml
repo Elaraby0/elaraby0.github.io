@@ -2,6 +2,15 @@
 - id: blog_title
   translation: "Blog"
 - id: blog_sub
-  translation: "Medicine, clinical research, biostatistics, R/STATA, productivity."
+  translation: "Medicine, clinical research, politics, tech and more..."
 - id: min_read
   translation: "min read"
+# i18n/en.yaml
+- id: all_tags
+  translation: "All tags"
+- id: all_tags_sub
+  translation: "Browse topics by tag"
+- id: search_tags
+  translation: "Filter tags..."
+- id: no_tags
+  translation: "No tags yet."

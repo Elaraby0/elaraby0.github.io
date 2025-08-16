@@ -1,0 +1,67 @@
+{{ define "main" }}
+<section class="tags pm-tags" {{ if eq .Lang "ar" }}dir="rtl"{{ end }} aria-labelledby="tagsTitle">
+  <header class="tags-header">
+    <h1 id="tagsTitle" class="tags-title">{{ i18n "all_tags" | default "All tags" }}</h1>
+    <p class="tags-sub">{{ i18n "all_tags_sub" | default "Browse topics by tag" }}</p>
+  </header>
+
+  <div class="tags-search" role="search">
+    <label class="sr-only" for="tagFilter">{{ i18n "search_tags" | default "Filter tags..." }}</label>
+    <input id="tagFilter" type="search"
+           placeholder="{{ i18n "search_tags" | default "Filter tags..." }}"
+           aria-label="{{ i18n "search_tags" | default "Filter tags..." }}">
+  </div>
+
+  {{ $tags := site.Taxonomies.tags }}
+  {{ if $tags }}
+    {{/* build list of {name,count,url} */}}
+    {{ $list := slice }}
+    {{ range $name, $pages := $tags }}
+      {{ $list = $list | append (dict
+        "name" $name
+        "count" (len $pages)
+        "url" (printf "/tags/%s/" (urlize $name) | relLangURL)
+      ) }}
+    {{ end }}
+
+    {{/* sort by name then count desc for stable order */}}
+    {{ $sorted := sort (sort $list "name") "count" "desc" }}
+
+    {{/* rotate chip colors */}}
+    {{ $palette := slice "c0" "c1" "c2" "c3" "c4" "c5" }}
+    {{ $scratch := newScratch }}{{ $scratch.Set "i" 0 }}
+
+    <ul class="tags-grid" id="tagsGrid">
+      {{ range $sorted }}
+        {{ $i := $scratch.Get "i" }}
+        {{ $class := index $palette (math.Mod $i (len $palette)) }}
+        <li class="tag-chip chip--{{ $class }}" data-tag="{{ .name | lower }}">
+          <a class="chip-link" href="{{ .url }}">
+            <span class="chip-name">#{{ .name }}</span>
+            <span class="chip-count">{{ .count }}</span>
+          </a>
+        </li>
+        {{ $scratch.Set "i" (add $i 1) }}
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p class="tags-empty">{{ i18n "no_tags" | default "No tags yet." }}</p>
+  {{ end }}
+</section>
+
+<script>
+(function () {
+  const q = document.getElementById('tagFilter');
+  const grid = document.getElementById('tagsGrid');
+  if (!q || !grid) return;
+
+  q.addEventListener('input', function () {
+    const s = this.value.trim().toLowerCase();
+    for (const li of grid.children) {
+      const hit = !s || li.dataset.tag.includes(s);
+      li.style.display = hit ? '' : 'none';
+    }
+  }, { passive: true });
+})();
+</script>
+{{ end }}
