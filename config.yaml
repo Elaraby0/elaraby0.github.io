@@ -125,7 +125,7 @@ languages:
       profileMode:
         title: "Ahmed Elaraby"
         subtitle: "Physician • Researcher • Writer"
-        imageUrl: "images/profile.webp"   # put image at /static/images/profile.jpg
+        imageUrl: "images/profile.webp"   # put image at /static/images/profile.webp
         imageTitle: "Ahmed"
         buttons:
           - name: "About Me"             # single center button on home
@@ -163,8 +163,8 @@ languages:
       profileMode:
         title: "أحمد العربي"
         subtitle: "طبيب • باحث • كاتب"
-        imageUrl: "images/profile.jpg"
-        imageTitle: "Ahmed"
+        imageUrl: "images/profile.webp"
+        imageTitle: "أحمد"
         buttons:
           - name: "نبذة عني"
             url: "/ar/about/"
