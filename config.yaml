@@ -58,7 +58,9 @@ params:
     reactionsEnabled: "1"
     inputPosition: "bottom"
     lang: "auto"
-
+  cover:
+    responsiveImages: false
+    
   # Profile Mode enabled globally; per-language titles/buttons below
   profileMode:
     enabled: true
