@@ -52,7 +52,7 @@ RSS (Really Simple Syndication) is a stream of updates from a source (journal, s
     - **OR** a **Telegram setup** (Feed Reader Bot / RSS bot) to push updates to a **channel** (broadcast) or **group** (team discussion).
         
 - **Your sources:** PubMed searches, Scopus searches or author/document pages.
-## Part A — PubMed: turn any search into an RSS feed 
+## PubMed: turn any search into an RSS feed 
 
 1. **Run your PubMed search** and apply filters (Trials only, Reviews, Most Recent, date ranges, article types, language, etc.).
     
