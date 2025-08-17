@@ -34,3 +34,7 @@ Thumbs.db
 # Hugo cache (if using Hugo Pipes)
 .hugo_build.lock
 .cache/
+
+# OBSIDIAN files
+.obsidian/
+_templates/
