@@ -1,42 +1,104 @@
 {{ define "main" }}
-
-<section class="blog-hero" {{ if eq .Lang "ar" }}dir="rtl"{{ end }}>
-  <h1>{{ i18n "blog_title" | default .Title }}</h1>
-  <p class="blog-sub">{{ i18n "blog_sub" | default "" }}</p>
-
-  <div class="blog-filters">
-    {{/* Show up to 8 popular tags; safe even if no tags exist */}}
-    {{ with .Site.Taxonomies.tags }}
-      {{ range first 8 (.ByCount) }}
-        <a class="chip" href="{{ .Page.RelPermalink }}">#{{ .Page.Title }}</a>
+  <header class="page-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1>
+      {{ .Title }}
+      {{ if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
+        {{ with .OutputFormats.Get "rss" }}
+        <a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" height="23">
+            <path d="M4 11a9 9 0 0 1 9 9" />
+            <path d="M4 4a16 16 0 0 1 16 16" />
+            <circle cx="5" cy="19" r="1" />
+          </svg>
+        </a>
+        {{ end }}
       {{ end }}
+    </h1>
+    {{ with .Description }}<div class="post-description">{{ . | markdownify }}</div>{{ end }}
+  </header>
+
+  {{ if .Content }}
+  <div class="post-content">
+    {{ if not (.Param "disableAnchoredHeadings") }}
+      {{ partial "anchored_headings.html" .Content }}
+    {{ else }}{{ .Content }}{{ end }}
+  </div>
+  {{ end }}
+
+  {{ $paginator := .Paginate .Pages }}
+
+  <div class="blog-grid">
+    {{ range $index, $p := $paginator.Pages }}
+
+      {{/* ------- PaperMod-accurate cover resolution ------- */}}
+      {{ $cover := "" }}
+      {{ with $p.Params.cover }}
+        {{ if .image }}
+          {{/* Try page-bundle resource first, like PaperMod's partial */}}
+          {{ $res := ($p.Resources.ByType "image").GetMatch (printf "*%s*" .image) }}
+          {{ if $res }}
+            {{ $cover = $res.Permalink }}
+          {{ else }}
+            {{/* Not a bundle image -> treat as absolute/static path */}}
+            {{ $cover = ( .image | absURL ) }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+
+      {{/* Optional fallbacks if cover.image is not there */}}
+      {{ if not $cover }}{{ with $p.Params.images }}{{ $cover = ((index . 0) | absURL) }}{{ end }}{{ end }}
+      {{ if not $cover }}
+        {{ with $p.Resources }}
+          {{ with .GetMatch "*feature*" }}{{ $cover = .RelPermalink }}{{ end }}
+          {{ if not $cover }}{{ with .GetMatch "*cover*" }}{{ $cover = .RelPermalink }}{{ end }}{{ end }}
+          {{ if not $cover }}{{ with (.ByType "image") }}{{ with first 1 . }}{{ $cover = (index . 0).RelPermalink }}{{ end }}{{ end }}{{ end }}
+        {{ end }}
+      {{ end }}
+      {{/* ------- /cover resolution ------- */}}
+
+      {{/* Fallback label = first TWO words (not one letter) */}}
+      {{ $plain := ( $p.Title | plainify ) }}
+      {{ $words := split $plain " " }}
+      {{ $label := cond (gt (len $words) 1) (printf "%s %s" (index $words 0) (index $words 1)) (index $words 0) }}
+
+      {{/* Deterministic gradient class for variety */}}
+      {{ $gradients := slice "g1" "g2" "g3" "g4" "g5" "g6" "g7" "g8" }}
+      {{ $idx := mod (add $index (len $plain)) (len $gradients) }}
+      {{ $g := index $gradients $idx }}
+
+      <article class="blog-grid-item">
+        <a class="thumb" href="{{ $p.RelPermalink }}" aria-label="{{ $p.Title | plainify }}">
+          {{ if $cover }}
+            <img src="{{ $cover }}" alt="{{ $p.Title | plainify }}" loading="lazy" decoding="async" />
+          {{ else }}
+            <span class="thumb-fallback {{ $g }}" aria-hidden="true">
+              <span class="thumb-fallback-text">{{ $label }}</span>
+            </span>
+          {{ end }}
+        </a>
+
+        <h2 class="title entry-hint-parent">
+          <a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+          {{ if $p.Draft }}
+          <span class="entry-hint" title="Draft">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 -960" fill="currentColor">
+              <path d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862-380L643-160H520Z"/>
+            </svg>
+          </span>
+          {{ end }}
+        </h2>
+
+        {{ if not ($p.Param "hideMeta") }}
+          <div class="meta">{{ $p.Date.Format "Jan 2, 2006" }}</div>
+        {{ end }}
+      </article>
     {{ end }}
   </div>
-</section>
 
-{{ $p := .Paginate (.Pages.ByDate.Reverse) }}
-<section class="post-grid" {{ if eq .Lang "ar" }}dir="rtl"{{ end }}>
-  {{ range $p.Pages }}
-    <article class="post-card">
-      <a class="card-title" href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
-
-      <div class="meta">
-        <time datetime="{{ .Date }}">{{ .Date.Format "2006-01-02" }}</time>
-        · {{ .ReadingTime }} {{ i18n "min_read" | default "min" }}
-        {{ with .Params.categories }} · {{ delimit . ", " }}{{ end }}
-      </div>
-
-      <p class="summary">{{ .Summary | plainify | truncate 180 }}</p>
-
-      <div class="tags">
-        {{ range first 6 .Params.tags }}
-          <a class="chip" href="{{ (printf "/tags/%s/" (urlize .)) | relLangURL }}">#{{ . }}</a>
-        {{ end }}
-      </div>
-    </article>
+  {{ if gt $paginator.TotalPages 1 }}
+    {{ partial "pagination.html" . }}
   {{ end }}
-</section>
-
-{{ template "_internal/pagination.html" . }}
-
 {{ end }}
