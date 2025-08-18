@@ -60,7 +60,7 @@ params:
     lang: "auto"
   cover:
     responsiveImages: false
-    
+  tagsLayout: "buckets"
   # Profile Mode enabled globally; per-language titles/buttons below
   profileMode:
     enabled: true
@@ -170,3 +170,4 @@ languages:
         buttons:
           - name: "نبذة عني"
             url: "/ar/about/"
+

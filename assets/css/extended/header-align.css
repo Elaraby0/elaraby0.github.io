@@ -1,0 +1,54 @@
+/* ---- PaperMod header: size + align theme + RSS icons ---- */
+/* Tune these two if you want them even smaller/larger */
+:root{
+  --icon-size-toggle: .75em;   /* theme (moon/sun) size */
+  --icon-size-menu:   1.1em;   /* menu icons (e.g., RSS) size */
+  --nudge-toggle:     -0.055em;   /* tiny vertical nudge down */
+  --nudge-menu:      .000em;  /* tiny vertical nudge up  */
+}
+
+/* Keep header items vertically centered */
+.header .nav{ display:flex; align-items:center }
+
+/* Left cluster (theme toggle + language) */
+.header .nav .logo-switches,
+.header .nav .lang-switch{ display:inline-flex; align-items:center; gap:.35rem }
+
+/* THEME TOGGLE — contains two SVGs (#moon and #sun); don't force display */
+.header .nav #theme-toggle{ display:inline-flex; align-items:center; line-height:1 }
+.header .nav #theme-toggle svg{
+  width:var(--icon-size-toggle);
+  height:var(--icon-size-toggle);
+  vertical-align:middle;
+  transform:translateY(var(--nudge-toggle));
+  opacity:.95;
+}
+/* Show exactly one icon depending on body.dark (PaperMod adds .dark to <body>) */
+body:not(.dark) #theme-toggle #sun{ display:none !important; }
+body.dark        #theme-toggle #moon{ display:none !important; }
+
+/* Main menu links (and any link with an SVG like RSS) */
+.header .nav #menu a{
+  display:inline-flex; align-items:center; gap:.45rem; line-height:1.2;
+}
+.header .nav #menu a svg{
+  width:var(--icon-size-menu);
+  height:var(--icon-size-menu);
+  vertical-align:middle;
+  transform:translateY(var(--nudge-menu));
+  opacity:.9;
+}
+
+/* If RSS icon is near the logo instead of menu, nudge it too */
+.header .nav .logo-switches a[aria-label="RSS"] svg,
+.header .nav .logo-switches a[title="RSS"] svg,
+.header .nav .logo-switches .rss svg{
+  width:var(--icon-size-menu);
+  height:var(--icon-size-menu);
+  vertical-align:middle;
+  transform:translateY(var(--nudge-menu));
+  opacity:.9;
+}
+
+/* Keep the '|' divider next to the language switch centered */
+.header .nav .lang-switch > span{ display:inline-flex; align-items:center }

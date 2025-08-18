@@ -1,0 +1,146 @@
+{{ define "main" }}
+<header class="page-header">
+  {{ partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="post-description">{{ . }}</div>{{ end }}
+</header>
+
+{{/* Build tags + stats once */}}
+{{- $tags := .Site.Taxonomies.tags -}}
+{{- $pairs := slice -}}
+{{- range $name, $term := $tags -}}
+  {{- $pairs = $pairs | append (dict "name" $name "count" (len $term.Pages)) -}}
+{{- end -}}
+{{- $min := 999999 -}}{{- $max := 0 -}}{{- $sum := 0 -}}
+{{- range $pairs -}}
+  {{- if lt .count $min }}{{ $min = .count }}{{ end -}}
+  {{- if gt .count $max }}{{ $max = .count }}{{ end -}}
+  {{- $sum = add $sum .count -}}
+{{- end -}}
+{{- $range := sub $max $min -}}
+{{- $den := cond (gt $range 0) $range 1 -}}  {{/* avoid divide-by-zero in Cloud/Heatmap */}}
+
+{{- $isAR := eq .Site.Language.Lang "ar" -}}
+
+<div id="tags-terms"
+     class="tags-terms"
+     data-default="cloud">  {{/* Cloud = default for all languages */}}
+
+  <!-- Toolbar -->
+  <div class="tags-style-toolbar">
+    <label for="stylePicker" class="tags-style-label">{{ if $isAR }}العرض:{{ else }}View:{{ end }}</label>
+    <span class="picker-wrap">
+      <select id="stylePicker" class="tags-style-picker" dir="{{ if $isAR }}rtl{{ else }}ltr{{ end }}">
+        <optgroup label="{{ if $isAR }}كلاسيكي{{ else }}Classic{{ end }}">
+          <option value="cloud">{{ if $isAR }}سحابة{{ else }}Cloud{{ end }}</option>
+          <option value="pills">{{ if $isAR }}شارات{{ else }}Pills{{ end }}</option>
+          <option value="cards">{{ if $isAR }}بطاقات{{ else }}Cards{{ end }}</option>
+        </optgroup>
+        <optgroup label="{{ if $isAR }}المزيد{{ else }}More{{ end }}">
+          <option value="masonry">{{ if $isAR }}فسيفساء الشرائح{{ else }}Masonry Chips{{ end }}</option>
+          <option value="heatmap">{{ if $isAR }}خريطة حرارة{{ else }}Heatmap{{ end }}</option>
+          <option value="buckets">{{ if $isAR }}مجموعات{{ else }}Buckets{{ end }}</option>
+        </optgroup>
+      </select>
+    </span>
+  </div>
+
+  <!-- 1) CLOUD (default visible without JS) -->
+  <section class="variant" data-style="cloud">
+    <div class="cloud">
+      {{ range $pairs }}
+        {{- $norm := div (sub .count $min) $den -}}  {{/* 0..1 */}}
+        {{- $size := add 14 (mul $norm 14) -}}      {{/* 14..28px */}}
+        <a class="tag"
+           style="font-size: {{ printf "%.0f" $size }}px;"
+           href="{{ (site.GetPage (printf "/tags/%s" .name)).RelPermalink }}">
+          {{ .name }}<sup>{{ .count }}</sup>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <!-- 2) PILLS -->
+  <section class="variant" data-style="pills" hidden>
+    <div class="grid">
+      {{ range $pairs }}
+        <a class="chip" href="{{ (site.GetPage (printf "/tags/%s" .name)).RelPermalink }}">
+          <span class="label">{{ .name }}</span><span class="count">{{ .count }}</span>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <!-- 3) CARDS -->
+  <section class="variant" data-style="cards" hidden>
+    <div class="cards">
+      {{ range $name, $_ := $tags }}
+        {{- $p := site.GetPage (printf "/tags/%s" $name) -}}
+        <a class="cardItem" href="{{ $p.RelPermalink }}">
+          <div class="cardBox">
+            <div class="k">#{{ $name }}</div>
+            {{ with $p.Params.description }}<div class="d">{{ . }}</div>{{ end }}
+            <div class="meta">{{ len (index $tags $name).Pages }} {{ if $isAR }}مقالات{{ else }}posts{{ end }}</div>
+          </div>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <!-- 4) MASONRY -->
+  <section class="variant" data-style="masonry" hidden>
+    <div class="columns">
+      {{ range $pairs }}
+        <div class="brick">
+          <a class="chip" href="{{ (site.GetPage (printf "/tags/%s" .name)).RelPermalink }}">
+            <span class="label">{{ .name }}</span><span class="count">{{ .count }}</span>
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+
+  <!-- 5) HEATMAP -->
+  <section class="variant" data-style="heatmap" hidden>
+    <div class="heat">
+      {{ range $i, $it := $pairs }}
+        {{- $norm := div (sub $it.count $min) $den -}}  {{/* 0..1 */}}
+        <a class="tile small g{{ mod (add $i $it.count) 8 | add 1 }}"
+           style="opacity: {{ printf "%.2f" (add 0.65 (mul $norm 0.35)) }};"
+           href="{{ (site.GetPage (printf "/tags/%s" $it.name)).RelPermalink }}">
+          <div class="t">{{ $it.name }}</div><div class="c">{{ $it.count }}</div>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <!-- 6) BUCKETS -->
+  <section class="variant" data-style="buckets" hidden>
+    {{- $popular := slice -}}{{- $regular := slice -}}{{- $niche := slice -}}
+    {{- $t33 := mul $max 33 -}}{{- $t66 := mul $max 66 -}}
+    {{- range $pairs -}}
+      {{- $score := mul .count 100 -}}
+      {{- if ge $score $t66 -}} {{- $popular = $popular | append . -}}
+      {{- else if ge $score $t33 -}} {{- $regular = $regular | append . -}}
+      {{- else -}} {{- $niche = $niche | append . -}} {{- end -}}
+    {{- end -}}
+    <div class="bucketGrid">
+      {{ range $label, $list := dict (cond $isAR "شائعة" "Popular") $popular (cond $isAR "عادية" "Regular") $regular (cond $isAR "متخصصة" "Niche") $niche }}
+        <div class="bucket">
+          <div class="bucketTitle">{{ $label }}</div>
+          <div class="grid">
+            {{ range $list }}
+              <a class="chip" href="{{ (site.GetPage (printf "/tags/%s" .name)).RelPermalink }}">
+                {{ .name }}<span class="count">{{ .count }}</span>
+              </a>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+</div>
+
+<!-- External script (runs after DOM) -->
+<script defer src="{{ "js/tags-switcher.js" | relURL }}"></script>
+{{ end }}
