@@ -64,7 +64,13 @@ params:
   # Profile Mode enabled globally; per-language titles/buttons below
   profileMode:
     enabled: true
-
+  og_fallback:
+    method: "cloudinary"
+    cloudinary:
+      cloud_name: "doggsnovo"   # from your Cloudinary dashboard
+      bg_public_id: "og/background"   # the background you just uploaded
+      logo_public_id: "og/logo"       # optional; remove this line if you skipped the logo
+      font: "Montserrat"              # safe Google font for text overlay
   # FAVICONS (absolute paths + cache-busting)
   assets:
     favicon: "/favicon.ico?v=3"

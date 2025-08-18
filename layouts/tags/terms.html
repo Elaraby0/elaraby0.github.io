@@ -52,7 +52,7 @@
         {{- $norm := div (sub .count $min) $den -}}  {{/* 0..1 */}}
         {{- $size := add 14 (mul $norm 14) -}}      {{/* 14..28px */}}
         <a class="tag"
-           style="font-size: {{ printf "%.0f" $size }}px;"
+           style="font-size: {{ printf "%.0fpx" $size | safeCSS }}"
            href="{{ (site.GetPage (printf "/tags/%s" .name)).RelPermalink }}">
           {{ .name }}<sup>{{ .count }}</sup>
         </a>
@@ -106,7 +106,7 @@
       {{ range $i, $it := $pairs }}
         {{- $norm := div (sub $it.count $min) $den -}}  {{/* 0..1 */}}
         <a class="tile small g{{ mod (add $i $it.count) 8 | add 1 }}"
-           style="opacity: {{ printf "%.2f" (add 0.65 (mul $norm 0.35)) }};"
+           style="opacity: {{ printf "%.2f" (add 0.65 (mul $norm 0.35)) | safeCSS }};"
            href="{{ (site.GetPage (printf "/tags/%s" $it.name)).RelPermalink }}">
           <div class="t">{{ $it.name }}</div><div class="c">{{ $it.count }}</div>
         </a>

@@ -57,6 +57,7 @@ html.dark .blog-grid-item:hover .thumb {
   word-break: break-word; /* long words in titles */
   display: -webkit-box;
   -webkit-line-clamp: 2; /* keep to two lines */
+  line-clamp: 2; /* standard property for compatibility */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

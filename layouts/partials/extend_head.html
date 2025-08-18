@@ -1,14 +1,55 @@
+{{/* layouts/partials/extend_head.html */}}
+
+<!-- Your fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;600;700&display=swap" rel="stylesheet">
 
 {{- with site.Config.Services.GoogleAnalytics.ID -}}
-<!-- GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', '{{ . }}');
-</script>
+  <!-- Your GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', '{{ . }}');
+  </script>
 {{- end -}}
+
+{{/* 1) Try to use a page image first */}}
+{{- $img := "" -}}
+{{- with .Params.images -}}{{ $img = (index . 0) | absURL }}{{- end -}}
+{{- if not $img -}}{{ with .Params.cover.image }}{{ $img = . | absURL }}{{ end }}{{- end -}}
+
+{{/* 2) If no image, build a Cloudinary card from config */}}
+{{- $fallback := .Site.Params.og_fallback.method | default "cloudinary" -}}
+{{- if and (not $img) (eq $fallback "cloudinary") -}}
+  {{- $cn    := .Site.Params.og_fallback.cloudinary.cloud_name -}}
+  {{- $bgPID := .Site.Params.og_fallback.cloudinary.bg_public_id -}}
+  {{- $logoPID := .Site.Params.og_fallback.cloudinary.logo_public_id -}}
+  {{- $font  := .Site.Params.og_fallback.cloudinary.font | default "Montserrat" -}}
+
+  {{- $title := .Title | htmlUnescape | urlquery -}}
+  {{- $host  := (urls.Parse .Permalink).Host | default .Site.Title | urlquery -}}
+
+  {{- $logoLayer := "" -}}
+  {{- with $logoPID -}}
+    {{- $logoColon := replace . "/" ":" -}} {{/* og/logo -> og:logo */}}
+    {{- $logoLayer = printf "l_%s,fl_relative,w_0.18,g_north_west,x_60,y_60,fl_layer_apply" $logoColon -}}
+  {{- end -}}
+
+  {{- $overlayHost  := printf "l_text:%s_36:%s,co_rgb:FFFFFF,opacity_70,letter_spacing_2/fl_layer_apply,g_north_west,x_60,y_60" $font $host -}}
+  {{- $overlayTitle := printf "l_text:%s_64_bold:%s,co_rgb:FFFFFF,c_fit,w_1050/fl_layer_apply,g_south_west,x_60,y_80" $font $title -}}
+
+  {{- $img = printf "https://res.cloudinary.com/%s/image/upload/%s/%s/%s/w_1200,h_630,c_fill,q_auto,f_auto/%s" $cn $logoLayer $overlayHost $overlayTitle $bgPID -}}
+{{- end -}}
+
+{{- if $img -}}
+  <meta property="og:image" content="{{ $img }}">
+  <meta name="twitter:image" content="{{ $img }}">
+{{- end -}}
+
+<link rel="canonical" href="{{ .Permalink }}"/>
+
+{{- template "_internal/opengraph.html" . -}}
+{{- template "_internal/twitter_cards.html" . -}}
