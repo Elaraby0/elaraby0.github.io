@@ -7,22 +7,25 @@
     {{- range first 3 $sorted -}}
       {{- $cover := "" -}}
 
+      {{/* 1) Resolve cover.image from THIS PAGE's bundle (use .Resources, not $.Resources) */}}
       {{- with .Params.cover }}
         {{- if .image }}
           {{- $img := .image -}}
           {{- if or (hasPrefix $img "http://") (hasPrefix $img "https://") -}}
             {{- $cover = $img -}}
           {{- else -}}
-            {{- with $.Resources.GetMatch (printf "**/%s" (path.Base $img)) -}}
-              {{- $cover = .RelPermalink -}}
-            {{- end -}}
-            {{- if not $cover -}}
+            {{- $name := (path.Base $img) -}}
+            {{- $res := or (.Resources.GetMatch (printf "**/%s" $name)) (.Resources.Get $name) (.Resources.GetMatch $img) -}}
+            {{- if $res }}
+              {{- $cover = $res.RelPermalink -}}
+            {{- else -}}
               {{- $cover = ($img | absURL) -}}
             {{- end -}}
           {{- end -}}
         {{- end -}}
       {{- end -}}
 
+      {{/* 2) images: ["/path.jpg", ...] (static/site path) */}}
       {{- if not $cover -}}
         {{- with .Params.images -}}
           {{- $maybe := index . 0 -}}
@@ -36,10 +39,19 @@
         {{- end -}}
       {{- end -}}
 
+      {{/* 3) First image in THIS PAGE's bundle */}}
       {{- if not $cover -}}
         {{- $imgs := .Resources.ByType "image" -}}
         {{- with first 1 $imgs -}}
           {{- $cover = (index . 0).RelPermalink -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{/* 4) Fallback: first inline <img> in content */}}
+      {{- if not $cover -}}
+        {{- $match := (findRE `(?is)<img[^>]+src=["']([^"']+)["']` .Content | first 1) -}}
+        {{- if $match }}
+          {{- $cover = replaceRE `(?is).*src=["']([^"']+)["'].*` "$1" (index $match 0) -}}
         {{- end -}}
       {{- end -}}
 

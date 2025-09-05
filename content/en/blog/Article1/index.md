@@ -30,7 +30,7 @@ cover:
   image: group_12552.png
   alt: ""
   caption: ""
-  relative: false
+  relative: true
 math: false
 mermaid: true
 canonicalURL: ""
