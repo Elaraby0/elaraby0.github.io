@@ -1,0 +1,100 @@
+/* Hero area */
+.profile {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+/* Reserve safe space so the arrow never overlaps hero buttons/image */
+.profile_inner { padding-bottom: 64px; }
+
+/* Arrow anchored at bottom-center of hero (above Latest Articles) */
+.scroll-arrow {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  cursor: pointer;
+  color: var(--primary);
+  animation: bounce 2s infinite;
+  transition: opacity .18s ease, transform .18s ease, color .18s ease;
+}
+.scroll-arrow:hover { transform: translateX(-50%) translateY(6px); color: var(--secondary); }
+.hide-arrow { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(10px); }
+
+@keyframes bounce {
+  0%,20%,50%,80%,100% { transform: translateX(-50%) translateY(0) }
+  40% { transform: translateX(-50%) translateY(-10px) }
+  60% { transform: translateX(-50%) translateY(-5px) }
+}
+
+/* Sections wrapper and width */
+.content-sections { padding: 2rem 0; }
+body.list .main { max-width: 1100px; }
+.section-wide { padding: 0 1rem; margin: 0 auto 3rem; }
+
+/* Section headings */
+.recent-posts h2, .work-samples h2 { color: var(--primary); text-align: center; margin-bottom: 1rem; font-size: 1.55rem; }
+
+/* LIGHT MODE: clearer surfaces, borders, elevation (no dark-mode change) */
+@media (prefers-color-scheme: light) {
+  .recent-posts, .work-samples {
+    background: #f7f9fc;
+    border: 1px solid #e3e8f1;
+    border-radius: 16px;
+    padding: 1.25rem 1.1rem;
+  }
+  .post-row, .service-tile, .review-slide {
+    background: #ffffff;
+    border: 1px solid #d9e2ec;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
+  }
+  .post-thumb { background: #eef2f7; }
+}
+
+/* Latest posts: minimal media rows */
+.posts-list-minimal { display: grid; gap: 1rem; }
+.post-row {
+  display: grid; grid-template-columns: 300px 1fr; gap: 1rem;
+  background: var(--entry); border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(128,128,128,.15); box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.post-row:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.12); }
+.post-thumb { display: block; aspect-ratio: 16 / 9; background: rgba(0,0,0,.03); }
+.post-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.post-body { padding: 1rem; display: flex; flex-direction: column; justify-content: center; }
+.post-title { margin: 0 0 .35rem; font-size: 1.06rem; }
+.post-title a { color: var(--primary); text-decoration: none; }
+.post-title a:hover { text-decoration: underline; }
+.post-excerpt { margin: 0 0 .5rem; color: var(--secondary); }
+.post-meta { color: var(--secondary); font-size: .9rem; }
+
+/* Services grid and tiles */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: .25rem; }
+.service-tile { background: var(--entry); border: 1px solid rgba(128,128,128,.15); border-radius: 12px; padding: 1rem 1.1rem; box-shadow: 0 2px 10px rgba(0,0,0,.06); transition: transform .18s ease, box-shadow .18s ease; }
+.service-tile:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.12); }
+.service-icon { color: var(--primary); margin-bottom: .4rem; }
+.service-title { margin: 0; font-size: 1.05rem; color: var(--primary); }
+.service-points { list-style: none; padding-left: 0; margin: .3rem 0 0; color: var(--secondary); line-height: 1.5; }
+.service-points li { margin: .22rem 0; }
+[dir="rtl"] .service-points { padding-right: 0; }
+
+/* Reviews slider styles (if present on EN) */
+.section-gap { margin-top: 1.75rem; }
+.reviews-slider { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.reviews-track { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(320px, 1fr); gap: .9rem; padding-bottom: .25rem; }
+.review-slide { scroll-snap-align: center; background: var(--entry); border: 1px solid rgba(128,128,128,.15); border-radius: 10px; padding: .9rem 1rem; }
+.review-slide figcaption { font-weight: 700; margin-bottom: .35rem; color: var(--primary); }
+.review-slide blockquote { margin: 0; color: var(--secondary); font-style: italic; line-height: 1.55; }
+
+/* CTA */
+.cta-wrap { text-align: center; }
+.cta-wrap .buttons { display: inline-flex; }
+.cta-wrap .button { margin: 0; }
+
+/* Responsive */
+@media (max-width: 900px) { .post-row { grid-template-columns: 1fr; } }

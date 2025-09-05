@@ -77,6 +77,8 @@ params:
     favicon16x16: "/favicon-16x16.png?v=3"
     favicon32x32: "/favicon-32x32.png?v=3"
     apple_touch_icon: "/apple-touch-icon.png?v=3"
+    customCSS: ["css/extended/custom.css"]
+    customJS: ["js/custom.js"]
 
   # Social icons under the avatar
   socialIcons:

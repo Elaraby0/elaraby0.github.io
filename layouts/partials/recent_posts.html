@@ -1,0 +1,60 @@
+<section class="recent-posts section-wide">
+  <h2>{{ if eq $.Site.Language.Lang "ar" }}أحدث المقالات{{ else }}Latest Articles{{ end }}</h2>
+
+  <div class="posts-list-minimal">
+    {{- $all := where .Site.RegularPages "Section" "blog" -}}
+    {{- $sorted := sort $all "Date" "desc" -}}
+    {{- range first 3 $sorted -}}
+      {{- $cover := "" -}}
+
+      {{- with .Params.cover }}
+        {{- if .image }}
+          {{- $img := .image -}}
+          {{- if or (hasPrefix $img "http://") (hasPrefix $img "https://") -}}
+            {{- $cover = $img -}}
+          {{- else -}}
+            {{- with $.Resources.GetMatch (printf "**/%s" (path.Base $img)) -}}
+              {{- $cover = .RelPermalink -}}
+            {{- end -}}
+            {{- if not $cover -}}
+              {{- $cover = ($img | absURL) -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{- if not $cover -}}
+        {{- with .Params.images -}}
+          {{- $maybe := index . 0 -}}
+          {{- if $maybe -}}
+            {{- if or (hasPrefix $maybe "http://") (hasPrefix $maybe "https://") -}}
+              {{- $cover = $maybe -}}
+            {{- else -}}
+              {{- $cover = ($maybe | absURL) -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{- if not $cover -}}
+        {{- $imgs := .Resources.ByType "image" -}}
+        {{- with first 1 $imgs -}}
+          {{- $cover = (index . 0).RelPermalink -}}
+        {{- end -}}
+      {{- end -}}
+
+      <article class="post-row">
+        {{- if $cover -}}
+          <a class="post-thumb" href="{{ .Permalink }}" aria-label="cover">
+            <img src="{{ $cover }}" alt="{{ .Params.cover.alt | default .Title }}">
+          </a>
+        {{- end -}}
+        <div class="post-body">
+          <h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+          <p class="post-excerpt">{{ .Summary | plainify | truncate 140 }}</p>
+          <time class="post-meta">{{ .Date.Format "January 2, 2006" }}</time>
+        </div>
+      </article>
+    {{- end -}}
+  </div>
+</section>
