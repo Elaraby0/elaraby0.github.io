@@ -1,6 +1,9 @@
 ---
 title: "تواصل معي"
 description: "راسلني"
+cover:
+  image: "/images/og/contact-ar.png"
+  alt: "معاينة صفحة التواصل"
 ---
 
 <section class="form-card" dir="rtl" lang="ar">

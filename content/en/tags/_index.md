@@ -1,6 +1,8 @@
 ---
 title: "Tags"
-# Optional: sets the initial view the first time a visitor opens /tags/
-tagsLayout: "pills"  # pills | cloud | cards | masonry | heatmap | buckets
+tagsLayout: "pills"
+cover:
+  image: "/images/og/tags-en.png"
+  alt: "Tags preview"
 ---
 Browse the site by topic. Use the view switcher to pick the style you like.

@@ -140,7 +140,10 @@ languages:
         buttons:
           - name: "About Me"             # single center button on home
             url: "/en/about/"
-
+# Fallback OG/Twitter for EN home and other pages without a page image:
+      images:
+        - "/images/og/home-en.png"
+      description: "Physician • Researcher • Writer"
   ar:
     weight: 2
     languageName: "العربية"
@@ -178,4 +181,7 @@ languages:
         buttons:
           - name: "نبذة عني"
             url: "/ar/about/"
+      images:
+        - "/images/og/home-ar.png"
+      description: "طبيب • باحث • كاتب"
 

@@ -1,6 +1,9 @@
 ---
 title: "About Me"
 description: "Short bio and CV"
+cover:
+  image: "/images/og/about-en.png"
+  alt: "About preview"
 ---
 
 Hi, I’m **Ahmed Elaraby** — a physician, clinical researcher, and writer.

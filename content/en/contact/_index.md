@@ -1,6 +1,9 @@
 ---
 title: "Contact"
 description: "Get in touch"
+cover:
+  image: "/images/og/contact-en.png"
+  alt: "Contact preview"
 ---
 
 <section class="form-card" lang="en">

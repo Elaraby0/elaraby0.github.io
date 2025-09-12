@@ -1,6 +1,8 @@
 ---
 title: "الوسوم"
-# Optional default for Arabic; visitors can still switch on the page
 tagsLayout: "heatmap"
+cover:
+  image: "/images/og/tags-ar.png"
+  alt: "معاينة الوسوم"
 ---
 تصفّح المحتوى حسب الوسوم. استخدم مُبدّل العرض لاختيار النمط الذي تفضّله.
