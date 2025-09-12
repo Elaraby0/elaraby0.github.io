@@ -27,7 +27,7 @@ comments: false
 hidemeta: false
 disableShare: false
 cover:
-  image: group_12552.png
+  image: Group_12552.png
   alt: ""
   caption: ""
   relative: true
