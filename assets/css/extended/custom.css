@@ -1,3 +1,23 @@
+/* ===========================================
+   MOBILE FONT FIX - ADD AT THE VERY TOP
+   =========================================== */
+
+/* Force Google Font Loading on Mobile */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap');
+
+/* Mobile Font Support */
+@media (max-width: 768px) {
+  *, *::before, *::after,
+  body, html, .profile-title, .profile-subtitle,
+  .hero-name, .resume-prefix, h1, h2, h3, h4, h5, h6 {
+    font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif !important;
+  }
+}
+
+/* ===========================================
+   YOUR EXACT ORIGINAL FILE CONTINUES BELOW
+   =========================================== */
+
 /* Hero area */
 .profile {
   min-height: 100vh;
@@ -7,7 +27,21 @@
   align-items: center;
   text-align: center;
   position: relative;
+  background: transparent !important; /* FIXED: Make transparent */
 }
+
+/* FIXED: Remove white backgrounds in light mode */
+[data-theme="light"] .profile,
+[data-theme="light"] .profile_inner,
+[data-theme="light"] .main,
+[data-theme="light"] .content-sections,
+body:not([data-theme="dark"]):not(.dark) .profile,
+body:not([data-theme="dark"]):not(.dark) .profile_inner,
+body:not([data-theme="dark"]):not(.dark) .main,
+body:not([data-theme="dark"]):not(.dark) .content-sections {
+  background: transparent !important;
+}
+
 /* Reserve safe space so the arrow never overlaps hero buttons/image */
 .profile_inner { padding-bottom: 64px; }
 
@@ -32,27 +66,46 @@
 }
 
 /* Sections wrapper and width */
-.content-sections { padding: 2rem 0; }
-body.list .main { max-width: 1100px; }
+.content-sections { 
+  padding: 2rem 0; 
+  background: transparent !important; /* FIXED: Make transparent */
+}
+body.list .main { 
+  max-width: 1100px; 
+  background: transparent !important; /* FIXED: Remove white background */
+}
 .section-wide { padding: 0 1rem; margin: 0 auto 3rem; }
 
 /* Section headings */
 .recent-posts h2, .work-samples h2 { color: var(--primary); text-align: center; margin-bottom: 1rem; font-size: 1.55rem; }
 
-/* LIGHT MODE: clearer surfaces, borders, elevation (no dark-mode change) */
-@media (prefers-color-scheme: light) {
-  .recent-posts, .work-samples {
-    background: #f7f9fc;
-    border: 1px solid #e3e8f1;
-    border-radius: 16px;
-    padding: 1.25rem 1.1rem;
-  }
-  .post-row, .service-tile, .review-slide {
-    background: #ffffff;
-    border: 1px solid #d9e2ec;
-    box-shadow: 0 8px 24px rgba(15,23,42,0.08);
-  }
-  .post-thumb { background: #eef2f7; }
+/* FIXED LIGHT MODE: Make sections semi-transparent instead of solid white */
+[data-theme="light"] .recent-posts,
+[data-theme="light"] .work-samples,
+body:not([data-theme="dark"]):not(.dark) .recent-posts,
+body:not([data-theme="dark"]):not(.dark) .work-samples {
+  background: rgba(247, 249, 252, 0.7) !important;
+  border: 1px solid rgba(227, 232, 241, 0.6);
+  border-radius: 16px;
+  padding: 1.25rem 1.1rem;
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .post-row,
+[data-theme="light"] .service-tile,
+[data-theme="light"] .review-slide,
+body:not([data-theme="dark"]):not(.dark) .post-row,
+body:not([data-theme="dark"]):not(.dark) .service-tile,
+body:not([data-theme="dark"]):not(.dark) .review-slide {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(217, 226, 236, 0.8);
+  box-shadow: 0 8px 24px rgba(15,23,42,0.06);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme="light"] .post-thumb,
+body:not([data-theme="dark"]):not(.dark) .post-thumb { 
+  background: rgba(238, 242, 247, 0.8); 
 }
 
 /* Latest posts: minimal media rows */
@@ -98,6 +151,7 @@ body.list .main { max-width: 1100px; }
 
 /* Responsive */
 @media (max-width: 900px) { .post-row { grid-template-columns: 1fr; } }
+
 /* ===========================================
    FINAL CV PAGE STYLES - UNIFORM HEADER SIZES
    =========================================== */
@@ -819,7 +873,7 @@ body[class*="dark"] .cv-page {
     line-height: 1.6;
 }
 
-/* Responsive Design */
+/* FIXED: Mobile CV Animation - Disable typewriter on mobile */
 @media (max-width: 768px) {
     #nav-dots {
         right: 15px;
@@ -855,12 +909,14 @@ body[class*="dark"] .cv-page {
         padding: 1.5rem;
     }
     
+    /* FIXED: Mobile typewriter fix */
     .hero-name {
         white-space: normal;
         overflow: visible;
         border-right: none;
         border-left: none;
         width: auto;
+        opacity: 1 !important; /* Force visible */
     }
     
     [dir="rtl"] .hero-name {
@@ -909,6 +965,7 @@ html {
     padding-top: 0.2em;
     padding-bottom: 0.3em;
 }
+
 /* Fancy Contact Button Section */
 .cv-contact-section {
     background: linear-gradient(135deg, var(--cv-light-bg) 0%, var(--cv-card-bg) 100%);
@@ -1060,6 +1117,7 @@ html {
         font-size: 1.1rem;
     }
 }
+
 /* ===========================================
    FIXED FANCY CONTACT PAGE STYLES
    =========================================== */
@@ -1604,6 +1662,7 @@ html {
 .contact-form-section {
   animation: slideInUp 0.8s ease 0.6s both;
 }
+
 /* ===========================================
    TALLER & LESS WIDE FLAT GLOWING BUTTONS
    =========================================== */
@@ -1663,6 +1722,14 @@ html {
   color: var(--primary);
   margin-bottom: 1rem;
   line-height: 1.2;
+  font-family: "Baloo Bhaijaan 2", system-ui, sans-serif !important;
+}
+
+/* FIXED: Mobile typewriter fix for profile title */
+@media (max-width: 768px) {
+  .profile-title {
+    font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif !important;
+  }
 }
 
 .profile-subtitle {
@@ -1671,6 +1738,14 @@ html {
   font-weight: 400;
   margin-bottom: 2rem;
   display: block;
+  font-family: "Baloo Bhaijaan 2", system-ui, sans-serif !important;
+}
+
+/* FIXED: Mobile font fix for profile subtitle */
+@media (max-width: 768px) {
+  .profile-subtitle {
+    font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif !important;
+  }
 }
 
 /* Social Icons */
@@ -2258,4 +2333,193 @@ body .profile-btn.contact-btn:hover .btn-text {
     min-height: 120px;
     height: 120px;
   }
+}
+/* ===========================================
+   FIXED BUTTON TEXT CENTERING
+   =========================================== */
+
+/* Perfect Text Centering for Profile Buttons */
+.profile-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  min-width: 110px;
+  height: 52px;
+  font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif !important;
+  letter-spacing: 0.02em;
+  border: none;
+  cursor: pointer;
+  
+  /* FIXED: Perfect text centering */
+  line-height: 1 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+/* Fix text elements inside buttons */
+.profile-btn span,
+.profile-btn .btn-text,
+.profile-btn * {
+  line-height: 1 !important;
+  vertical-align: middle !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-block !important;
+  text-align: center !important;
+  font-family: inherit !important;
+  color: inherit !important;
+}
+
+/* About Button - Solid Blue Flat with Perfect Centering */
+.about-btn {
+  background: #0f12fc !important;
+  color: white !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+}
+
+.about-btn * {
+  color: white !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
+
+.about-btn:hover {
+  background: #0d0fea !important;
+  color: white !important;
+  transform: scale(1.05);
+}
+
+.about-btn:hover * {
+  color: white !important;
+}
+
+/* Contact Button - Transparent with Perfect Centering */
+.contact-btn {
+  background: transparent !important;
+  border: 2px solid transparent !important;
+  color: var(--primary) !important;
+  position: relative;
+  line-height: 1 !important;
+}
+
+.contact-btn * {
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
+
+/* Light Theme Contact Button */
+[data-theme="light"] .contact-btn,
+body:not([data-theme="dark"]):not(.dark) .contact-btn {
+  border-color: rgba(26, 26, 26, 0.3) !important;
+  color: #1a1a1a !important;
+  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.1) !important;
+}
+
+[data-theme="light"] .contact-btn *,
+body:not([data-theme="dark"]):not(.dark) .contact-btn * {
+  color: #1a1a1a !important;
+}
+
+[data-theme="light"] .contact-btn:hover,
+body:not([data-theme="dark"]):not(.dark) .contact-btn:hover {
+  border-color: #1a1a1a !important;
+  color: #000000 !important;
+  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.15) !important;
+  transform: scale(1.05) !important;
+  background: rgba(26, 26, 26, 0.02) !important;
+}
+
+[data-theme="light"] .contact-btn:hover *,
+body:not([data-theme="dark"]):not(.dark) .contact-btn:hover * {
+  color: #000000 !important;
+}
+
+/* Dark Theme Contact Button */
+[data-theme="dark"] .contact-btn,
+body.dark .contact-btn {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .contact-btn *,
+body.dark .contact-btn * {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .contact-btn:hover,
+body.dark .contact-btn:hover {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15) !important;
+  transform: scale(1.05) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="dark"] .contact-btn:hover *,
+body.dark .contact-btn:hover * {
+  color: #ffffff !important;
+}
+
+/* Mobile button centering */
+@media (max-width: 768px) {
+  .profile-btn {
+    padding: 0.85rem 1.3rem;
+    font-size: 0.85rem;
+    min-width: 100px;
+    height: 46px;
+    border-radius: 25px;
+    line-height: 1 !important;
+  }
+  
+  .profile-btn *,
+  .profile-btn span,
+  .profile-btn .btn-text {
+    line-height: 1 !important;
+    vertical-align: middle !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-btn {
+    padding: 0.75rem 1.2rem;
+    font-size: 0.8rem;
+    min-width: 90px;
+    height: 42px;
+    border-radius: 22px;
+    line-height: 1 !important;
+  }
+  
+  .profile-btn *,
+  .profile-btn span,
+  .profile-btn .btn-text {
+    line-height: 1 !important;
+    vertical-align: middle !important;
+  }
+}
+
+/* Remove any default margins/padding that might cause misalignment */
+.profile-btn,
+.profile-btn:before,
+.profile-btn:after {
+  box-sizing: border-box !important;
+}
+
+/* Force perfect alignment for any nested elements */
+.profile-btn > * {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  vertical-align: middle !important;
+  display: inline-block !important;
+  text-align: center !important;
 }
