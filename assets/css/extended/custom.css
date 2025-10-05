@@ -98,3 +98,965 @@ body.list .main { max-width: 1100px; }
 
 /* Responsive */
 @media (max-width: 900px) { .post-row { grid-template-columns: 1fr; } }
+/* ===========================================
+   FINAL CV PAGE STYLES - UNIFORM HEADER SIZES
+   =========================================== */
+
+/* Use your existing font family */
+.cv-page {
+    font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans Arabic", sans-serif;
+}
+
+/* Enhanced CSS Variables for Perfect Theme Integration */
+body[data-theme="light"] .cv-page,
+body:not([data-theme="dark"]):not([class*="dark"]) .cv-page {
+    --cv-bg-color: var(--theme, #ffffff);
+    --cv-text-primary: var(--primary, #2d3748);
+    --cv-text-secondary: var(--secondary, #4a5568);
+    --cv-text-light: #718096;
+    --cv-accent-color: var(--primary, #2d3748);
+    --cv-border-color: #e2e8f0;
+    --cv-light-bg: #f7fafc;
+    --cv-card-bg: #ffffff;
+    --cv-shadow: rgba(0, 0, 0, 0.1);
+    --cv-blue-highlight: #0f12fc;
+}
+
+body[data-theme="dark"] .cv-page,
+body[class*="dark"] .cv-page {
+    --cv-bg-color: var(--theme, #1a202c);
+    --cv-text-primary: var(--primary, #f7fafc);
+    --cv-text-secondary: var(--secondary, #e2e8f0);
+    --cv-text-light: #a0aec0;
+    --cv-accent-color: var(--primary, #f7fafc);
+    --cv-border-color: #4a5568;
+    --cv-light-bg: #2d3748;
+    --cv-card-bg: #2d3748;
+    --cv-shadow: rgba(0, 0, 0, 0.3);
+    --cv-blue-highlight: #0f12fc;
+}
+
+/* Enhanced Navigation Dots */
+#nav-dots {
+    position: fixed;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+[dir="rtl"] #nav-dots {
+    right: auto;
+    left: 25px;
+}
+
+.dot-link {
+    display: block;
+    margin: 15px 0;
+    position: relative;
+    text-decoration: none;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: var(--cv-border-color);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    border: 2px solid var(--cv-border-color);
+    position: relative;
+    z-index: 2;
+}
+
+.dot-link.active .dot {
+    background: var(--cv-text-primary);
+    border-color: var(--cv-text-primary);
+    transform: scale(1.4);
+}
+
+.dot-link:hover .dot {
+    background: var(--cv-text-secondary);
+    border-color: var(--cv-text-secondary);
+    transform: scale(1.2);
+}
+
+/* Enhanced Section Labels */
+.section-label {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--cv-text-primary);
+    color: var(--cv-bg-color);
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    scale: 0.8;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 20px;
+}
+
+[dir="rtl"] .section-label {
+    right: auto;
+    left: 30px;
+}
+
+.section-label.show-while-scrolling,
+.section-label.show-on-hover {
+    opacity: 1;
+    scale: 1;
+    transform: translateY(-50%) translateX(-8px);
+}
+
+[dir="rtl"] .section-label.show-while-scrolling,
+[dir="rtl"] .section-label.show-on-hover {
+    transform: translateY(-50%) translateX(8px);
+}
+
+/* CV Sections */
+.cv-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    box-sizing: border-box;
+}
+
+.cv-content {
+    max-width: 800px;
+    width: 100%;
+}
+
+/* Fixed Hero Section with Square Highlighting and Responsive Name */
+#home {
+    text-align: left;
+}
+
+[dir="rtl"] #home {
+    text-align: right;
+}
+
+.hero-container {
+    position: relative;
+    padding-top: 2rem;
+}
+
+.resume-prefix {
+    font-family: "Baloo Bhaijaan 2", serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--cv-text-primary);
+    background: #0f12fc;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    display: inline-block;
+    position: relative;
+    animation: highlightPulse 2s ease-in-out infinite alternate;
+}
+
+.resume-prefix.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes highlightPulse {
+    0% { 
+        background: #0f12fc;
+        box-shadow: 0 4px 15px rgba(15, 18, 252, 0.3);
+    }
+    100% { 
+        background: #2c3efd;
+        box-shadow: 0 6px 20px rgba(15, 18, 252, 0.5);
+    }
+}
+
+.hero-name {
+    font-family: "Baloo Bhaijaan 2", serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: var(--cv-text-primary);
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    border-right: 3px solid var(--cv-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    opacity: 0;
+    line-height: 1.2;
+    padding-bottom: 0.2em;
+    padding-top: 0.1em;
+    max-width: 100%;
+}
+
+[dir="rtl"] .hero-name {
+    border-right: none;
+    border-left: 3px solid var(--cv-text-primary);
+}
+
+.hero-name.animate-in {
+    opacity: 1;
+    animation: typing 1.5s steps(15, end) forwards, blink-caret 0.5s step-end infinite;
+}
+
+@keyframes typing {
+    from { 
+        width: 0;
+    }
+    to { 
+        width: 100%;
+        max-width: fit-content;
+    }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--cv-text-primary); }
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 300;
+    color: var(--cv-text-secondary);
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 5s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* All Section Headers - UNIFORM SIZE */
+.cv-section h2,
+.cv-regular-section h2 {
+    font-family: "Baloo Bhaijaan 2", serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    color: var(--cv-text-primary);
+    margin-bottom: 2rem;
+    font-weight: 700;
+    position: relative;
+}
+
+.cv-section h2::after,
+.cv-regular-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cv-text-primary), var(--cv-text-secondary));
+    border-radius: 2px;
+}
+
+[dir="rtl"] .cv-section h2::after,
+[dir="rtl"] .cv-regular-section h2::after {
+    left: auto;
+    right: 0;
+}
+
+/* Fixed Professional Summary with Justified Text */
+.fancy-summary {
+    background: var(--cv-light-bg);
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px var(--cv-shadow);
+    border: 1px solid var(--cv-border-color);
+}
+
+.fancy-summary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--cv-accent-color), var(--cv-text-secondary));
+}
+
+.typewriter-summary {
+    font-family: "Baloo Bhaijaan 2", serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    line-height: 1.8;
+    color: var(--cv-text-primary);
+    margin: 0;
+    position: relative;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* Clean Timeline Design (No Vertical Line or Dots) */
+.clean-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.experience-item {
+    position: relative;
+    padding: 2rem;
+    background: var(--cv-light-bg);
+    border-radius: 15px;
+    border: 1px solid var(--cv-border-color);
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--cv-blue-highlight);
+}
+
+[dir="rtl"] .experience-item {
+    border-left: 1px solid var(--cv-border-color);
+    border-right: 4px solid var(--cv-blue-highlight);
+}
+
+.experience-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px var(--cv-shadow);
+}
+
+.experience-date {
+    font-size: 0.85rem;
+    color: var(--cv-text-secondary);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: var(--cv-blue-highlight);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+.experience-title {
+    font-family: "Baloo Bhaijaan 2", serif;
+    font-size: 1.4rem;
+    color: var(--cv-text-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.experience-subtitle {
+    color: var(--cv-text-secondary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.experience-description {
+    color: var(--cv-text-secondary);
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+/* Fixed Research Impact Stats */
+.stats-section {
+    background: var(--cv-light-bg);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--cv-border-color);
+}
+
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--cv-accent-color), var(--cv-text-secondary));
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    position: relative;
+    padding: 2rem 1rem;
+    background: var(--cv-card-bg);
+    border-radius: 15px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: translateY(30px);
+    border: 1px solid var(--cv-border-color);
+}
+
+.stat-item.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px var(--cv-shadow);
+}
+
+.stat-number {
+    font-family: "Baloo Bhaijaan 2", serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--cv-text-primary);
+    display: block;
+    margin: 0 0 0.5rem 0;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--cv-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.stat-description {
+    font-size: 0.8rem;
+    color: var(--cv-text-light);
+    line-height: 1.4;
+}
+
+/* Enhanced Skills Design */
+.skills-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.skill-category-modern {
+    background: var(--cv-light-bg);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid var(--cv-border-color);
+}
+
+.skill-category-modern:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px var(--cv-shadow);
+}
+
+.skill-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.skill-icon {
+    font-size: 2rem;
+}
+
+.skill-header h3 {
+    font-family: "Baloo Bhaijaan 2", serif;
+    font-size: 1.4rem;
+    margin: 0;
+    font-weight: 600;
+    color: var(--cv-text-primary);
+}
+
+/* Skill Bars */
+.skill-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.skill-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.skill-name {
+    font-weight: 600;
+    color: var(--cv-text-primary);
+    min-width: 100px;
+    font-size: 0.9rem;
+}
+
+.skill-progress {
+    flex: 1;
+    height: 8px;
+    background: var(--cv-border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cv-accent-color), var(--cv-text-secondary));
+    border-radius: 4px;
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-level {
+    font-size: 0.8rem;
+    color: var(--cv-text-light);
+    min-width: 80px;
+    text-align: right;
+}
+
+[dir="rtl"] .skill-level {
+    text-align: left;
+}
+
+/* Enhanced Skill Cloud */
+.skill-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.skill-bubble {
+    background: var(--cv-card-bg);
+    color: var(--cv-text-primary);
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid var(--cv-border-color);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+}
+
+.skill-bubble:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--cv-shadow);
+}
+
+.skill-bubble.expert {
+    background: var(--cv-accent-color);
+    color: var(--cv-bg-color);
+    border-color: var(--cv-accent-color);
+}
+
+.skill-bubble.advanced {
+    background: var(--cv-text-secondary);
+    color: var(--cv-bg-color);
+    border-color: var(--cv-text-secondary);
+}
+
+.skill-bubble.intermediate {
+    background: var(--cv-text-light);
+    color: var(--cv-bg-color);
+    border-color: var(--cv-text-light);
+}
+
+/* Language Skills */
+.language-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.language-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--cv-card-bg);
+    border-radius: 10px;
+    border-left: 4px solid var(--cv-accent-color);
+    border: 1px solid var(--cv-border-color);
+    border-left: 4px solid var(--cv-accent-color);
+}
+
+[dir="rtl"] .language-item {
+    border-left: 1px solid var(--cv-border-color);
+    border-right: 4px solid var(--cv-accent-color);
+}
+
+.language-name {
+    font-weight: 600;
+    color: var(--cv-text-primary);
+}
+
+.language-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.star {
+    color: var(--cv-border-color);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.star.filled {
+    color: #ffd700;
+}
+
+.language-level {
+    font-size: 0.8rem;
+    color: var(--cv-text-light);
+    font-weight: 500;
+}
+
+/* Publications */
+.publication-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--cv-border-color);
+    transition: all 0.3s ease;
+}
+
+.publication-item:hover {
+    padding-left: 1rem;
+    border-left: 4px solid var(--cv-accent-color);
+}
+
+[dir="rtl"] .publication-item:hover {
+    padding-left: 0;
+    padding-right: 1rem;
+    border-left: none;
+    border-right: 4px solid var(--cv-accent-color);
+}
+
+.publication-item:last-child {
+    border-bottom: none;
+}
+
+.publication-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    color: var(--cv-text-primary);
+}
+
+.publication-journal {
+    color: var(--cv-text-secondary);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.additional-publications {
+    color: var(--cv-text-secondary);
+    font-style: italic;
+    margin-top: 2rem;
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--cv-light-bg);
+    border-radius: 10px;
+    border: 1px solid var(--cv-border-color);
+}
+
+/* Awards */
+.award-item {
+    background: var(--cv-light-bg);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--cv-text-primary);
+    border-radius: 0 15px 15px 0;
+    transition: all 0.3s ease;
+    border: 1px solid var(--cv-border-color);
+    border-left: 4px solid var(--cv-text-primary);
+}
+
+[dir="rtl"] .award-item {
+    border-left: 1px solid var(--cv-border-color);
+    border-right: 4px solid var(--cv-text-primary);
+    border-radius: 15px 0 0 15px;
+}
+
+.award-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 5px 20px var(--cv-shadow);
+}
+
+[dir="rtl"] .award-item:hover {
+    transform: translateX(-10px);
+}
+
+.award-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--cv-text-primary);
+}
+
+.award-institution {
+    color: var(--cv-text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.award-description {
+    color: var(--cv-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #nav-dots {
+        right: 15px;
+        display: none;
+    }
+    
+    [dir="rtl"] #nav-dots {
+        right: auto;
+        left: 15px;
+    }
+    
+    .cv-section {
+        padding: 3rem 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .skills-modern {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .stats-section,
+    .fancy-summary {
+        padding: 2rem 1.5rem;
+    }
+    
+    .skill-category-modern,
+    .experience-item {
+        padding: 1.5rem;
+    }
+    
+    .hero-name {
+        white-space: normal;
+        overflow: visible;
+        border-right: none;
+        border-left: none;
+        width: auto;
+    }
+    
+    [dir="rtl"] .hero-name {
+        border-left: none;
+        border-right: none;
+    }
+    
+    .hero-name.animate-in {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-number {
+        font-size: 2.2rem;
+    }
+    
+    .skills-modern {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-cloud {
+        gap: 0.6rem;
+    }
+    
+    .skill-bubble {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Fix Arabic text clipping */
+[dir="rtl"] .hero-name,
+[dir="rtl"] .resume-prefix {
+    line-height: 1.3;
+    padding-top: 0.2em;
+    padding-bottom: 0.3em;
+}
+/* Fancy Contact Button Section */
+.cv-contact-section {
+    background: linear-gradient(135deg, var(--cv-light-bg) 0%, var(--cv-card-bg) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.cv-contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(15, 18, 252, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.contact-cta-container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-cta-title {
+    font-family: "Baloo Bhaijaan 2", serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: var(--cv-text-primary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.contact-cta-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--cv-text-secondary);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fancy-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(45deg, #0f12fc, #3b82f6);
+    color: white;
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: "Baloo Bhaijaan 2", serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(15, 18, 252, 0.3);
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+.fancy-contact-btn.animate-in {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.fancy-contact-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(15, 18, 252, 0.4);
+}
+
+.fancy-contact-btn:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+}
+
+.fancy-contact-btn:hover .btn-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50px;
+}
+
+.fancy-contact-btn:hover .btn-glow {
+    opacity: 1;
+}
+
+/* Pulse animation for the button */
+@keyframes contactPulse {
+    0% {
+        box-shadow: 0 10px 30px rgba(15, 18, 252, 0.3);
+    }
+    50% {
+        box-shadow: 0 10px 30px rgba(15, 18, 252, 0.6);
+    }
+    100% {
+        box-shadow: 0 10px 30px rgba(15, 18, 252, 0.3);
+    }
+}
+
+.fancy-contact-btn.animate-in {
+    animation: contactPulse 3s ease-in-out infinite;
+}
+
+/* Responsive adjustments for contact section */
+@media (max-width: 768px) {
+    .contact-cta-container {
+        padding: 1rem;
+    }
+    
+    .fancy-contact-btn {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .contact-cta-subtitle {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .fancy-contact-btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.95rem;
+        gap: 0.8rem;
+    }
+    
+    .btn-icon {
+        font-size: 1.1rem;
+    }
+}

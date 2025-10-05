@@ -1,0 +1,747 @@
+{{- define "main" }}
+<div class="cv-page" data-layout="cv">
+    <!-- Enhanced Navigation Dots with Section Labels -->
+    <nav id="nav-dots">
+        <a href="#home" class="dot-link active" data-section="home" data-tooltip="{{- if eq site.Language.Lang "ar" -}}الرئيسية{{- else -}}Home{{- end -}}">
+            <div class="dot"></div>
+            <div class="section-label">{{- if eq site.Language.Lang "ar" -}}الرئيسية{{- else -}}Home{{- end -}}</div>
+        </a>
+        <a href="#summary" class="dot-link" data-section="summary" data-tooltip="{{- if eq site.Language.Lang "ar" -}}ملخص{{- else -}}Summary{{- end -}}">
+            <div class="dot"></div>
+            <div class="section-label">{{- if eq site.Language.Lang "ar" -}}ملخص{{- else -}}Summary{{- end -}}</div>
+        </a>
+        <a href="#stats" class="dot-link" data-section="stats" data-tooltip="{{- if eq site.Language.Lang "ar" -}}الإحصائيات{{- else -}}Impact{{- end -}}">
+            <div class="dot"></div>
+            <div class="section-label">{{- if eq site.Language.Lang "ar" -}}الإحصائيات{{- else -}}Impact{{- end -}}</div>
+        </a>
+        <a href="#experience" class="dot-link" data-section="experience" data-tooltip="{{- if eq site.Language.Lang "ar" -}}الخبرة{{- else -}}Experience{{- end -}}">
+            <div class="dot"></div>
+            <div class="section-label">{{- if eq site.Language.Lang "ar" -}}الخبرة{{- else -}}Experience{{- end -}}</div>
+        </a>
+        <a href="#education" class="dot-link" data-section="education" data-tooltip="{{- if eq site.Language.Lang "ar" -}}التعليم{{- else -}}Education{{- end -}}">
+            <div class="dot"></div>
+            <div class="section-label">{{- if eq site.Language.Lang "ar" -}}التعليم{{- else -}}Education{{- end -}}</div>
+        </a>
+        <a href="#research" class="dot-link" data-section="research" data-tooltip="{{- if eq site.Language.Lang "ar" -}}البحث العلمي{{- else -}}Research{{- end -}}">
+            <div class="dot"></div>
+            <div class="section-label">{{- if eq site.Language.Lang "ar" -}}البحث العلمي{{- else -}}Research{{- end -}}</div>
+        </a>
+        <a href="#publications" class="dot-link" data-section="publications" data-tooltip="{{- if eq site.Language.Lang "ar" -}}المنشورات{{- else -}}Publications{{- end -}}">
+            <div class="dot"></div>
+            <div class="section-label">{{- if eq site.Language.Lang "ar" -}}المنشورات{{- else -}}Publications{{- end -}}</div>
+        </a>
+        <a href="#awards" class="dot-link" data-section="awards" data-tooltip="{{- if eq site.Language.Lang "ar" -}}الجوائز{{- else -}}Awards{{- end -}}">
+            <div class="dot"></div>
+            <div class="section-label">{{- if eq site.Language.Lang "ar" -}}الجوائز{{- else -}}Awards{{- end -}}</div>
+        </a>
+        <a href="#skills" class="dot-link" data-section="skills" data-tooltip="{{- if eq site.Language.Lang "ar" -}}المهارات{{- else -}}Skills{{- end -}}">
+            <div class="dot"></div>
+            <div class="section-label">{{- if eq site.Language.Lang "ar" -}}المهارات{{- else -}}Skills{{- end -}}</div>
+        </a>
+        <a href="#contact" class="dot-link" data-section="contact" data-tooltip="{{- if eq site.Language.Lang "ar" -}}اتصل بي{{- else -}}Contact{{- end -}}">
+            <div class="dot"></div>
+            <div class="section-label">{{- if eq site.Language.Lang "ar" -}}اتصل بي{{- else -}}Contact{{- end -}}</div>
+        </a>
+    </nav>
+
+    <!-- Hero Section with Enhanced Animations -->
+    <section id="home" class="cv-section">
+        <div class="cv-content">
+            {{- if eq site.Language.Lang "ar" -}}
+            <div class="hero-container">
+                <p class="resume-prefix">السيرة الذاتية لـ</p>
+                <h1 class="hero-name">أحمد العربي</h1>
+                <p class="hero-subtitle">طبيب • باحث طبي • إحصائي حيوي</p>
+            </div>
+            {{- else -}}
+            <div class="hero-container">
+                <p class="resume-prefix">Resume of</p>
+                <h1 class="hero-name">Ahmed Elaraby</h1>
+                <p class="hero-subtitle">Physician • Medical Researcher • Biostatistician</p>
+            </div>
+            {{- end -}}
+        </div>
+    </section>
+
+    <!-- Enhanced Professional Summary with Typewriter Animation -->
+    <section id="summary" class="cv-section cv-regular-section">
+        <div class="cv-content">
+            {{- if eq site.Language.Lang "ar" -}}
+            <div class="fancy-summary">
+                <p class="typewriter-summary">طبيب متمرس يتمتع بسجل أكاديمي قوي وقدرة مثبتة وغزيرة في البحث السريري، كما يتضح من أكثر من 35 منشورًا محكمًا في أفضل المجلات الطبية العالمية. خبير في الكتابة الطبية والإحصاء الحيوي وتحليل البيانات المتقدم، مع شغف لا ينتهي لتقديم الرعاية الصحية المبنية على الأدلة العلمية.</p>
+            </div>
+            {{- else -}}
+            <div class="fancy-summary">
+                <p class="typewriter-summary">A distinguished physician with exceptional academic achievements and a proven track record in clinical research, evidenced by over 35 peer-reviewed publications in top-tier medical journals. Expert in medical writing, advanced biostatistics, and data analysis, with an unwavering commitment to evidence-based healthcare and scientific excellence.</p>
+            </div>
+            {{- end -}}
+        </div>
+    </section>
+
+    <!-- Enhanced Research Impact Stats (6 items) -->
+    <section id="stats" class="cv-section cv-regular-section">
+        <div class="cv-content">
+            {{- if eq site.Language.Lang "ar" -}}
+            <h2>الأثر البحثي</h2>
+            {{- else -}}
+            <h2>Research Impact</h2>
+            {{- end -}}
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-item" data-delay="100">
+                        <span class="stat-number">35+</span>
+                        {{- if eq site.Language.Lang "ar" -}}
+                        <div class="stat-label">منشور</div>
+                        <div class="stat-description">مقالات محكمة في مجلات طبية رائدة</div>
+                        {{- else -}}
+                        <div class="stat-label">Publications</div>
+                        <div class="stat-description">Peer-reviewed articles in top journals</div>
+                        {{- end -}}
+                    </div>
+                    <div class="stat-item" data-delay="200">
+                        <span class="stat-number">3.6</span>
+                        {{- if eq site.Language.Lang "ar" -}}
+                        <div class="stat-label">المعدل التراكمي</div>
+                        <div class="stat-description">الأداء الأكاديمي المتميز</div>
+                        {{- else -}}
+                        <div class="stat-label">GPA</div>
+                        <div class="stat-description">Outstanding academic performance</div>
+                        {{- end -}}
+                    </div>
+                    <div class="stat-item" data-delay="300">
+                        <span class="stat-number">6+</span>
+                        {{- if eq site.Language.Lang "ar" -}}
+                        <div class="stat-label">سنوات البحث</div>
+                        <div class="stat-description">خبرة في البحث السريري</div>
+                        {{- else -}}
+                        <div class="stat-label">Research Years</div>
+                        <div class="stat-description">Clinical research experience</div>
+                        {{- end -}}
+                    </div>
+                    <div class="stat-item" data-delay="400">
+                        <span class="stat-number">15+</span>
+                        {{- if eq site.Language.Lang "ar" -}}
+                        <div class="stat-label">تخصص طبي</div>
+                        <div class="stat-description">مجالات بحثية متنوعة</div>
+                        {{- else -}}
+                        <div class="stat-label">Medical Specialties</div>
+                        <div class="stat-description">Diverse research domains</div>
+                        {{- end -}}
+                    </div>
+                    <div class="stat-item" data-delay="500">
+                        <span class="stat-number">100+</span>
+                        {{- if eq site.Language.Lang "ar" -}}
+                        <div class="stat-label">تعاون دولي</div>
+                        <div class="stat-description">باحثين من جميع أنحاء العالم</div>
+                        {{- else -}}
+                        <div class="stat-label">Global Collaborations</div>
+                        <div class="stat-description">International research partnerships</div>
+                        {{- end -}}
+                    </div>
+                    <div class="stat-item" data-delay="600">
+                        <span class="stat-number">2025</span>
+                        {{- if eq site.Language.Lang "ar" -}}
+                        <div class="stat-label">جائزة العميد</div>
+                        <div class="stat-description">التميز في البحث العلمي</div>
+                        {{- else -}}
+                        <div class="stat-label">Dean's Award</div>
+                        <div class="stat-description">Excellence in Scientific Research</div>
+                        {{- end -}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clean Work Experience -->
+    <section id="experience" class="cv-section">
+        <div class="cv-content">
+            {{- if eq site.Language.Lang "ar" -}}
+            <h2>الخبرة العملية</h2>
+            {{- else -}}
+            <h2>Work Experience</h2>
+            {{- end -}}
+            <div class="clean-timeline">
+                <div class="experience-item" data-aos="fade-up">
+                    {{- if eq site.Language.Lang "ar" -}}
+                    <div class="experience-date">مارس 2024 - الآن</div>
+                    <h3 class="experience-title">طبيب متدرب</h3>
+                    <div class="experience-subtitle">مستشفى السيد جلال، القاهرة، مصر</div>
+                    <p class="experience-description">
+                        إدارة رعاية المرضى عبر التناوب الأساسي بما في ذلك الطب الباطني والجراحة العامة وطب النساء والتوليد وطب الأطفال. إجراء تقييمات شاملة للمرضى وصياغة التشخيصات التفريقية ووضع خطط إدارة قائمة على الأدلة تحت إشراف كبار الأطباء.
+                    </p>
+                    {{- else -}}
+                    <div class="experience-date">March 2024 - Present</div>
+                    <h3 class="experience-title">Medical Intern</h3>
+                    <div class="experience-subtitle">El Sayed Galal Hospital, Cairo, Egypt</div>
+                    <p class="experience-description">
+                        Managing comprehensive patient care across core rotations including Internal Medicine, General Surgery, Obstetrics & Gynaecology, and Paediatrics. Performing detailed patient assessments, formulating differential diagnoses, and developing evidence-based management plans under senior supervision.
+                    </p>
+                    {{- end -}}
+                </div>
+                
+                <div class="experience-item" data-aos="fade-up">
+                    {{- if eq site.Language.Lang "ar" -}}
+                    <div class="experience-date">أبريل 2023 - الآن</div>
+                    <h3 class="experience-title">كاتب طبي وإحصائي حيوي</h3>
+                    <div class="experience-subtitle">عمل حر | Upwork</div>
+                    <p class="experience-description">
+                        تحليل بيانات التجارب السريرية والدراسات الرصدية للعملاء الخاصين والأكاديميين باستخدام STATA و R و SPSS و JAMOVI. وضع خطط التحليل الإحصائي وحساب أحجام العينات لبروتوكولات البحث المعقدة.
+                    </p>
+                    {{- else -}}
+                    <div class="experience-date">April 2023 - Present</div>
+                    <h3 class="experience-title">Medical Writer & Biostatistician</h3>
+                    <div class="experience-subtitle">Freelance | Upwork</div>
+                    <p class="experience-description">
+                        Analyzing complex clinical trial and observational study data for private and academic clients using advanced statistical software including STATA, R, SPSS, and JAMOVI. Developing comprehensive statistical analysis plans and calculating sample sizes for sophisticated research protocols.
+                    </p>
+                    {{- end -}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="cv-section">
+        <div class="cv-content">
+            {{- if eq site.Language.Lang "ar" -}}
+            <h2>التعليم</h2>
+            {{- else -}}
+            <h2>Education</h2>
+            {{- end -}}
+            <div class="clean-timeline">
+                <div class="experience-item" data-aos="fade-up">
+                    {{- if eq site.Language.Lang "ar" -}}
+                    <div class="experience-date">أكتوبر 2018 - 2024</div>
+                    <h3 class="experience-title">بكالوريوس الطب والجراحة</h3>
+                    <div class="experience-subtitle">جامعة الأزهر، كلية الطب، القاهرة، مصر</div>
+                    <p class="experience-description">
+                        المعدل التراكمي: 3.6/4.0. تطوير أساس قوي في العلوم الطبية مع بناء محفظة بحثية واسعة في طب القلب والأوعية الدموية والطب الباطني.
+                    </p>
+                    {{- else -}}
+                    <div class="experience-date">October 2018 - 2024</div>
+                    <h3 class="experience-title">MBBCh (Bachelor of Medicine, Bachelor of Surgery)</h3>
+                    <div class="experience-subtitle">Al-Azhar University, Faculty of Medicine, Cairo, Egypt</div>
+                    <p class="experience-description">
+                        Cumulative GPA: 3.6/4.0. Developed comprehensive foundation in medical sciences while simultaneously building an extensive research portfolio in cardiovascular medicine and internal medicine.
+                    </p>
+                    {{- end -}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Experience -->
+    <section id="research" class="cv-section">
+        <div class="cv-content">
+            {{- if eq site.Language.Lang "ar" -}}
+            <h2>الخبرة البحثية</h2>
+            {{- else -}}
+            <h2>Research Experience</h2>
+            {{- end -}}
+            <div class="clean-timeline">
+                <div class="experience-item" data-aos="fade-up">
+                    {{- if eq site.Language.Lang "ar" -}}
+                    <div class="experience-date">2021 - الآن</div>
+                    <h3 class="experience-title">باحث</h3>
+                    <div class="experience-subtitle">مجموعة نجيدة للبحث العلمي</div>
+                    <p class="experience-description">
+                        أكمل تدريبًا شاملاً في منهجية البحث السريري والإحصاء الحيوي والكتابة العلمية والتحليل التلوي. التعاون مع باحثين دوليين في مشاريع بحثية متخصصة من التصور حتى النشر في المجلات العالمية.
+                    </p>
+                    {{- else -}}
+                    <div class="experience-date">2021 - Present</div>
+                    <h3 class="experience-title">Researcher</h3>
+                    <div class="experience-subtitle">Negida Scientific Research Group</div>
+                    <p class="experience-description">
+                        Completed comprehensive training in clinical research methodology, advanced biostatistics, scientific writing, and meta-analysis techniques. Collaborating with international researchers on specialty-focused research projects from ideation through publication in high-impact journals.
+                    </p>
+                    {{- end -}}
+                </div>
+                
+                <div class="experience-item" data-aos="fade-up">
+                    {{- if eq site.Language.Lang "ar" -}}
+                    <div class="experience-date">مايو 2020 - مايو 2021</div>
+                    <h3 class="experience-title">مساعد باحث</h3>
+                    <div class="experience-subtitle">باحثو الأزهر القاهرة (ACR)</div>
+                    <p class="experience-description">
+                        المساهمة في مراجعات الأدبيات وجمع البيانات والتحليل الأولي للمبادرات البحثية التي تقودها الجامعة في مختلف التخصصات الطبية.
+                    </p>
+                    {{- else -}}
+                    <div class="experience-date">May 2020 - May 2021</div>
+                    <h3 class="experience-title">Research Assistant</h3>
+                    <div class="experience-subtitle">Al-Azhar Cairo Researchers (ACR)</div>
+                    <p class="experience-description">
+                        Contributed to comprehensive literature reviews, systematic data collection, and preliminary analysis for university-led research initiatives across multiple medical specialties.
+                    </p>
+                    {{- end -}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Publications -->
+    <section id="publications" class="cv-section cv-regular-section">
+        <div class="cv-content">
+            {{- if eq site.Language.Lang "ar" -}}
+            <h2>منشورات مختارة</h2>
+            {{- else -}}
+            <h2>Selected Publications</h2>
+            {{- end -}}
+            <div class="publication-item">
+                <div class="publication-title">Oral anticoagulants versus vitamin K antagonists in patients with an indication of anti-coagulants after TAVR: A meta-analysis of 21,446 patients</div>
+                <div class="publication-journal">Journal of the American College of Cardiology, 2024</div>
+            </div>
+            
+            <div class="publication-item">
+                <div class="publication-title">Efficacy and safety of esaxerenone for essential hypertension: A systematic review and meta-analysis of randomized controlled trials</div>
+                <div class="publication-journal">Journal of the American College of Cardiology, 2024</div>
+            </div>
+            
+            <div class="publication-item">
+                <div class="publication-title">Short-and long-term outcomes of percutaneous coronary interventions in chronic and non-chronic total occlusions: A meta-analysis of 690,123 patients</div>
+                <div class="publication-journal">Current Problems in Cardiology, 2023</div>
+            </div>
+            
+            <div class="publication-item">
+                <div class="publication-title">Drug-coated balloons versus drug-eluting stents in patients with acute myocardial infarction: An updated meta-analysis</div>
+                <div class="publication-journal">BMC Cardiovascular Disorders, 2023</div>
+            </div>
+            
+            {{- if eq site.Language.Lang "ar" -}}
+            <p class="additional-publications">+ 31 منشورًا إضافيًا محكمًا في مجلات طبية رائدة</p>
+            {{- else -}}
+            <p class="additional-publications">+ 31 additional peer-reviewed publications in top medical journals</p>
+            {{- end -}}
+        </div>
+    </section>
+
+    <!-- Awards & Certifications -->
+    <section id="awards" class="cv-section cv-regular-section">
+        <div class="cv-content">
+            {{- if eq site.Language.Lang "ar" -}}
+            <h2>الجوائز والتقدير</h2>
+            {{- else -}}
+            <h2>Awards & Recognition</h2>
+            {{- end -}}
+            <div class="award-item">
+                {{- if eq site.Language.Lang "ar" -}}
+                <div class="award-title">تنويه العميد للتميز في البحث العلمي</div>
+                <div class="award-institution">كلية الطب، جامعة الأزهر | 2025</div>
+                <p class="award-description">منحت تقديراً للمساهمات المتميزة في البحث السريري والحافظة الهامة من المنشورات المحكمة كطالب طب.</p>
+                {{- else -}}
+                <div class="award-title">Dean's Commendation for Excellence in Scientific Research</div>
+                <div class="award-institution">Faculty of Medicine, Al-Azhar University | 2025</div>
+                <p class="award-description">Awarded in recognition of outstanding contributions to clinical research and significant portfolio of peer-reviewed publications as a medical student.</p>
+                {{- end -}}
+            </div>
+            
+            <div class="award-item">
+                {{- if eq site.Language.Lang "ar" -}}
+                <div class="award-title">جائزة أفضل عرض إلكتروني</div>
+                <div class="award-institution">KSGE Days 2025، بوسان، كوريا</div>
+                <p class="award-description">تقدير لـ "التنظير المساعد بالذكاء الاصطناعي يقلل من معدلات تفويت الأورام الغدية والسلائل: تحليل تلوي للتجارب السريرية."</p>
+                {{- else -}}
+                <div class="award-title">Excellent E-Poster Presentation Award</div>
+                <div class="award-institution">KSGE Days 2025, Busan, Korea</div>
+                <p class="award-description">Recognition for "Artificial Intelligence Assisted Endoscopy Reduces Adenoma and Polyp Miss Rates: Meta-Analysis of Clinical Trials."</p>
+                {{- end -}}
+            </div>
+            
+            <div class="award-item">
+                {{- if eq site.Language.Lang "ar" -}}
+                <div class="award-title">منحة البحث السريري</div>
+                <div class="award-institution">أكاديمية نجيدة | 2021</div>
+                <p class="award-description">وصول كامل لمنهج مدته 55 ساعة، خمس دورات في أساسيات البحث السريري.</p>
+                {{- else -}}
+                <div class="award-title">Clinical Research Scholarship</div>
+                <div class="award-institution">Negida Academy | 2021</div>
+                <p class="award-description">Full access to 55-hour, five-course curriculum in clinical research fundamentals.</p>
+                {{- end -}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Redesigned Technical Skills -->
+    <section id="skills" class="cv-section cv-regular-section">
+        <div class="cv-content">
+            {{- if eq site.Language.Lang "ar" -}}
+            <h2>المهارات التقنية</h2>
+            {{- else -}}
+            <h2>Technical Skills</h2>
+            {{- end -}}
+            <div class="skills-modern">
+                <div class="skill-category-modern">
+                    {{- if eq site.Language.Lang "ar" -}}
+                    <div class="skill-header">
+                        <span class="skill-icon">📊</span>
+                        <h3>البرامج الإحصائية</h3>
+                    </div>
+                    <div class="skill-bars">
+                        <div class="skill-bar">
+                            <span class="skill-name">STATA</span>
+                            <div class="skill-progress"><div class="skill-fill" data-level="75"></div></div>
+                            <span class="skill-level">متوسط</span>
+                        </div>
+                        <div class="skill-bar">
+                            <span class="skill-name">برمجة R</span>
+                            <div class="skill-progress"><div class="skill-fill" data-level="70"></div></div>
+                            <span class="skill-level">متوسط</span>
+                        </div>
+                        <div class="skill-bar">
+                            <span class="skill-name">JAMOVI</span>
+                            <div class="skill-progress"><div class="skill-fill" data-level="90"></div></div>
+                            <span class="skill-level">متقدم</span>
+                        </div>
+                        <div class="skill-bar">
+                            <span class="skill-name">SPSS</span>
+                            <div class="skill-progress"><div class="skill-fill" data-level="85"></div></div>
+                            <span class="skill-level">متقدم</span>
+                        </div>
+                    </div>
+                    {{- else -}}
+                    <div class="skill-header">
+                        <span class="skill-icon">📊</span>
+                        <h3>Statistical Software</h3>
+                    </div>
+                    <div class="skill-bars">
+                        <div class="skill-bar">
+                            <span class="skill-name">STATA</span>
+                            <div class="skill-progress"><div class="skill-fill" data-level="75"></div></div>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-bar">
+                            <span class="skill-name">R Programming</span>
+                            <div class="skill-progress"><div class="skill-fill" data-level="70"></div></div>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-bar">
+                            <span class="skill-name">JAMOVI</span>
+                            <div class="skill-progress"><div class="skill-fill" data-level="90"></div></div>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-bar">
+                            <span class="skill-name">SPSS</span>
+                            <div class="skill-progress"><div class="skill-fill" data-level="85"></div></div>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                    </div>
+                    {{- end -}}
+                </div>
+
+                <div class="skill-category-modern">
+                    {{- if eq site.Language.Lang "ar" -}}
+                    <div class="skill-header">
+                        <span class="skill-icon">🔬</span>
+                        <h3>طرق البحث</h3>
+                    </div>
+                    <div class="skill-cloud">
+                        <span class="skill-bubble expert">التحليل التلوي</span>
+                        <span class="skill-bubble expert">المراجعات المنهجية</span>
+                        <span class="skill-bubble advanced">البحث السريري</span>
+                        <span class="skill-bubble expert">الإحصاء الحيوي</span>
+                        <span class="skill-bubble advanced">الكتابة العلمية</span>
+                        <span class="skill-bubble intermediate">تصميم التجارب</span>
+                        <span class="skill-bubble advanced">تحليل البيانات</span>
+                        <span class="skill-bubble intermediate">الوبائيات</span>
+                    </div>
+                    {{- else -}}
+                    <div class="skill-header">
+                        <span class="skill-icon">🔬</span>
+                        <h3>Research Methods</h3>
+                    </div>
+                    <div class="skill-cloud">
+                        <span class="skill-bubble expert">Meta-Analysis</span>
+                        <span class="skill-bubble expert">Systematic Reviews</span>
+                        <span class="skill-bubble advanced">Clinical Research</span>
+                        <span class="skill-bubble expert">Biostatistics</span>
+                        <span class="skill-bubble advanced">Scientific Writing</span>
+                        <span class="skill-bubble intermediate">Study Design</span>
+                        <span class="skill-bubble advanced">Data Analysis</span>
+                        <span class="skill-bubble intermediate">Epidemiology</span>
+                    </div>
+                    {{- end -}}
+                </div>
+
+                <div class="skill-category-modern">
+                    {{- if eq site.Language.Lang "ar" -}}
+                    <div class="skill-header">
+                        <span class="skill-icon">🌍</span>
+                        <h3>اللغات</h3>
+                    </div>
+                    <div class="language-skills">
+                        <div class="language-item">
+                            <span class="language-name">العربية</span>
+                            <div class="language-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                            <span class="language-level">لغة أم</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language-name">الإنجليزية</span>
+                            <div class="language-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <span class="language-level">طلاقة</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language-name">الإسبانية</span>
+                            <div class="language-stars">
+                                <span class="star filled">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <span class="language-level">مبتدئ</span>
+                        </div>
+                    </div>
+                    {{- else -}}
+                    <div class="skill-header">
+                        <span class="skill-icon">🌍</span>
+                        <h3>Languages</h3>
+                    </div>
+                    <div class="language-skills">
+                        <div class="language-item">
+                            <span class="language-name">Arabic</span>
+                            <div class="language-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                            <span class="language-level">Native</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language-name">English</span>
+                            <div class="language-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <span class="language-level">Fluent</span>
+                        </div>
+                        <div class="language-item">
+                            <span class="language-name">Spanish</span>
+                            <div class="language-stars">
+                                <span class="star filled">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <span class="language-level">A1</span>
+                        </div>
+                    </div>
+                    {{- end -}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fancy Contact Button Section -->
+    <section id="contact" class="cv-section cv-contact-section">
+        <div class="cv-content">
+            <div class="contact-cta-container">
+                {{- if eq site.Language.Lang "ar" -}}
+                <h3 class="contact-cta-title">هل تريد العمل معي؟</h3>
+                <p class="contact-cta-subtitle">دعنا نتواصل ونناقش كيف يمكننا التعاون في مشاريع مثيرة</p>
+                <a href="/ar/contact/" class="fancy-contact-btn">
+                    <span class="btn-icon">📧</span>
+                    <span class="btn-text">تواصل معي</span>
+                    <div class="btn-glow"></div>
+                </a>
+                {{- else -}}
+                <h3 class="contact-cta-title">Ready to Work Together?</h3>
+                <p class="contact-cta-subtitle">Let's connect and discuss how we can collaborate on exciting projects</p>
+                <a href="/en/contact/" class="fancy-contact-btn">
+                    <span class="btn-icon">📧</span>
+                    <span class="btn-text">Get in Touch</span>
+                    <div class="btn-glow"></div>
+                </a>
+                {{- end -}}
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Enhanced navigation with faster label transitions
+        const sections = document.querySelectorAll('.cv-section');
+        const navLinks = document.querySelectorAll('.dot-link');
+        let isScrolling = false;
+        let scrollTimeout;
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -20% 0px',
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionId = entry.target.id;
+                    navLinks.forEach(link => {
+                        const isActive = link.dataset.section === sectionId;
+                        link.classList.toggle('active', isActive);
+                        
+                        if (isActive && isScrolling) {
+                            link.querySelector('.section-label').classList.add('show-while-scrolling');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Enhanced scroll handling
+        window.addEventListener('scroll', () => {
+            isScrolling = true;
+            
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+                document.querySelectorAll('.section-label').forEach(label => {
+                    label.classList.remove('show-while-scrolling');
+                });
+            }, 300);
+        });
+
+        // Show label on hover
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                link.querySelector('.section-label').classList.add('show-on-hover');
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                link.querySelector('.section-label').classList.remove('show-on-hover');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Animate stats on scroll
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statItems = entry.target.querySelectorAll('.stat-item');
+                    statItems.forEach(item => {
+                        setTimeout(() => {
+                            item.classList.add('animate-in');
+                        }, item.dataset.delay || 0);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Animate skill bars
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillFills = entry.target.querySelectorAll('.skill-fill');
+                    skillFills.forEach(fill => {
+                        const level = fill.dataset.level;
+                        setTimeout(() => {
+                            fill.style.width = level + '%';
+                        }, 500);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const skillsSection = document.querySelector('.skills-modern');
+        if (skillsSection) {
+            skillsObserver.observe(skillsSection);
+        }
+
+        // Fixed typewriter effect for summary
+        const typewriterText = document.querySelector('.typewriter-summary');
+        if (typewriterText) {
+            const text = typewriterText.textContent;
+            typewriterText.textContent = '';
+            typewriterText.style.borderRight = '2px solid var(--cv-text-primary)';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    typewriterText.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 30);
+                } else {
+                    setTimeout(() => {
+                        typewriterText.style.borderRight = 'none';
+                    }, 1000);
+                }
+            };
+            
+            // Start typewriter when summary section is visible
+            const summaryObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        typeWriter();
+                        summaryObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            summaryObserver.observe(typewriterText);
+        }
+
+        // Fixed resume prefix and name animations
+        const resumePrefix = document.querySelector('.resume-prefix');
+        const heroName = document.querySelector('.hero-name');
+        
+        if (resumePrefix && heroName) {
+            // Start prefix animation first
+            setTimeout(() => {
+                resumePrefix.classList.add('animate-in');
+            }, 500);
+            
+            // Start name animation after prefix
+            setTimeout(() => {
+                heroName.classList.add('animate-in');
+            }, 2000);
+        }
+
+        // Animate contact button on scroll
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelector('.fancy-contact-btn').classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.7 });
+
+        const contactSection = document.querySelector('.cv-contact-section');
+        if (contactSection) {
+            contactObserver.observe(contactSection);
+        }
+    </script>
+</div>
+{{- end }}
