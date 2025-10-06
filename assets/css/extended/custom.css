@@ -1,23 +1,137 @@
 /* ===========================================
-   MOBILE FONT FIX - ADD AT THE VERY TOP
+   CUSTOM STYLES
    =========================================== */
 
-/* Force Google Font Loading on Mobile */
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap');
+/* --- Profile & Header Name Fonts --- */
 
-/* Mobile Font Support */
-@media (max-width: 768px) {
-  *, *::before, *::after,
-  body, html, .profile-title, .profile-subtitle,
-  .hero-name, .resume-prefix, h1, h2, h3, h4, h5, h6 {
-    font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif !important;
-  }
+/* English: Lilita One for the main name/title on homepage and site header */
+[lang="en"] .profile-title,
+[lang="en"] .header .logo a {
+  font-family: 'Lilita One', "Rubik", system-ui, sans-serif !important;
 }
 
-/* ===========================================
-   YOUR EXACT ORIGINAL FILE CONTINUES BELOW
-   =========================================== */
+/* Arabic: Rakkas for the main name/title on homepage and site header */
+[lang="ar"] .profile-title,
+[lang="ar"] .header .logo a {
+  font-family: 'Rakkas', "Rubik", system-ui, sans-serif !important;
+}
 
+/* --- Homepage Cleanup & Styling --- */
+
+/* Hero area */
+.profile {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background: transparent !important;
+}
+
+/* Remove white backgrounds in light mode */
+[data-theme="light"] .profile,
+body:not([data-theme="dark"]):not(.dark) .profile {
+  background: transparent !important;
+}
+
+.profile_inner {
+  padding-bottom: 64px;
+  animation: none; /* Stop fade in animation */
+}
+
+/* FIXED Profile Image - No zoom on hover */
+.profile img {
+  transition: none !important;
+  transform: none !important;
+}
+.profile img:hover {
+  transform: none !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important; /* Keep original shadow */
+}
+
+/* --- Button Styling --- */
+
+.profile-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.profile-btn {
+  background: transparent !important;
+  border: 1px solid var(--primary) !important;
+  color: var(--primary) !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  box-shadow: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+/* About Me button hover */
+[data-theme="light"] .about-btn:hover {
+  background-color: #000 !important;
+  border-color: #000 !important;
+  color: #fff !important;
+}
+[data-theme="dark"] .about-btn:hover {
+  background-color: #fff !important;
+  border-color: #fff !important;
+  color: #000 !important;
+}
+
+/* Contact Me button hover */
+.contact-btn:hover {
+  background-color: #0f12fc !important;
+  border-color: #0f12fc !important;
+  color: white !important;
+}
+
+.profile-btn:active {
+    transform: scale(0.98) !important; /* Keep a subtle click effect */
+}
+
+
+/* --- General Card Styling --- */
+/* Stop color animation on cards and other elements */
+.post-card, .service-tile-compact, .testimonial-card, .post-row, .service-tile {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* --- Other styles from your original file --- */
+.content-sections { padding: 2rem 0; background: transparent !important; }
+.section-wide { padding: 0 1rem; margin: 0 auto 3rem; }
+.recent-posts h2, .work-samples h2 { color: var(--primary); text-align: center; margin-bottom: 1.5rem; font-size: 1.55rem; }
+.post-row { display: grid; grid-template-columns: 200px 1fr; gap: 1rem; background: var(--entry); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+@media (max-width: 768px) { .post-row { grid-template-columns: 1fr; } }
+.post-thumb { display: block; aspect-ratio: 16 / 9; background: rgba(0,0,0,.03); }
+.post-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.post-body { padding: 1rem; }
+.post-title { margin: 0 0 .35rem; font-size: 1.06rem; }
+.post-title a { color: var(--primary); text-decoration: none; }
+.post-excerpt { margin: 0 0 .5rem; color: var(--secondary); font-size: 0.9rem; }
+.post-meta { color: var(--secondary); font-size: .8rem; }
+.scroll-arrow { animation: none; }
+
+/* Force override any theme conflicts on buttons */
+.profile-btn * {
+  color: inherit !important;
+}
+
+[data-theme="light"] .about-btn:hover *,
+[data-theme="light"] .contact-btn:hover * {
+  color: white !important;
+}
+
+[data-theme="dark"] .about-btn:hover * {
+    color: #000 !important;
+}
+
+[data-theme="dark"] .contact-btn:hover * {
+    color: #fff !important;
+}
 /* Hero area */
 .profile {
   min-height: 100vh;
@@ -158,7 +272,7 @@ body:not([data-theme="dark"]):not(.dark) .post-thumb {
 
 /* Use your existing font family */
 .cv-page {
-    font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans Arabic", sans-serif;
+    font-family: "Rubik", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans Arabic", sans-serif;
 }
 
 /* Enhanced CSS Variables for Perfect Theme Integration */
@@ -304,7 +418,7 @@ body[class*="dark"] .cv-page {
 }
 
 .resume-prefix {
-    font-family: "Baloo Bhaijaan 2", serif;
+    font-family: "Rubik", serif;
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     font-weight: 600;
     margin: 0 0 1rem 0;
@@ -338,7 +452,6 @@ body[class*="dark"] .cv-page {
 }
 
 .hero-name {
-    font-family: "Baloo Bhaijaan 2", serif;
     font-size: clamp(2.5rem, 8vw, 5rem);
     color: var(--cv-text-primary);
     font-weight: 700;
@@ -396,7 +509,7 @@ body[class*="dark"] .cv-page {
 /* All Section Headers - UNIFORM SIZE */
 .cv-section h2,
 .cv-regular-section h2 {
-    font-family: "Baloo Bhaijaan 2", serif;
+    font-family: "Rubik", serif;
     font-size: clamp(1.8rem, 3.5vw, 2.5rem);
     color: var(--cv-text-primary);
     margin-bottom: 2rem;
@@ -444,7 +557,7 @@ body[class*="dark"] .cv-page {
 }
 
 .typewriter-summary {
-    font-family: "Baloo Bhaijaan 2", serif;
+    font-family: "Rubik", serif;
     font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     line-height: 1.8;
     color: var(--cv-text-primary);
@@ -497,7 +610,7 @@ body[class*="dark"] .cv-page {
 }
 
 .experience-title {
-    font-family: "Baloo Bhaijaan 2", serif;
+    font-family: "Rubik", serif;
     font-size: 1.4rem;
     color: var(--cv-text-primary);
     font-weight: 600;
@@ -569,7 +682,7 @@ body[class*="dark"] .cv-page {
 }
 
 .stat-number {
-    font-family: "Baloo Bhaijaan 2", serif;
+    font-family: "Rubik", serif;
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--cv-text-primary);
@@ -628,7 +741,7 @@ body[class*="dark"] .cv-page {
 }
 
 .skill-header h3 {
-    font-family: "Baloo Bhaijaan 2", serif;
+    font-family: "Rubik", serif;
     font-size: 1.4rem;
     margin: 0;
     font-weight: 600;
@@ -991,7 +1104,7 @@ html {
 }
 
 .contact-cta-title {
-    font-family: "Baloo Bhaijaan 2", serif;
+    font-family: "Rubik", serif;
     font-size: clamp(1.5rem, 3vw, 2.2rem);
     color: var(--cv-text-primary);
     font-weight: 700;
@@ -1018,7 +1131,7 @@ html {
     padding: 1.2rem 2.5rem;
     border-radius: 50px;
     text-decoration: none;
-    font-family: "Baloo Bhaijaan 2", serif;
+    font-family: "Rubik", serif;
     font-size: 1.1rem;
     font-weight: 600;
     position: relative;
@@ -1071,19 +1184,6 @@ html {
 
 .fancy-contact-btn:hover .btn-glow {
     opacity: 1;
-}
-
-/* Pulse animation for the button */
-@keyframes contactPulse {
-    0% {
-        box-shadow: 0 10px 30px rgba(15, 18, 252, 0.3);
-    }
-    50% {
-        box-shadow: 0 10px 30px rgba(15, 18, 252, 0.6);
-    }
-    100% {
-        box-shadow: 0 10px 30px rgba(15, 18, 252, 0.3);
-    }
 }
 
 .fancy-contact-btn.animate-in {
@@ -1145,7 +1245,7 @@ html {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif;
+  font-family: "Rubik", system-ui, -apple-system, sans-serif;
 }
 
 /* Hero Section */
@@ -1677,7 +1777,7 @@ html {
   border: none !important;
   display: block !important;
   margin: 0 auto 2rem !important;
-  transition: all 0.3s ease !important;
+  transition: none !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
   opacity: 1 !important;
   visibility: visible !important;
@@ -1687,8 +1787,8 @@ html {
 
 .profile img:hover,
 .profile .profile-image:hover {
-  transform: scale(1.03) !important;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15) !important;
+  transform: none !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Profile Section */
@@ -1701,7 +1801,7 @@ html {
   text-align: center;
   position: relative;
   background: var(--theme);
-  font-family: "Baloo Bhaijaan 2", system-ui, sans-serif;
+  font-family: "Rubik", system-ui, sans-serif;
   padding: 2rem;
 }
 
@@ -1716,20 +1816,27 @@ html {
 }
 
 /* Profile Text */
+[lang="en"] .profile-title,
+[lang="en"] .logo a {
+  font-family: "Lilita One", "Rubik", system-ui, sans-serif !important;
+}
+
+[lang="ar"] .profile-title,
+[lang="ar"] .logo a {
+  font-family: "Rakkas", "Rubik", system-ui, sans-serif !important;
+}
+
+
 .profile-title {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 700;
   color: var(--primary);
   margin-bottom: 1rem;
   line-height: 1.2;
-  font-family: "Baloo Bhaijaan 2", system-ui, sans-serif !important;
 }
 
 /* FIXED: Mobile typewriter fix for profile title */
 @media (max-width: 768px) {
-  .profile-title {
-    font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif !important;
-  }
 }
 
 .profile-subtitle {
@@ -1738,13 +1845,13 @@ html {
   font-weight: 400;
   margin-bottom: 2rem;
   display: block;
-  font-family: "Baloo Bhaijaan 2", system-ui, sans-serif !important;
+  font-family: "Rubik", system-ui, sans-serif !important;
 }
 
 /* FIXED: Mobile font fix for profile subtitle */
 @media (max-width: 768px) {
   .profile-subtitle {
-    font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif !important;
+    font-family: "Rubik", system-ui, -apple-system, sans-serif !important;
   }
 }
 
@@ -1794,65 +1901,45 @@ html {
 
 /* About Button - Solid Blue Flat */
 .about-btn {
-  background: #0f12fc !important;
-  color: white !important;
+  background: transparent !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
   box-shadow: none !important;
 }
 
 .about-btn:hover {
-  background: #0d0fea !important;
-  color: white !important;
-  transform: scale(1.05);
+    background: var(--primary) !important;
+    color: var(--theme) !important;
 }
 
-.about-btn:active {
-  transform: scale(1.02);
+[data-theme="light"] .about-btn:hover {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+[data-theme="dark"] .about-btn:hover {
+    background: #fff !important;
+    color: #000 !important;
 }
 
 /* Contact Button - Transparent with FLAT Theme-Based Glow */
 .contact-btn {
   background: transparent !important;
-  border: 2px solid transparent !important;
+  border: 1px solid var(--primary) !important;
   color: var(--primary) !important;
   position: relative;
+  box-shadow: none !important;
 }
 
-/* Light Theme Contact Button - Dark Border & Flat Glow */
-[data-theme="light"] .contact-btn,
-body:not([data-theme="dark"]):not(.dark) .contact-btn {
-  border-color: rgba(26, 26, 26, 0.3) !important;
-  color: #1a1a1a !important;
-  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.1) !important;
+.contact-btn:hover {
+    background-color: #0f12fc !important;
+    color: white !important;
+    border-color: #0f12fc !important;
 }
 
-[data-theme="light"] .contact-btn:hover,
-body:not([data-theme="dark"]):not(.dark) .contact-btn:hover {
-  border-color: #1a1a1a !important;
-  color: #000000 !important;
-  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.15) !important;
-  transform: scale(1.05) !important;
-  background: rgba(26, 26, 26, 0.02) !important;
-}
-
-/* Dark Theme Contact Button - White Border & Flat Glow */
-[data-theme="dark"] .contact-btn,
-body.dark .contact-btn {
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important;
-}
-
-[data-theme="dark"] .contact-btn:hover,
-body.dark .contact-btn:hover {
-  border-color: #ffffff !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15) !important;
-  transform: scale(1.05) !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-}
 
 .contact-btn:active {
-  transform: scale(1.02) !important;
+  transform: scale(1.0) !important;
 }
 
 /* Flat Ripple Effect */
@@ -1895,7 +1982,7 @@ body.dark .contact-btn:hover {
   padding: 8px;
   border-radius: 50%;
   transition: all 0.2s ease;
-  animation: bounce 2s infinite;
+  animation: none;
 }
 
 .scroll-arrow:hover { 
@@ -1906,11 +1993,6 @@ body.dark .contact-btn:hover {
 .scroll-arrow.hidden { 
   opacity: 0; 
   pointer-events: none; 
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-5px); }
 }
 
 /* Content Sections */
@@ -1934,7 +2016,7 @@ body.dark .contact-btn:hover {
   margin-bottom: 2rem; 
   font-size: clamp(1.6rem, 3vw, 2rem);
   font-weight: 700;
-  font-family: "Baloo Bhaijaan 2", serif;
+  font-family: "Rubik", serif;
   position: relative;
 }
 
@@ -2011,7 +2093,7 @@ body.dark .contact-btn:hover {
   font-size: 1rem; 
   color: var(--primary); 
   font-weight: 600;
-  font-family: "Baloo Bhaijaan 2", serif;
+  font-family: "Rubik", serif;
   line-height: 1.3;
 }
 
@@ -2245,11 +2327,11 @@ body .profile-btn.contact-btn:hover .btn-text {
 }
 
 [data-theme="light"] body .profile-btn.contact-btn:hover .btn-text {
-  color: #000000 !important;
+  color: #fff !important;
 }
 
 [data-theme="dark"] body .profile-btn.contact-btn:hover .btn-text {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 /* Responsive Design */
@@ -2353,7 +2435,7 @@ body .profile-btn.contact-btn:hover .btn-text {
   transition: all 0.3s ease;
   min-width: 110px;
   height: 52px;
-  font-family: "Baloo Bhaijaan 2", system-ui, -apple-system, sans-serif !important;
+  font-family: "Rubik", system-ui, -apple-system, sans-serif !important;
   letter-spacing: 0.02em;
   border: none;
   cursor: pointer;
@@ -2380,33 +2462,19 @@ body .profile-btn.contact-btn:hover .btn-text {
 
 /* About Button - Solid Blue Flat with Perfect Centering */
 .about-btn {
-  background: #0f12fc !important;
-  color: white !important;
-  box-shadow: none !important;
   line-height: 1 !important;
 }
 
 .about-btn * {
-  color: white !important;
   line-height: 1 !important;
   vertical-align: middle !important;
 }
 
-.about-btn:hover {
-  background: #0d0fea !important;
-  color: white !important;
-  transform: scale(1.05);
-}
-
 .about-btn:hover * {
-  color: white !important;
 }
 
 /* Contact Button - Transparent with Perfect Centering */
 .contact-btn {
-  background: transparent !important;
-  border: 2px solid transparent !important;
-  color: var(--primary) !important;
   position: relative;
   line-height: 1 !important;
 }
@@ -2419,55 +2487,35 @@ body .profile-btn.contact-btn:hover .btn-text {
 /* Light Theme Contact Button */
 [data-theme="light"] .contact-btn,
 body:not([data-theme="dark"]):not(.dark) .contact-btn {
-  border-color: rgba(26, 26, 26, 0.3) !important;
-  color: #1a1a1a !important;
-  box-shadow: 0 0 0 2px rgba(26, 26, 26, 0.1) !important;
 }
 
 [data-theme="light"] .contact-btn *,
 body:not([data-theme="dark"]):not(.dark) .contact-btn * {
-  color: #1a1a1a !important;
 }
 
 [data-theme="light"] .contact-btn:hover,
 body:not([data-theme="dark"]):not(.dark) .contact-btn:hover {
-  border-color: #1a1a1a !important;
-  color: #000000 !important;
-  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.15) !important;
-  transform: scale(1.05) !important;
-  background: rgba(26, 26, 26, 0.02) !important;
 }
 
 [data-theme="light"] .contact-btn:hover *,
 body:not([data-theme="dark"]):not(.dark) .contact-btn:hover * {
-  color: #000000 !important;
 }
 
 /* Dark Theme Contact Button */
 [data-theme="dark"] .contact-btn,
 body.dark .contact-btn {
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important;
 }
 
 [data-theme="dark"] .contact-btn *,
 body.dark .contact-btn * {
-  color: #ffffff !important;
 }
 
 [data-theme="dark"] .contact-btn:hover,
 body.dark .contact-btn:hover {
-  border-color: #ffffff !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15) !important;
-  transform: scale(1.05) !important;
-  background: rgba(255, 255, 255, 0.05) !important;
 }
 
 [data-theme="dark"] .contact-btn:hover *,
 body.dark .contact-btn:hover * {
-  color: #ffffff !important;
 }
 
 /* Mobile button centering */
