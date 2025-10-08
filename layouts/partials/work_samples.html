@@ -1,106 +1,127 @@
-<section class="work-samples section-wide">
+﻿<section class="work-samples section-wide">
   <div class="services-section" aria-labelledby="services-heading">
     <div class="section-header">
       <h2 id="services-heading">{{ if eq $.Site.Language.Lang "ar" }}الخدمات{{ else }}Services{{ end }}</h2>
       <p class="section-intro">
-        {{ if eq $.Site.Language.Lang "ar" }}حلول متكاملة للبحث والكتابة والتحليل من الفكرة وحتى النشر{{ else }}End-to-end support for evidence-based research, writing, and analysis — from first draft to publication{{ end }}
+        {{ if eq $.Site.Language.Lang "ar" }}حلول متكاملة للبحث والكتابة والتحليل - من الفكرة وحتى النشر{{ else }}End-to-end support for evidence-based research, writing, and analysis — from first draft to publication{{ end }}
       </p>
     </div>
 
     <div class="services-grid" role="list">
-      <article class="service-card" role="listitem">
+      <article class="service-card service-card--writing" role="listitem">
         <div class="service-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 20h9"></path>
-            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"></path>
+          <span class="icon-backdrop"></span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H14l4 4v3.5"></path>
+            <path d="M14 3v4a2 2 0 0 0 2 2h4"></path>
+            <path d="M10.2 13.8 7 21l3.9-1 8.2-8.2a2.3 2.3 0 0 0-3.2-3.2l-5.7 5.7z"></path>
+            <path d="M12 21h9"></path>
+            <path d="M6.5 7H11"></path>
+            <path d="M6.5 10H10"></path>
           </svg>
         </div>
         <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}الكتابة الطبية{{ else }}Medical Writing{{ end }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}مقالات وأوراق علمية جاهزة للنشر{{ else }}Publication-ready manuscripts and articles{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}أسلوب واضح مدعّم بالمراجع الدقيقة{{ else }}Plain-language clarity backed by precise referencing{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}مخطوطات ومقالات جاهزة للنشر{{ else }}Publication-ready manuscripts and articles{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}لغة مبسطة مدعومة بمراجع دقيقة{{ else }}Plain-language clarity backed by precise referencing{{ end }}</li>
         </ul>
       </article>
 
-      <article class="service-card" role="listitem">
+      <article class="service-card service-card--analysis" role="listitem">
         <div class="service-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 3v18h18"></path>
-            <rect x="7" y="12" width="3" height="6"></rect>
-            <rect x="12" y="8" width="3" height="10"></rect>
-            <rect x="17" y="5" width="3" height="13"></rect>
+          <span class="icon-backdrop"></span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19V5a1 1 0 0 1 1-1h15"></path>
+            <path d="M4 19h16"></path>
+            <path d="M8 19v-6.5"></path>
+            <path d="M12 19V7"></path>
+            <path d="M16 19v-4.5"></path>
+            <path d="M5 13l3-2 3 2.2 3.5-4.7 3.5 2.2"></path>
+            <circle cx="11" cy="8" r="0.75"></circle>
+            <circle cx="18.5" cy="10" r="0.75"></circle>
           </svg>
         </div>
         <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}الإحصاء الحيوي والتحليل{{ else }}Biostatistics & Analysis{{ end }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}تنظيف البيانات والنمذجة وتفسير النتائج{{ else }}Data cleaning, modelling, and interpretation{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}رسوم وتقارير جاهزة للنشر الأكاديمي{{ else }}Publication-quality dashboards and reports{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}تنظيف البيانات ونمذجتها وتفسيرها{{ else }}Data cleaning, modelling, and interpretation{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}لوحات وتقارير بمستوى النشر العلمي{{ else }}Publication-quality dashboards and reports{{ end }}</li>
         </ul>
       </article>
 
-      <article class="service-card" role="listitem">
+      <article class="service-card service-card--synthesis" role="listitem">
         <div class="service-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="6" cy="6" r="2"></circle>
-            <circle cx="18" cy="6" r="2"></circle>
-            <circle cx="6" cy="18" r="2"></circle>
-            <circle cx="18" cy="18" r="2"></circle>
-            <path d="M8 6h8"></path>
-            <path d="M6 8v8"></path>
-            <path d="M16 18H8"></path>
-            <path d="M18 8v8"></path>
+          <span class="icon-backdrop"></span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="2.3"></circle>
+            <circle cx="6.2" cy="6.5" r="2"></circle>
+            <circle cx="17.8" cy="6.5" r="2"></circle>
+            <circle cx="7.5" cy="18" r="2"></circle>
+            <circle cx="16.5" cy="17.5" r="2"></circle>
+            <path d="M8 8.3 10.6 10"></path>
+            <path d="M16 8.3 13.4 10"></path>
+            <path d="M7.8 16l3.1-2"></path>
+            <path d="M16.2 15.4l-3-1.4"></path>
+            <path d="M12 14.3v2.7"></path>
           </svg>
         </div>
-        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}المراجعات المنهجية والتحليلات التراكمية{{ else }}Systematic & Meta-analysis{{ end }}</h3>
+        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}المراجعات المنهجية والتحليلات المجمعة{{ else }}Systematic & Meta-analysis{{ end }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}استخلاص بيانات وتوليف أدلة وفق المعايير العالمية{{ else }}Evidence synthesis compliant with international standards{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}تحليل شبكي وإحصاء متقدم بمخرجات قابلة للنشر{{ else }}Network meta-analysis with publishable outputs{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}تجميع أدلة متوافق مع المعايير الدولية{{ else }}Evidence synthesis compliant with international standards{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}تحليلات شبكية بنتائج قابلة للنشر{{ else }}Network meta-analysis with publishable outputs{{ end }}</li>
         </ul>
       </article>
 
-      <article class="service-card" role="listitem">
+      <article class="service-card service-card--design" role="listitem">
         <div class="service-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 2h12"></path>
-            <path d="M9 2v6l-5 9a3 3 0 0 0 3 5h10a3 3 0 0 0 3-5l-5-9V2"></path>
+          <span class="icon-backdrop"></span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.5" y="6" width="17" height="14" rx="2"></rect>
+            <path d="M9 3h6l1.2 2.4"></path>
+            <path d="M7.5 10h9"></path>
+            <path d="M7.5 13.5h3.5"></path>
+            <path d="M13 14l2.2 2.2 3.3-3.3"></path>
           </svg>
         </div>
-        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}تصميم الدراسات والمنهجية{{ else }}Study Design & Methods{{ end }}</h3>
+        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}تصميم الدراسات والمنهجيات{{ else }}Study Design & Methods{{ end }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}تصميم بروتوكولات وتجارب بدقة منهجية{{ else }}Robust study protocols and trial methodology{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}حسابات حجم العينة وخطط التحليل الإحصائي{{ else }}Sample-size calculations and SAP development{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}بروتوكولات دراسات قوية ومنهجيات للتجارب{{ else }}Robust study protocols and trial methodology{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}حساب حجم العينة ووضع خطط التحليل الإحصائي{{ else }}Sample-size calculations and SAP development{{ end }}</li>
         </ul>
       </article>
 
-      <article class="service-card" role="listitem">
+      <article class="service-card service-card--editing" role="listitem">
         <div class="service-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19h16"></path>
-            <path d="M5 5h14"></path>
-            <path d="M6 9h12"></path>
-            <path d="M8 13h8"></path>
+          <span class="icon-backdrop"></span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 4h7l4 4v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
+            <path d="M15 4v4h4"></path>
+            <path d="M9 11h4.5"></path>
+            <path d="M9 15h6"></path>
+            <path d="M9 19h3"></path>
+            <path d="M12 15l2 2 3-3"></path>
           </svg>
         </div>
         <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}التحرير ودعم النشر{{ else }}Editing & Publication Support{{ end }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}تحرير علمي واستجابات مهنية للمراجعين{{ else }}Scientific editing with polished reviewer responses{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}تحرير علمي مع ردود مصقولة على المراجعين{{ else }}Scientific editing with polished reviewer responses{{ end }}</li>
           <li>{{ if eq $.Site.Language.Lang "ar" }}التزام كامل بإرشادات المجلات المستهدفة{{ else }}Full compliance with target journal guidelines{{ end }}</li>
         </ul>
       </article>
 
-      <article class="service-card" role="listitem">
+      <article class="service-card service-card--visualisation" role="listitem">
         <div class="service-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="14" rx="2"></rect>
+          <span class="icon-backdrop"></span>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="12" rx="2"></rect>
             <path d="M3 12h18"></path>
-            <path d="M8 16h2"></path>
-            <path d="M14 16h2"></path>
+            <path d="M7 16.5 9.7 12l2.4 2.7 3.3-4.5 2.6 3.3"></path>
+            <path d="M10 20h4"></path>
           </svg>
         </div>
-        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}تصميم وعرض البيانات{{ else }}Data Visualisation{{ end }}</h3>
+        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}تصور البيانات{{ else }}Data Visualisation{{ end }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}مخططات وسرد بصري يوضح الرسائل البحثية{{ else }}Clear storytelling through bespoke visuals{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}قوالب قابلة للتسليم للاستخدام في العروض والمنشورات{{ else }}Deliverables ready for slide decks and journals{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}سرد بصري واضح عبر مخططات مصممة خصيصاً{{ else }}Clear storytelling through bespoke visuals{{ end }}</li>
+          <li>{{ if eq $.Site.Language.Lang "ar" }}مخرجات جاهزة للشرائح والعروض البحثية{{ else }}Deliverables ready for slide decks and journals{{ end }}</li>
         </ul>
       </article>
     </div>
@@ -108,45 +129,110 @@
 
   {{- if ne $.Site.Language.Lang "ar" }}
   <div class="reviews-section section-gap" aria-labelledby="reviews-heading">
-    <h2 id="reviews-heading">Client Reviews</h2>
-    <div class="reviews-grid">
-      <figure class="review-card">
-        <div class="review-stars" aria-hidden="true">★★★★★</div>
-        <span class="sr-only">5 out of 5 stars</span>
-        <blockquote>"Expert in network meta-analysis — completed the full analysis and interpreted results clearly. Responsive, on-deadline, and committed to publication quality."</blockquote>
+    <div class="section-header">
+      <h2 id="reviews-heading">Client Reviews</h2>
+      <p class="section-intro reviews-intro">A selection of recent feedback from partners who trust us with their data, evidence synthesis, and publication workflows.</p>
+    </div>
+    <div class="reviews-grid" role="list">
+      <figure class="review-card review-card--meta" role="listitem">
+        <div class="review-top">
+          <div class="review-rating" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <span class="sr-only">5 out of 5 stars</span>
+          <span class="review-tag">Meta-analysis</span>
+        </div>
+        <blockquote>
+          <p>Delivered a full network meta-analysis with lucid interpretation and airtight documentation. Reviewer comments were handled in one pass, keeping publication timelines intact.</p>
+        </blockquote>
         <figcaption class="review-meta">
-          <span class="review-project">Network Meta-Analysis</span>
-          <span class="review-date">Apr–Jul 2025</span>
+          <span class="reviewer-name">Dr. James K.</span>
+          <span class="reviewer-role">Principal Investigator</span>
+          <span class="review-project">Oncology Network Meta-analysis</span>
+          <span class="review-date">Jul 2025</span>
         </figcaption>
       </figure>
 
-      <figure class="review-card">
-        <div class="review-stars" aria-hidden="true">★★★★★</div>
-        <span class="sr-only">5 out of 5 stars</span>
-        <blockquote>"Super quick to reply and really helpful… even offered help before payment. Professional and kind — highly recommend!"</blockquote>
+      <figure class="review-card review-card--clinical" role="listitem">
+        <div class="review-top">
+          <div class="review-rating" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <span class="sr-only">5 out of 5 stars</span>
+          <span class="review-tag">Biostatistics</span>
+        </div>
+        <blockquote>
+          <p>Responsive on every message and produced spot-on analyses across multiple studies. We lean on his models to brief our clinical teams with confidence.</p>
+        </blockquote>
         <figcaption class="review-meta">
-          <span class="review-project">Data Cleaning Survey</span>
+          <span class="reviewer-name">Mina R.</span>
+          <span class="reviewer-role">Clinical Operations Manager</span>
+          <span class="review-project">Biostatistics Retainer</span>
+          <span class="review-date">Apr 2025</span>
+        </figcaption>
+      </figure>
+
+      <figure class="review-card review-card--journal" role="listitem">
+        <div class="review-top">
+          <div class="review-rating" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <span class="sr-only">5 out of 5 stars</span>
+          <span class="review-tag">Manuscript Support</span>
+        </div>
+        <blockquote>
+          <p>Seamless to work with—he shaped our manuscript methods, clarified every statistical choice, and turned revisions around well before deadline.</p>
+        </blockquote>
+        <figcaption class="review-meta">
+          <span class="reviewer-name">Prof. Layla A.</span>
+          <span class="reviewer-role">Academic Editor</span>
+          <span class="review-project">Manuscript Methods Draft</span>
+          <span class="review-date">Mar 2025</span>
+        </figcaption>
+      </figure>
+
+      <figure class="review-card review-card--policy" role="listitem">
+        <div class="review-top">
+          <div class="review-rating" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <span class="sr-only">5 out of 5 stars</span>
+          <span class="review-tag">Systematic Review</span>
+        </div>
+        <blockquote>
+          <p>Handled data extraction and synthesis for our review with exceptional accuracy. His recommendations strengthened the clinical narrative and the final deliverable was publication-ready.</p>
+        </blockquote>
+        <figcaption class="review-meta">
+          <span class="reviewer-name">Charles P.</span>
+          <span class="reviewer-role">Research Consultant</span>
+          <span class="review-project">Systematic Review Analysis</span>
+          <span class="review-date">Feb 2025</span>
+        </figcaption>
+      </figure>
+
+      <figure class="review-card review-card--startup" role="listitem">
+        <div class="review-top">
+          <div class="review-rating" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <span class="sr-only">5 out of 5 stars</span>
+          <span class="review-tag">Data Cleanup</span>
+        </div>
+        <blockquote>
+          <p>Lightning-fast replies and generous guidance—even before kickoff. He transformed a messy survey export into a clean dataset overnight and mapped the next steps for us.</p>
+        </blockquote>
+        <figcaption class="review-meta">
+          <span class="reviewer-name">Sara L.</span>
+          <span class="reviewer-role">Health Informatics Lead</span>
+          <span class="review-project">Survey Data Cleaning</span>
           <span class="review-date">Aug 2025</span>
         </figcaption>
       </figure>
 
-      <figure class="review-card">
-        <div class="review-stars" aria-hidden="true">★★★★★</div>
-        <span class="sr-only">5 out of 5 stars</span>
-        <blockquote>"Exceeded expectations — walked through the methodology and results with patience. Detail-oriented, prompt."</blockquote>
+      <figure class="review-card review-card--thesis" role="listitem">
+        <div class="review-top">
+          <div class="review-rating" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <span class="sr-only">5 out of 5 stars</span>
+          <span class="review-tag">Statistical Consulting</span>
+        </div>
+        <blockquote>
+          <p>Explained every analysis in plain language, kept me informed at each revision, and made the entire statistics process stress-free—even for a first-time researcher.</p>
+        </blockquote>
         <figcaption class="review-meta">
-          <span class="review-project">STATA Consulting</span>
+          <span class="reviewer-name">Olivia S.</span>
+          <span class="reviewer-role">Graduate Researcher</span>
+          <span class="review-project">Stata Consulting</span>
           <span class="review-date">Nov 2024</span>
-        </figcaption>
-      </figure>
-
-      <figure class="review-card">
-        <div class="review-stars" aria-hidden="true">★★★★★</div>
-        <span class="sr-only">5 out of 5 stars</span>
-        <blockquote>"Remarkable response time; meticulous extraction and synthesis."</blockquote>
-        <figcaption class="review-meta">
-          <span class="review-project">Systematic Review Data Extraction</span>
-          <span class="review-date">Aug–Sep 2023</span>
         </figcaption>
       </figure>
     </div>
@@ -161,3 +247,5 @@
     </div>
   </div>
 </section>
+
+

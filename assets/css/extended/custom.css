@@ -2036,50 +2036,151 @@ html {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
 
 .service-card {
+  --service-accent: #0f12fc;
+  --service-accent-soft: rgba(15, 18, 252, 0.16);
+  --service-accent-glow: rgba(15, 18, 252, 0.35);
+  position: relative;
   background: var(--entry);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.25rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 1.5rem 1.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  gap: 1rem;
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow: 0 18px 32px rgba(15, 23, 42, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, transparent 35%, var(--service-accent-soft));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 24px rgba(15, 23, 42, 0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 26px 48px rgba(15, 23, 42, 0.12);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+.service-card:hover::before {
+  opacity: 1;
 }
 
 [data-theme="dark"] .service-card {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  border-color: rgba(148, 163, 184, 0.18);
+  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.45);
+}
+
+[data-theme="dark"] .service-card::before {
+  background: linear-gradient(135deg, transparent 35%, rgba(99, 102, 241, 0.22));
+}
+
+.service-card--writing {
+  --service-accent: #4f46e5;
+  --service-accent-soft: rgba(79, 70, 229, 0.18);
+  --service-accent-glow: rgba(79, 70, 229, 0.4);
+}
+
+.service-card--analysis {
+  --service-accent: #0ea5e9;
+  --service-accent-soft: rgba(14, 165, 233, 0.2);
+  --service-accent-glow: rgba(14, 165, 233, 0.46);
+}
+
+.service-card--synthesis {
+  --service-accent: #9333ea;
+  --service-accent-soft: rgba(147, 51, 234, 0.18);
+  --service-accent-glow: rgba(147, 51, 234, 0.42);
+}
+
+.service-card--design {
+  --service-accent: #22c55e;
+  --service-accent-soft: rgba(34, 197, 94, 0.18);
+  --service-accent-glow: rgba(34, 197, 94, 0.4);
+}
+
+.service-card--editing {
+  --service-accent: #f97316;
+  --service-accent-soft: rgba(249, 115, 22, 0.2);
+  --service-accent-glow: rgba(249, 115, 22, 0.46);
+}
+
+.service-card--visualisation {
+  --service-accent: #14b8a6;
+  --service-accent-soft: rgba(20, 184, 166, 0.2);
+  --service-accent-glow: rgba(20, 184, 166, 0.45);
 }
 
 .service-icon {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 0.75rem;
-  background: linear-gradient(135deg, rgba(15, 18, 252, 0.12), rgba(99, 102, 241, 0.18));
-  color: var(--primary);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1.15rem;
+  color: var(--service-accent);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.4));
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-icon .icon-backdrop {
+  position: absolute;
+  inset: -35%;
+  border-radius: inherit;
+  background: radial-gradient(circle at top left, var(--service-accent-glow), transparent 70%);
+  opacity: 0.9;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.service-icon svg {
+  position: relative;
+  z-index: 1;
+}
+
+.service-card:hover .service-icon {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.service-card:hover .icon-backdrop {
+  transform: scale(1.08);
+  opacity: 1;
 }
 
 [data-theme="dark"] .service-icon {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(129, 140, 248, 0.1));
-  color: var(--primary);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.55));
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.25);
 }
 
 .service-title {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   color: var(--primary);
   font-weight: 600;
 }
@@ -2089,27 +2190,31 @@ html {
   padding: 0;
   margin: 0;
   color: var(--secondary);
-  line-height: 1.5;
-  font-size: 0.9rem;
+  line-height: 1.55;
+  font-size: 0.95rem;
+  display: grid;
+  gap: 0.4rem;
 }
 
 .service-points li {
   position: relative;
-  padding-left: 1.1rem;
-  margin: 0.35rem 0;
+  padding-left: 1.25rem;
 }
 
 .service-points li::before {
-  content: '•';
+  content: '\2022';
   position: absolute;
   left: 0;
-  color: var(--primary);
-  font-weight: 600;
+  top: 0.4rem;
+  color: var(--service-accent);
+  font-size: 0.85rem;
+  line-height: 1;
+  font-weight: 700;
 }
 
 [dir="rtl"] .service-points li {
   padding-left: 0;
-  padding-right: 1.1rem;
+  padding-right: 1.25rem;
 }
 
 [dir="rtl"] .service-points li::before {
@@ -2140,58 +2245,164 @@ html {
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .review-card {
+  --review-accent: #0f12fc;
+  --review-pill: rgba(15, 18, 252, 0.12);
+  --review-glow: rgba(15, 18, 252, 0.26);
+  position: relative;
   background: var(--entry);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.25rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  gap: 1.05rem;
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow: 0 18px 32px rgba(15, 23, 42, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, 0.25), transparent 55%), linear-gradient(145deg, transparent 55%, var(--review-glow));
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: -1;
 }
 
 .review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 24px rgba(15, 23, 42, 0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 26px 52px rgba(15, 23, 42, 0.14);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+.review-card:hover::before {
+  opacity: 0.8;
+  transform: scale(1.02);
 }
 
 [data-theme="dark"] .review-card {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  border-color: rgba(148, 163, 184, 0.18);
+  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.45);
 }
 
-.review-stars {
+[data-theme="dark"] .review-card::before {
+  background: linear-gradient(155deg, rgba(99, 102, 241, 0.18), transparent 70%);
+}
+
+.review-card--meta {
+  --review-accent: #4f46e5;
+  --review-pill: rgba(79, 70, 229, 0.18);
+  --review-glow: rgba(79, 70, 229, 0.32);
+}
+
+.review-card--clinical {
+  --review-accent: #0ea5e9;
+  --review-pill: rgba(14, 165, 233, 0.18);
+  --review-glow: rgba(14, 165, 233, 0.32);
+}
+
+.review-card--journal {
+  --review-accent: #f97316;
+  --review-pill: rgba(249, 115, 22, 0.18);
+  --review-glow: rgba(249, 115, 22, 0.32);
+}
+
+.review-card--policy {
+  --review-accent: #16a34a;
+  --review-pill: rgba(22, 163, 74, 0.18);
+  --review-glow: rgba(22, 163, 74, 0.3);
+}
+
+.review-card--startup {
+  --review-accent: #14b8a6;
+  --review-pill: rgba(20, 184, 166, 0.18);
+  --review-glow: rgba(20, 184, 166, 0.34);
+}
+
+.review-card--thesis {
+  --review-accent: #9333ea;
+  --review-pill: rgba(147, 51, 234, 0.18);
+  --review-glow: rgba(147, 51, 234, 0.34);
+}
+
+.review-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.review-rating {
+  font-size: 1.1rem;
+  letter-spacing: 0.18rem;
   color: #f59e0b;
-  letter-spacing: 0.15rem;
-  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.review-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.3rem 0.9rem;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 8.5rem;
+  border-radius: 999px;
+  background: var(--review-pill);
+  color: var(--review-accent);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
 }
 
 .review-card blockquote {
   margin: 0;
   color: var(--secondary);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.review-card blockquote p {
+  margin: 0;
 }
 
 .review-meta {
+  display: grid;
+  gap: 0.25rem;
   margin-top: auto;
   font-size: 0.85rem;
   color: var(--secondary);
 }
 
-.review-project {
-  color: var(--primary);
+.reviewer-name {
   font-weight: 600;
-  display: block;
+  color: var(--primary);
+}
+
+.reviewer-role {
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.review-project {
+  color: var(--review-accent);
+  font-weight: 600;
 }
 
 .review-date {
-  display: block;
-  opacity: 0.8;
+  font-size: 0.78rem;
+  opacity: 0.75;
+  letter-spacing: 0.01em;
 }
 
 @media (max-width: 640px) {
@@ -2200,12 +2411,27 @@ html {
   }
 
   .services-grid {
-    gap: 1rem;
+    gap: 1.2rem;
   }
 
   .service-card,
   .review-card {
-    padding: 1rem;
+    padding: 1.1rem;
+  }
+
+  .service-icon {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  .review-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+
+  .review-tag {
+    align-self: flex-start;
   }
 }
 
@@ -2218,6 +2444,14 @@ html {
   .service-card:hover,
   .review-card:hover {
     transform: none;
+  }
+
+  .service-card::before,
+  .service-card::after,
+  .service-icon,
+  .service-icon .icon-backdrop,
+  .review-card::before {
+    transition: none;
   }
 }
 
