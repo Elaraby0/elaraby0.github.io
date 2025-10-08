@@ -10,13 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
   {{ end }}
   {{ $hero := .Params.hero }}
+  {{ $motionPreference := default "always" (and $hero $hero.motion) }}
   <section class="about-section about-hero observe-rise">
     <div class="hero-stack">
       <h1 class="hero-name">{{ with $hero.name }}{{ . }}{{ else }}{{ .Title }}{{ end }}</h1>
       {{ with $hero.roles }}
         {{ $rolesJSON := . | jsonify }}
         <p class="hero-roles" aria-label="{{ i18n "roles" | default "Professional roles" }}">
-          <span class="typewriter" data-roles='{{ $rolesJSON }}'></span>
+          <span class="typewriter" data-motion="{{ $motionPreference }}" data-roles='{{ $rolesJSON }}'></span>
         </p>
       {{ end }}
       {{ with $hero.summary }}<p class="hero-summary">{{ . }}</p>{{ end }}
@@ -205,10 +206,12 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const supportsMatchMedia = typeof window.matchMedia === 'function';
+    const prefersReducedMotionQuery = supportsMatchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    const reduceMotionSystem = prefersReducedMotionQuery ? prefersReducedMotionQuery.matches === true : false;
     const observed = document.querySelectorAll('.observe-rise');
 
-    if (!prefersReducedMotion.matches && 'IntersectionObserver' in window) {
+    if (!reduceMotionSystem && 'IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -237,67 +240,168 @@
     }
 
     if (roles.length === 0) {
+      typewriterEl.textContent = '';
       return;
     }
 
-    if (prefersReducedMotion.matches) {
-      let index = 0;
-      typewriterEl.textContent = roles[index];
-      typewriterEl.classList.add('typewriter-static');
+    const originalContent = typewriterEl.textContent;
+    let maxHeight = 0;
 
-      setInterval(() => {
-        index = (index + 1) % roles.length;
-        typewriterEl.textContent = roles[index];
-      }, 2200);
+    roles.forEach((role) => {
+      typewriterEl.textContent = role;
+      const rect = typewriterEl.getBoundingClientRect();
+      maxHeight = Math.max(maxHeight, rect.height);
+    });
+
+    typewriterEl.textContent = originalContent;
+
+    if (maxHeight > 0) {
+      typewriterEl.style.minHeight = `${Math.ceil(maxHeight)}px`;
+    }
+
+    if (roles.length === 1) {
+      typewriterEl.textContent = roles[0];
+      typewriterEl.classList.add('typewriter-static');
+      typewriterEl.classList.remove('is-typing');
       return;
+    }
+
+    const motionPreference = (typewriterEl.dataset.motion || 'auto').toLowerCase();
+    const respectSystemMotion = motionPreference === 'auto';
+    const forceReducedMotion = motionPreference === 'reduce';
+    const forceAnimation = motionPreference === 'always';
+
+    let shouldUseReducedMotion = false;
+
+    if (forceReducedMotion) {
+      shouldUseReducedMotion = true;
+    } else if (forceAnimation) {
+      shouldUseReducedMotion = false;
+    } else {
+      shouldUseReducedMotion = reduceMotionSystem;
     }
 
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
+    let animationTimer = null;
+    let rotationTimer = null;
+
     const typingDelay = 90;
     const erasingDelay = 45;
     const wordHoldDelay = 1500;
     const nextWordDelay = 250;
+    const rotationDelay = 2200;
 
-    typewriterEl.textContent = '';
-    typewriterEl.classList.add('is-typing');
-
-    const type = () => {
-      const current = roles[roleIndex];
-
-      if (!isDeleting && charIndex <= current.length) {
-        typewriterEl.textContent = current.slice(0, charIndex);
-        charIndex += 1;
-
-        if (charIndex > current.length) {
-          setTimeout(() => {
-            isDeleting = true;
-            charIndex = current.length - 1;
-            type();
-          }, wordHoldDelay);
-        } else {
-          setTimeout(type, typingDelay);
-        }
-        return;
+    const clearTimers = () => {
+      if (animationTimer !== null) {
+        window.clearTimeout(animationTimer);
+        animationTimer = null;
       }
 
-      if (isDeleting && charIndex >= 0) {
-        typewriterEl.textContent = current.slice(0, charIndex);
-        charIndex -= 1;
-
-        if (charIndex < 0) {
-          isDeleting = false;
-          roleIndex = (roleIndex + 1) % roles.length;
-          charIndex = 0;
-          setTimeout(type, nextWordDelay);
-        } else {
-          setTimeout(type, erasingDelay);
-        }
+      if (rotationTimer !== null) {
+        window.clearInterval(rotationTimer);
+        rotationTimer = null;
       }
     };
 
-    type();
+    const startReducedMotion = () => {
+      clearTimers();
+      roleIndex = roleIndex % roles.length;
+      typewriterEl.classList.remove('is-typing');
+      typewriterEl.classList.add('typewriter-static');
+      typewriterEl.textContent = roles[roleIndex];
+
+      rotationTimer = window.setInterval(() => {
+        roleIndex = (roleIndex + 1) % roles.length;
+        typewriterEl.textContent = roles[roleIndex];
+      }, rotationDelay);
+    };
+
+    const schedule = (callback, delay) => {
+      animationTimer = window.setTimeout(callback, delay);
+    };
+
+    const startTypewriter = () => {
+      clearTimers();
+      roleIndex = roleIndex % roles.length;
+      charIndex = 0;
+      isDeleting = false;
+      typewriterEl.classList.add('is-typing');
+      typewriterEl.classList.remove('typewriter-static');
+      typewriterEl.textContent = '';
+
+      const type = () => {
+        const current = roles[roleIndex];
+
+        if (!isDeleting && charIndex <= current.length) {
+          typewriterEl.textContent = current.slice(0, charIndex);
+          charIndex += 1;
+
+          if (charIndex > current.length) {
+            schedule(() => {
+              isDeleting = true;
+              charIndex = current.length - 1;
+              type();
+            }, wordHoldDelay);
+          } else {
+            schedule(type, typingDelay);
+          }
+          return;
+        }
+
+        if (isDeleting && charIndex >= 0) {
+          typewriterEl.textContent = current.slice(0, charIndex);
+          charIndex -= 1;
+
+          if (charIndex < 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            charIndex = 0;
+            schedule(type, nextWordDelay);
+          } else {
+            schedule(type, erasingDelay);
+          }
+        }
+      };
+
+      type();
+    };
+
+    let currentMode = null;
+
+    const activateMode = (useReducedMotion) => {
+      const nextMode = useReducedMotion ? 'reduced' : 'typewriter';
+
+      if (currentMode === nextMode) {
+        return;
+      }
+
+      currentMode = nextMode;
+
+      if (useReducedMotion) {
+        startReducedMotion();
+      } else {
+        startTypewriter();
+      }
+    };
+
+    activateMode(shouldUseReducedMotion);
+
+    if (respectSystemMotion && prefersReducedMotionQuery) {
+      const handleMotionChange = (event) => {
+        roleIndex = 0;
+        charIndex = 0;
+        isDeleting = false;
+        activateMode(event.matches);
+      };
+
+      if (typeof prefersReducedMotionQuery.addEventListener === 'function') {
+        prefersReducedMotionQuery.addEventListener('change', handleMotionChange);
+      } else if (typeof prefersReducedMotionQuery.addListener === 'function') {
+        prefersReducedMotionQuery.addListener(handleMotionChange);
+      }
+    }
   });
 </script>
 
@@ -361,20 +465,31 @@
   }
 
   .typewriter {
-    border-inline-end: 2px solid currentColor;
-    padding-inline-end: 0.25em;
+    position: relative;
+    padding-inline-end: 0.3em;
     display: inline-flex;
     min-height: 1.5em;
     align-items: center;
   }
 
-  .typewriter.is-typing {
+  .typewriter::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    width: 2px;
+    background-color: currentColor;
+    opacity: 1;
+    transition: opacity 0.15s ease;
+  }
+
+  .typewriter.is-typing::after {
     animation: blink-caret 0.8s steps(2, jump-none) infinite;
   }
 
-  .typewriter-static {
-    border-inline-end: none;
+  .typewriter-static::after {
     animation: none;
+    opacity: 0;
   }
 
   @keyframes blink-caret {
@@ -742,9 +857,9 @@
       transition: none !important;
     }
 
-    .typewriter {
+    .typewriter:not([data-motion="always"])::after {
       animation: none !important;
-      border-inline-end: none !important;
+      opacity: 0 !important;
     }
   }
 </style>
