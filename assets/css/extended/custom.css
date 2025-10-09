@@ -4,10 +4,92 @@
 
 /* --- Profile & Header Name Fonts --- */
 
-/* English: Lilita One for the main name/title on homepage and site header */
-[lang="en"] .profile-title,
+/* English: Poppins for the main name/title on homepage and site header */
+[lang="en"] .profile-title {
+  font-family: 'Poppins', "Rubik", system-ui, sans-serif !important;
+}
+
 [lang="en"] .header .logo a {
-  font-family: 'Lilita One', "Rubik", system-ui, sans-serif !important;
+  font-family: 'Poppins', "Rubik", system-ui, sans-serif !important;
+  /* Header name size: tweak clamp values to adjust desktop scaling */
+  font-size: clamp(0.9rem, 0.88rem + 0.2vw, 1.05rem);
+  line-height: 1.1;
+  letter-spacing: 0.015em;
+  white-space: nowrap;
+}
+
+.header .logo {
+  /* Header row alignment: tweak align-items to adjust logo/toggle vertical level */
+  align-items: center;
+  /* Space between name and toggle: adjust clamp values (min, fluid vw, max) */
+  gap: clamp(0.15rem, 0.6vw, 0.35rem);
+}
+
+.header .logo-switches {
+  align-items: center;
+  margin: 0;
+  /* Theme toggle horizontal offset: tweak margin-inline-start to move closer/further */
+  margin-inline-start: clamp(0.1rem, 0.5vw, 0.3rem);
+  /* Toggle-to-language spacing: adjust clamp to control space between icon, separator, languages */
+  gap: clamp(0.08rem, 0.45vw, 0.22rem);
+}
+
+.header .logo-switches #theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0;
+  line-height: 1;
+  border-radius: 999px;
+  transform: translateY(0.15rem); /* Vertical offset: positive rem value pushes toggle downward */
+}
+
+.header .logo-switches #theme-toggle svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.header .logo-switches .lang-switch {
+  margin: 0;
+  /* Language switch inline spacing: change gap to control space around | and language links */
+  gap: clamp(0.08rem, 0.4vw, 0.2rem);
+  transform: translateY(0.05rem); /* Language switch vertical tweak: positive rem value moves group lower */
+}
+
+@media (max-width: 600px) {
+  .header .logo {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .header .logo-switches {
+    margin: 0;
+    margin-inline-start: 0;
+  }
+
+  .header .logo-switches #theme-toggle {
+    width: 2rem;
+    height: 2rem;
+    transform: translateY(0.1rem); /* Mobile toggle drop: adjust rem to raise/lower button on small screens */
+  }
+
+  .header .logo-switches #theme-toggle svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .header .logo-switches .lang-switch {
+    gap: clamp(0.06rem, 0.3vw, 0.16rem); /* Mobile language spacing: tweak values for | and link separation */
+    transform: translateY(0.04rem); /* Mobile language switch offset: tweak rem value to refine alignment */
+  }
+
+  [lang="en"] .header .logo a {
+    white-space: normal;
+    /* Mobile header name size */
+    font-size: clamp(0.86rem, 0.84rem + 0.25vw, 1rem);
+  }
 }
 
 /* Arabic: Rakkas for the main name/title on homepage and site header */
@@ -92,6 +174,7 @@ body:not([data-theme="dark"]):not(.dark) .profile {
 .profile-btn:active {
     transform: scale(0.98) !important; /* Keep a subtle click effect */
 }
+
 
 
 /* --- General Card Styling --- */
@@ -1798,9 +1881,12 @@ html {
 }
 
 /* Profile Text */
-[lang="en"] .profile-title,
+[lang="en"] .profile-title {
+  font-family: "Poppins", "Rubik", system-ui, sans-serif !important;
+}
+
 [lang="en"] .logo a {
-  font-family: "Lilita One", "Rubik", system-ui, sans-serif !important;
+  font-family: "Poppins", "Rubik", system-ui, sans-serif !important;
 }
 
 [lang="ar"] .profile-title,
@@ -1865,16 +1951,16 @@ html {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 1.5rem;
-  border-radius: 30px;
+  padding: 0.75rem 1.2rem;
+  border-radius: 22px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  min-width: 110px;
-  height: 52px;
+  min-width: 96px;
+  height: 42px;
   font-family: system-ui, -apple-system, sans-serif;
   letter-spacing: 0.02em;
   border: none;
@@ -2405,36 +2491,6 @@ html {
   letter-spacing: 0.01em;
 }
 
-@media (max-width: 640px) {
-  .section-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .services-grid {
-    gap: 1.2rem;
-  }
-
-  .service-card,
-  .review-card {
-    padding: 1.1rem;
-  }
-
-  .service-icon {
-    width: 3.2rem;
-    height: 3.2rem;
-  }
-
-  .review-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.45rem;
-  }
-
-  .review-tag {
-    align-self: flex-start;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .service-card,
   .review-card {
@@ -2595,6 +2651,45 @@ body .profile-btn.contact-btn:hover .btn-text {
   color: #fff !important;
 }
 
+/* --- Unified CTA Button Styling (home + about) --- */
+.profile .profile-btn,
+.about-page .profile-btn {
+  background: transparent !important; /* Base state: keep background see-through */
+  border: 1px solid var(--primary) !important; /* Outline uses accent color */
+  color: var(--primary) !important; /* Text inherits accent until hover */
+  border-radius: 12px !important; /* Button corner radius — match cards above by adjusting 12px */
+  box-shadow: none !important;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease; /* 0.25s = smooth but snappy transitions */
+  font-size: 0.62rem !important; /* Adjust to scale button text size (smaller = more compact) */
+  padding: 0.5rem 0.9rem !important; /* Outer padding controls button height/width */
+  min-width: 68px !important; /* Minimum width governs pillar size on short labels */
+  min-height: 24px !important; /* Minimum height ensures consistent small footprint */
+}
+
+.profile .profile-btn:focus-visible,
+.about-page .profile-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+[data-theme="light"] .profile .profile-btn:hover,
+body:not([data-theme="dark"]):not(.dark) .profile .profile-btn:hover,
+[data-theme="light"] .about-page .profile-btn:hover,
+body:not([data-theme="dark"]):not(.dark) .about-page .profile-btn:hover {
+  background-color: #111111 !important; /* Hover fill on light mode — darker shade for inversion */
+  border-color: #111111 !important;      /* Keep outline same as fill for seamless edges */
+  color: #ffffff !important;             /* Text flips to white against the dark fill */
+}
+
+[data-theme="dark"] .profile .profile-btn:hover,
+body.dark .profile .profile-btn:hover,
+[data-theme="dark"] .about-page .profile-btn:hover,
+body.dark .about-page .profile-btn:hover {
+  background-color: #f4f4f4 !important;  /* Hover fill on dark mode — light tone for contrast */
+  border-color: #f4f4f4 !important;      /* Outline matches light hover fill */
+  color: #111111 !important;             /* Text switches to dark so it stays readable */
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .profile-buttons {
@@ -2609,19 +2704,79 @@ body .profile-btn.contact-btn:hover .btn-text {
     border-radius: 25px;
   }
 
-  .services-grid {
+  .section-wide {
+    padding: 0 1.35rem;
+  }
+
+  .section-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .section-intro {
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .services-section,
+  .reviews-section {
+    max-width: 560px;
+    margin: 0 auto 2.25rem;
+  }
+
+  .services-grid,
+  .reviews-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.2rem;
+    max-width: 520px;
+    margin: 0 auto;
   }
 
   .service-card,
   .review-card {
-    padding: 1rem;
+    padding: 1.2rem 1.3rem;
+    border-radius: 16px;
   }
 
-  .reviews-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .service-icon {
+    width: 3.05rem;
+    height: 3.05rem;
+    border-radius: 1rem;
+  }
+
+  .service-title {
+    font-size: 1.02rem;
+    line-height: 1.25;
+  }
+
+  .service-points {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    gap: 0.32rem;
+  }
+
+  .service-points li::before {
+    top: 0.32rem;
+    font-size: 0.78rem;
+  }
+
+  .review-rating {
+    font-size: 1rem;
+    letter-spacing: 0.14rem;
+  }
+
+  .review-tag {
+    font-size: 0.68rem;
+    padding: 0.28rem 0.8rem;
+    min-width: auto;
+  }
+
+  .review-card blockquote {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .review-meta {
+    font-size: 0.8rem;
   }
 
   .post-row {
@@ -2638,8 +2793,79 @@ body .profile-btn.contact-btn:hover .btn-text {
     min-height: auto;
   }
   
+  .post-excerpt {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 620px) {
   .section-wide {
-    padding: 0 1rem;
+    padding: 0 1.15rem;
+  }
+
+  .services-section,
+  .reviews-section {
+    max-width: 520px;
+    margin: 0 auto 2rem;
+  }
+
+  .services-grid,
+  .reviews-grid {
+    gap: 1.15rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .service-card,
+  .review-card {
+    padding: 1.05rem 1.15rem;
+  }
+
+  .service-icon {
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 0.95rem;
+  }
+
+  .service-title {
+    font-size: 0.98rem;
+  }
+
+  .service-points {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    gap: 0.28rem;
+  }
+
+  .service-points li::before {
+    top: 0.3rem;
+    font-size: 0.74rem;
+  }
+
+  .review-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.42rem;
+  }
+
+  .review-rating {
+    font-size: 0.96rem;
+    letter-spacing: 0.12rem;
+  }
+
+  .review-tag {
+    align-self: flex-start;
+    font-size: 0.66rem;
+    padding: 0.26rem 0.74rem;
+  }
+
+  .review-card blockquote {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .review-meta {
+    font-size: 0.78rem;
   }
 }
 
@@ -2658,16 +2884,74 @@ body .profile-btn.contact-btn:hover .btn-text {
     border-radius: 22px;
   }
 
+  .section-wide {
+    padding: 0 0.95rem;
+  }
+
+  .services-section,
+  .reviews-section {
+    margin: 0 auto 1.8rem;
+  }
+
+  .services-grid,
+  .reviews-grid {
+    gap: 1.05rem;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
   .service-card,
   .review-card {
-    padding: 0.85rem;
+    padding: 0.95rem 1rem;
+    border-radius: 14px;
+  }
+
+  .service-icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 0.85rem;
+  }
+
+  .service-title {
+    font-size: 0.94rem;
+    line-height: 1.25;
+  }
+
+  .service-points {
+    font-size: 0.86rem;
+    line-height: 1.42;
+    gap: 0.24rem;
+  }
+
+  .service-points li::before {
+    top: 0.28rem;
+    font-size: 0.7rem;
+  }
+
+  .review-rating {
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .review-tag {
+    font-size: 0.62rem;
+    padding: 0.24rem 0.68rem;
+  }
+
+  .review-card blockquote {
+    font-size: 0.88rem;
+    line-height: 1.48;
+  }
+
+  .review-meta {
+    font-size: 0.75rem;
   }
 
   .button-compact {
-    padding: 0.85rem 1.6rem;
-    font-size: 0.85rem;
-    height: 46px;
-    border-radius: 23px;
+    padding: 0.82rem 1.5rem;
+    font-size: 0.82rem;
+    height: 44px;
+    border-radius: 22px;
   }
   
   .post-thumb {
@@ -2829,4 +3113,551 @@ body.dark .contact-btn:hover * {
   vertical-align: middle !important;
   display: inline-block !important;
   text-align: center !important;
+}
+
+/* About page responsive refinements */
+.about-page {
+  max-width: min(1100px, 100%);
+}
+
+.about-page .impact-grid {
+  grid-auto-rows: auto;
+}
+
+@media (max-width: 900px) {
+  .about-page {
+    padding: 1.6rem 1.35rem 3rem;
+    gap: 1.3rem;
+  }
+
+  .about-page .about-section {
+    padding: 1.35rem 1.25rem 1.55rem;
+    border-radius: 22px;
+  }
+
+  .about-page .about-hero {
+    padding-block: 2.1rem;
+  }
+
+  .about-page .hero-stack {
+    gap: 0.65rem;
+  }
+
+  .about-page .hero-name {
+    font-size: 2.35rem;
+    line-height: 1.15;
+  }
+
+  .about-page .hero-roles {
+    font-size: 1.08rem;
+  }
+
+  .about-page .hero-summary {
+    font-size: 0.98rem;
+    line-height: 1.58;
+  }
+
+  .about-page .section-header h2 {
+    font-size: 1.42rem;
+  }
+
+  .about-page .section-lead {
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .about-page .impact-grid {
+    gap: 1rem;
+  }
+
+  .about-page .impact-card {
+    padding: 1.1rem 1.2rem;
+    min-height: 140px;
+  }
+
+  .about-page .impact-metric {
+    font-size: 1.95rem;
+  }
+
+  .about-page .impact-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+
+  .about-page .impact-caption {
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .about-page .timeline-item {
+    padding: 0.95rem 1rem;
+    border-radius: 18px;
+  }
+
+  .about-page .timeline-body {
+    padding-inline-start: 1.35rem;
+    gap: 0.4rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-body {
+    padding-inline-start: 0;
+    padding-inline-end: 1.35rem;
+  }
+
+  .about-page .timeline-body::before {
+    inset-inline-start: 0.4rem;
+    inset-block: 1rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-body::before {
+    inset-inline-start: auto;
+    inset-inline-end: 0.4rem;
+  }
+
+  .about-page .timeline-title {
+    font-size: 1.02rem;
+    line-height: 1.28;
+  }
+
+  .about-page .timeline-meta {
+    font-size: 0.86rem;
+    gap: 0.35rem 0.7rem;
+  }
+
+  .about-page .timeline-summary,
+  .about-page .timeline-list {
+    font-size: 0.88rem;
+    line-height: 1.48;
+  }
+
+  .about-page .timeline-list {
+    gap: 0.35rem;
+    padding-inline-start: 1rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-list {
+    padding-inline-start: 0;
+    padding-inline-end: 1rem;
+  }
+
+  .about-page .skills-grid {
+    gap: 0.85rem;
+  }
+
+  .about-page .skill-card {
+    padding: 1.1rem 1.15rem;
+  }
+
+  .about-page .skill-card h3 {
+    font-size: 1rem;
+  }
+
+  .about-page .language-chips {
+    gap: 0.6rem;
+  }
+
+  .about-page .language-chip {
+    padding: 0.78rem 0.95rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .about-page {
+    padding: 1.35rem 1rem 2.5rem;
+    gap: 1.1rem;
+  }
+
+  .about-page .about-section {
+    padding: 1.05rem 0.95rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .about-page .hero-name {
+    font-size: 2.05rem;
+  }
+
+  .about-page .hero-roles {
+    font-size: 1rem;
+  }
+
+  .about-page .hero-summary {
+    font-size: 0.9rem;
+    line-height: 1.52;
+  }
+
+  .about-page .impact-grid {
+    gap: 0.8rem;
+  }
+
+  .about-page .impact-card {
+    padding: 0.95rem 1rem;
+    min-height: 128px;
+    border-radius: 18px;
+  }
+
+  .about-page .impact-metric {
+    font-size: 1.7rem;
+  }
+
+  .about-page .impact-title {
+    font-size: 0.78rem;
+  }
+
+  .about-page .impact-caption {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  .about-page .timeline-item {
+    padding: 0.82rem 0.85rem;
+  }
+
+  .about-page .timeline-body {
+    padding-inline-start: 1.15rem;
+    gap: 0.32rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-body {
+    padding-inline-start: 0;
+    padding-inline-end: 1.15rem;
+  }
+
+  .about-page .timeline-body::before {
+    inset-inline-start: 0.32rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-body::before {
+    inset-inline-start: auto;
+    inset-inline-end: 0.32rem;
+  }
+
+  .about-page .timeline-title {
+    font-size: 0.98rem;
+  }
+
+  .about-page .timeline-meta {
+    font-size: 0.8rem;
+    gap: 0.25rem 0.6rem;
+  }
+
+  .about-page .timeline-summary,
+  .about-page .timeline-list,
+  .about-page .timeline-citation {
+    font-size: 0.84rem;
+    line-height: 1.42;
+  }
+
+  .about-page .timeline-list {
+    padding-inline-start: 0.85rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-list {
+    padding-inline-start: 0;
+    padding-inline-end: 0.85rem;
+  }
+
+  .about-page .skills-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-page .skill-card {
+    padding: 0.95rem 1rem;
+  }
+
+  .about-page .skill-card h3 {
+    font-size: 0.96rem;
+  }
+
+  .about-page .skill-card li {
+    padding-inline-start: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .about-page .skill-card li::before {
+    inset-block-start: 0.38rem;
+    width: 0.32rem;
+    height: 0.32rem;
+  }
+
+  .about-page[dir="rtl"] .skill-card li {
+    padding-inline-start: 0;
+    padding-inline-end: 0.85rem;
+  }
+
+  .about-page .language-chips {
+    gap: 0.5rem;
+  }
+
+  .about-page .language-chip {
+    padding: 0.7rem 0.85rem;
+  }
+
+  .about-page .language-level {
+    font-size: 0.82rem;
+  }
+
+  .about-page .about-cta {
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .about-page {
+    padding: 1.2rem 0.85rem 2.2rem;
+    gap: 1rem;
+  }
+
+  .about-page .about-section {
+    padding: 0.95rem 0.85rem 1.15rem;
+    border-radius: 18px;
+  }
+
+  .about-page .hero-stack {
+    gap: 0.5rem;
+  }
+
+  .about-page .hero-name {
+    font-size: 1.85rem;
+  }
+
+  .about-page .hero-roles {
+    font-size: 0.94rem;
+  }
+
+  .about-page .hero-summary {
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .about-page .impact-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6rem 0.45rem;
+  }
+
+  .about-page .impact-card {
+    padding: 0.65rem 0.55rem;
+    border-radius: 14px;
+    min-height: auto;
+    gap: 0.25rem;
+    text-align: center;
+  }
+
+  .about-page .impact-metric {
+    font-size: 1.32rem;
+  }
+
+  .about-page .impact-title {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+  }
+
+  .about-page .impact-caption {
+    font-size: 0.74rem;
+    line-height: 1.32;
+  }
+
+  .about-page .timeline-item {
+    padding: 0.74rem 0.75rem;
+  }
+
+  .about-page .timeline-body {
+    padding-inline-start: 0.95rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-body {
+    padding-inline-start: 0;
+    padding-inline-end: 0.95rem;
+  }
+
+  .about-page .timeline-body::before {
+    inset-inline-start: 0.26rem;
+    width: 2px;
+  }
+
+  .about-page[dir="rtl"] .timeline-body::before {
+    inset-inline-start: auto;
+    inset-inline-end: 0.26rem;
+  }
+
+  .about-page .timeline-meta {
+    flex-direction: column;
+    gap: 0.18rem;
+    font-size: 0.78rem;
+  }
+
+  .about-page .timeline-summary,
+  .about-page .timeline-list,
+  .about-page .timeline-citation {
+    font-size: 0.8rem;
+    line-height: 1.38;
+  }
+
+  .about-page .timeline-list {
+    gap: 0.25rem;
+    padding-inline-start: 0.7rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-list {
+    padding-inline-start: 0;
+    padding-inline-end: 0.7rem;
+  }
+
+  .about-page .skills-grid {
+    gap: 0.75rem;
+  }
+
+  .about-page .skill-card {
+    padding: 0.82rem 0.85rem;
+    border-radius: 16px;
+  }
+
+  .about-page .skill-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .about-page .skill-card li {
+    font-size: 0.8rem;
+    padding-inline-start: 0.7rem;
+  }
+
+  .about-page[dir="rtl"] .skill-card li {
+    padding-inline-end: 0.7rem;
+  }
+
+  .about-page .language-chips {
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .about-page .language-chip {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .about-page .language-name {
+    font-size: 0.86rem;
+  }
+
+  .about-page .language-level {
+    font-size: 0.78rem;
+  }
+
+  .about-page .cta-wrap,
+  .about-page .about-cta {
+    gap: 0.55rem;
+  }
+
+  .about-page .cta-link {
+    width: 100%;
+    padding-inline: 0.8rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .about-page {
+    padding: 1.05rem 0.75rem 2rem;
+  }
+
+  .about-page .hero-name {
+    font-size: 1.72rem;
+  }
+
+  .about-page .hero-summary,
+  .about-page .section-lead {
+    font-size: 0.82rem;
+  }
+
+  .about-page .impact-grid {
+    gap: 0.5rem 0.4rem;
+  }
+
+  .about-page .impact-card {
+    padding: 0.58rem 0.48rem;
+  }
+
+  .about-page .impact-metric {
+    font-size: 1.22rem;
+  }
+
+  .about-page .impact-title {
+    font-size: 0.64rem;
+  }
+
+  .about-page .impact-caption {
+    font-size: 0.72rem;
+  }
+
+  .about-page .timeline-item {
+    padding: 0.7rem 0.68rem;
+  }
+
+  .about-page .timeline-body {
+    padding-inline-start: 0.78rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-body {
+    padding-inline-end: 0.78rem;
+  }
+
+  .about-page .timeline-body::before {
+    inset-inline-start: 0.22rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-body::before {
+    inset-inline-end: 0.22rem;
+  }
+
+  .about-page .timeline-summary,
+  .about-page .timeline-list,
+  .about-page .timeline-citation {
+    font-size: 0.76rem;
+  }
+
+  .about-page .skill-card {
+    padding: 0.78rem 0.8rem;
+  }
+
+  .about-page .skill-card h3 {
+    font-size: 0.86rem;
+  }
+
+  .about-page .skill-card li {
+    font-size: 0.78rem;
+  }
+}
+
+/* Scroll-to-top arrow tweaks */
+.top-link {
+  left: auto;
+  z-index: 1100;
+}
+
+@media (max-width: 900px) {
+  .top-link {
+    bottom: 26px;
+    right: 18px;
+    transform: none;
+  }
+
+  .list .top-link {
+    bottom: 26px;
+    right: 18px;
+    transform: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .top-link {
+    bottom: 18px;
+    right: 14px;
+    width: 48px;
+    height: 48px;
+    padding: 14px;
+  }
+
+  .list .top-link {
+    bottom: 18px;
+    right: 14px;
+    transform: none;
+  }
 }

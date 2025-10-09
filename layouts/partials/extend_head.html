@@ -3,9 +3,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet">
+{{- $fontURL := "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Rubik:wght@300;400;500;600;700;800&family=Rakkas&display=swap" -}}
+<link rel="preload" href="{{ $fontURL }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ $fontURL }}"></noscript>
 
 {{- with site.Config.Services.GoogleAnalytics.ID -}}
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
