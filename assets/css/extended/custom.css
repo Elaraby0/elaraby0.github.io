@@ -3196,22 +3196,31 @@ body.dark .contact-btn:hover * {
 
   .about-page .timeline-body {
     padding-inline-start: 1.35rem;
+    padding-left: 1.35rem;
     gap: 0.4rem;
   }
 
   .about-page[dir="rtl"] .timeline-body {
     padding-inline-start: 0;
     padding-inline-end: 1.35rem;
+    padding-left: 0;
+    padding-right: 1.35rem;
+    direction: rtl;
+    unicode-bidi: plaintext;
+    text-align: right;
   }
 
   .about-page .timeline-body::before {
     inset-inline-start: 0.4rem;
+    left: 0.4rem;
     inset-block: 1rem;
   }
 
   .about-page[dir="rtl"] .timeline-body::before {
     inset-inline-start: auto;
-    inset-inline-end: 0.4rem;
+    inset-inline-end: 0.2rem;
+    left: auto;
+    right: 0.2rem;
   }
 
   .about-page .timeline-title {
@@ -3219,9 +3228,30 @@ body.dark .contact-btn:hover * {
     line-height: 1.28;
   }
 
+  .about-page[dir="rtl"] .timeline-title {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
   .about-page .timeline-meta {
     font-size: 0.86rem;
     gap: 0.35rem 0.7rem;
+  }
+
+  .about-page[dir="rtl"] .timeline-meta {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
+  .about-page[dir="rtl"] .timeline-meta > * {
+    direction: inherit;
+    text-align: inherit;
+    unicode-bidi: inherit;
   }
 
   .about-page .timeline-summary,
@@ -3230,14 +3260,32 @@ body.dark .contact-btn:hover * {
     line-height: 1.48;
   }
 
+  .about-page[dir="rtl"] .timeline-summary {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
   .about-page .timeline-list {
     gap: 0.35rem;
     padding-inline-start: 1rem;
+    list-style-position: outside;
   }
 
   .about-page[dir="rtl"] .timeline-list {
     padding-inline-start: 0;
-    padding-inline-end: 1rem;
+    padding-inline-end: 1.5rem;
+    padding-right: 1.5rem;
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+    list-style-position: outside;
+  }
+
+  .about-page[dir="rtl"] .timeline-list li {
+    direction: inherit;
+    text-align: inherit;
+    unicode-bidi: inherit;
   }
 
   .about-page .skills-grid {
@@ -3314,21 +3362,30 @@ body.dark .contact-btn:hover * {
 
   .about-page .timeline-body {
     padding-inline-start: 1.15rem;
+    padding-left: 1.15rem;
     gap: 0.32rem;
   }
 
   .about-page[dir="rtl"] .timeline-body {
     padding-inline-start: 0;
     padding-inline-end: 1.15rem;
+    padding-left: 0;
+    padding-right: 1.15rem;
+    direction: rtl;
+    unicode-bidi: plaintext;
+    text-align: right;
   }
 
   .about-page .timeline-body::before {
     inset-inline-start: 0.32rem;
+    left: 0.32rem;
   }
 
   .about-page[dir="rtl"] .timeline-body::before {
     inset-inline-start: auto;
-    inset-inline-end: 0.32rem;
+    inset-inline-end: 0.18rem;
+    left: auto;
+    right: 0.18rem;
   }
 
   .about-page .timeline-title {
@@ -3353,7 +3410,8 @@ body.dark .contact-btn:hover * {
 
   .about-page[dir="rtl"] .timeline-list {
     padding-inline-start: 0;
-    padding-inline-end: 0.85rem;
+    padding-inline-end: 1.2rem;
+    padding-right: 1.2rem;
   }
 
   .about-page .skills-grid {
@@ -3379,9 +3437,31 @@ body.dark .contact-btn:hover * {
     height: 0.32rem;
   }
 
+  .about-page[dir="rtl"] .skill-card {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
+  .about-page[dir="rtl"] .skill-card h3 {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
+  .about-page[dir="rtl"] .skill-card ul {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+    justify-items: end;
+  }
+
   .about-page[dir="rtl"] .skill-card li {
     padding-inline-start: 0;
     padding-inline-end: 0.85rem;
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
   }
 
   .about-page .language-chips {
@@ -3462,21 +3542,30 @@ body.dark .contact-btn:hover * {
 
   .about-page .timeline-body {
     padding-inline-start: 0.95rem;
+    padding-left: 0.95rem;
   }
 
   .about-page[dir="rtl"] .timeline-body {
     padding-inline-start: 0;
     padding-inline-end: 0.95rem;
+    padding-left: 0;
+    padding-right: 0.95rem;
+    direction: rtl;
+    unicode-bidi: plaintext;
+    text-align: right;
   }
 
   .about-page .timeline-body::before {
     inset-inline-start: 0.26rem;
+    left: 0.26rem;
     width: 2px;
   }
 
   .about-page[dir="rtl"] .timeline-body::before {
     inset-inline-start: auto;
-    inset-inline-end: 0.26rem;
+    inset-inline-end: 0.14rem;
+    left: auto;
+    right: 0.14rem;
   }
 
   .about-page .timeline-meta {
@@ -3499,7 +3588,8 @@ body.dark .contact-btn:hover * {
 
   .about-page[dir="rtl"] .timeline-list {
     padding-inline-start: 0;
-    padding-inline-end: 0.7rem;
+    padding-inline-end: 1rem;
+    padding-right: 1rem;
   }
 
   .about-page .skills-grid {
@@ -3511,8 +3601,20 @@ body.dark .contact-btn:hover * {
     border-radius: 16px;
   }
 
+  .about-page[dir="rtl"] .skill-card {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
   .about-page .skill-card h3 {
     font-size: 0.9rem;
+  }
+
+  .about-page[dir="rtl"] .skill-card h3 {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
   }
 
   .about-page .skill-card li {
@@ -3520,8 +3622,19 @@ body.dark .contact-btn:hover * {
     padding-inline-start: 0.7rem;
   }
 
+  .about-page[dir="rtl"] .skill-card ul {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+    justify-items: end;
+  }
+
   .about-page[dir="rtl"] .skill-card li {
+    padding-inline-start: 0;
     padding-inline-end: 0.7rem;
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
   }
 
   .about-page .language-chips {
@@ -3593,18 +3706,29 @@ body.dark .contact-btn:hover * {
 
   .about-page .timeline-body {
     padding-inline-start: 0.78rem;
+    padding-left: 0.78rem;
   }
 
   .about-page[dir="rtl"] .timeline-body {
+    padding-inline-start: 0;
     padding-inline-end: 0.78rem;
+    padding-left: 0;
+    padding-right: 0.78rem;
+    direction: rtl;
+    unicode-bidi: plaintext;
+    text-align: right;
   }
 
   .about-page .timeline-body::before {
     inset-inline-start: 0.22rem;
+    left: 0.22rem;
   }
 
   .about-page[dir="rtl"] .timeline-body::before {
-    inset-inline-end: 0.22rem;
+    inset-inline-start: auto;
+    inset-inline-end: 0.12rem;
+    left: auto;
+    right: 0.12rem;
   }
 
   .about-page .timeline-summary,

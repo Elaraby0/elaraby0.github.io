@@ -1,10 +1,7 @@
 {{ define "main" }}
-{{ $dir := "ltr" }}
-{{ with .Site.Language.LanguageDirection }}
-  {{ $dir = . }}
-{{ end }}
-<main class="about-page" dir="{{ $dir }}" data-lang="{{ .Site.Language.Lang }}">
-  {{ if eq .Site.Language.Lang "en" }}
+{{ $dir := default "ltr" .Language.LanguageDirection }}
+<main class="about-page" dir="{{ $dir }}" data-lang="{{ .Lang }}">
+  {{ if eq .Lang "en" }}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -580,6 +577,7 @@
     display: grid;
     gap: 0.5rem;
     padding-inline-start: 1.9rem;
+    padding-left: 1.9rem;
     position: relative;
   }
 
@@ -587,6 +585,7 @@
     content: "";
     position: absolute;
     inset-inline-start: 1rem;
+    left: 1rem;
     inset-block: 1.2rem;
     width: 3px;
     border-radius: 999px;
@@ -597,18 +596,30 @@
   [dir="rtl"] .timeline-body {
     padding-inline-start: 0;
     padding-inline-end: 1.9rem;
+    padding-left: 0;
+    padding-right: 1.9rem;
+    direction: rtl;
+    unicode-bidi: plaintext;
     text-align: right;
   }
 
   [dir="rtl"] .timeline-body::before {
     inset-inline-start: auto;
-    inset-inline-end: 1rem;
+    inset-inline-end: 0.2rem;
+    left: auto;
+    right: 0.2rem;
   }
 
   .timeline-title {
     margin: 0;
     font-size: 1.1rem;
     font-weight: 600;
+  }
+
+  [dir="rtl"] .timeline-title {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
   }
 
   .timeline-meta {
@@ -621,7 +632,18 @@
   }
 
   [dir="rtl"] .timeline-meta {
-    justify-content: flex-end;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
+  [dir="rtl"] .timeline-meta > * {
+    direction: inherit;
+    text-align: inherit;
+    unicode-bidi: inherit;
   }
 
   .timeline-summary {
@@ -630,17 +652,35 @@
     line-height: 1.6;
   }
 
+  [dir="rtl"] .timeline-summary {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
   .timeline-list {
     margin: 0;
     padding-inline-start: 1.1rem;
     display: grid;
     gap: 0.5rem;
     color: var(--secondary);
+    list-style-position: outside;
   }
 
   [dir="rtl"] .timeline-list {
     padding-inline-start: 0;
-    padding-inline-end: 1.1rem;
+    padding-inline-end: 1.6rem;
+    padding-right: 1.6rem;
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+    list-style-position: outside;
+  }
+
+  [dir="rtl"] .timeline-list li {
+    direction: inherit;
+    text-align: inherit;
+    unicode-bidi: inherit;
   }
 
   .timeline-list li {
@@ -722,6 +762,12 @@
     height: 100%;
   }
 
+  [dir="rtl"] .skill-card {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
   .skill-card h3 {
     margin: 0;
     font-size: 1.05rem;
@@ -739,6 +785,19 @@
     align-content: start;
   }
 
+  [dir="rtl"] .skill-card h3 {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+
+  [dir="rtl"] .skill-card ul {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+    justify-items: end;
+  }
+
   .skill-card li {
     position: relative;
     padding-inline-start: 1.1rem;
@@ -748,6 +807,9 @@
   [dir="rtl"] .skill-card li {
     padding-inline-start: 0;
     padding-inline-end: 1.1rem;
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
   }
 
   .skill-card li::before {
@@ -830,19 +892,26 @@
 
     .timeline-body {
       padding-inline-start: 1.6rem;
+      padding-left: 1.6rem;
     }
 
     [dir="rtl"] .timeline-body {
+      padding-inline-start: 0;
       padding-inline-end: 1.6rem;
+      padding-left: 0;
+      padding-right: 1.6rem;
     }
 
     .timeline-body::before {
       inset-inline-start: 0.6rem;
+      left: 0.6rem;
     }
 
     [dir="rtl"] .timeline-body::before {
       inset-inline-start: auto;
-      inset-inline-end: 0.6rem;
+      inset-inline-end: 0.3rem;
+      left: auto;
+      right: 0.3rem;
     }
 
     .cta-link {
