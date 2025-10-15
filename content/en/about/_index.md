@@ -6,12 +6,10 @@ cover:
   alt: "About preview"
 hero:
   name: "Ahmed Elaraby, MBBCh"
-  summary: "Egypt-based medical intern combining bedside care with high-impact cardiovascular research."
   roles:
     - "Physician"
     - "Medical Writer"
     - "Biostatistician"
-    - "Clinical Researcher"
 impact:
   title: "Academic & Clinical Highlights"
   description: "Well-rounded medical training backed by global collaborations and recognised scholarship."
@@ -23,8 +21,8 @@ impact:
       title: "Research Years"
       caption: "Clinical research experience"
     - metric: "100+"
-      title: "Global Collaborations"
-      caption: "International research partnerships"
+      title: "Global Clients"
+      caption: "Physician & Pharma Partnerships"
     - metric: "2025"
       title: "Dean’s Award"
       caption: "Excellence in Scientific Research"
@@ -33,7 +31,7 @@ impact:
       caption: "Peer-reviewed articles in top journals"
     - metric: "7+"
       title: "H-Index"
-      caption: "Growing citation footprint"
+      caption: "Advancing citation profile"
 sections:
   - id: "education"
     title: "Education"
