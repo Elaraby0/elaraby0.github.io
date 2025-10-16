@@ -186,6 +186,21 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(e) {
             submitBtn.classList.add('loading');
             submitBtn.disabled = true;
+
+            if (typeof gtag === 'function') {
+                gtag('event', 'contact_form_submit', {
+                    event_category: 'engagement',
+                    form_id: form.id || 'contact_form',
+                    page_path: window.location.pathname
+                });
+            } else if (Array.isArray(window.dataLayer)) {
+                window.dataLayer.push({
+                    event: 'contact_form_submit',
+                    event_category: 'engagement',
+                    form_id: form.id || 'contact_form',
+                    page_path: window.location.pathname
+                });
+            }
         });
     }
 
