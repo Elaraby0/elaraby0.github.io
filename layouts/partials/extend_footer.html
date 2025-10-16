@@ -1,0 +1,80 @@
+{{/* layouts/partials/extend_footer.html */}}
+{{- with site.Config.Services.GoogleAnalytics.ID }}
+<script>
+(function () {
+  if (!document || !document.addEventListener) {
+    return;
+  }
+
+  function normalizeText(value) {
+    if (!value) {
+      return "";
+    }
+    return value.replace(/\s+/g, " ").trim();
+  }
+
+  function getEventPayload(element) {
+    var textSource =
+      element.getAttribute("data-ga-label") ||
+      element.getAttribute("aria-label") ||
+      element.textContent;
+    var normalizedText = normalizeText(textSource);
+
+    return {
+      event: "button_click",
+      event_category:
+        element.getAttribute("data-ga-category") || "engagement",
+      event_label:
+        normalizedText ||
+        element.id ||
+        element.getAttribute("name") ||
+        "unknown_button",
+      button_text: normalizedText || null,
+      button_id: element.id || null,
+      button_name: element.getAttribute("name") || null,
+      button_type:
+        element.getAttribute("data-ga-type") ||
+        element.type ||
+        element.getAttribute("role") ||
+        element.tagName.toLowerCase(),
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+      interaction_type:
+        element.getAttribute("data-ga-action") || "click",
+    };
+  }
+
+  document.addEventListener(
+    "click",
+    function (event) {
+      var tracked = event.target.closest(
+        'button, [data-ga-button], [role="button"], a[class*="btn"], a[class*="button"], input[type="button"], input[type="submit"]'
+      );
+
+      if (!tracked) {
+        return;
+      }
+
+      var payload = getEventPayload(tracked);
+
+      if (typeof gtag === "function") {
+        gtag("event", "button_click", {
+          event_category: payload.event_category,
+          event_label: payload.event_label,
+          button_text: payload.button_text,
+          button_id: payload.button_id,
+          button_name: payload.button_name,
+          button_type: payload.button_type,
+          page_location: payload.page_location,
+          page_path: payload.page_path,
+          interaction_type: payload.interaction_type,
+        });
+      } else if (Array.isArray(window.dataLayer)) {
+        window.dataLayer.push(payload);
+      }
+    },
+    true
+  );
+})();
+</script>
+{{- end }}
