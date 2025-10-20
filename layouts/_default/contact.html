@@ -35,9 +35,9 @@
           {{- end -}}
         </div>
         {{- if eq site.Language.Lang "ar" -}}
-        <div class="btn-arrow">←</div>
+        <div class="btn-arrow" aria-hidden="true">&larr;</div>
         {{- else -}}
-        <div class="btn-arrow">→</div>
+        <div class="btn-arrow" aria-hidden="true">&rarr;</div>
         {{- end -}}
       </a>
       
@@ -58,13 +58,117 @@
           {{- end -}}
         </div>
         {{- if eq site.Language.Lang "ar" -}}
-        <div class="btn-arrow">←</div>
+        <div class="btn-arrow" aria-hidden="true">&larr;</div>
         {{- else -}}
-        <div class="btn-arrow">→</div>
+        <div class="btn-arrow" aria-hidden="true">&rarr;</div>
+        {{- end -}}
+      </a>
+
+      <a href="#" class="quick-contact-btn cal-btn" role="button" data-scheduler-trigger="google-calendar">
+        <div class="btn-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+            <path d="M9 14h2v2H9z"/>
+          </svg>
+        </div>
+        <div class="btn-content">
+          {{- if eq site.Language.Lang "ar" -}}
+          <span class="btn-text">احجز اجتماعًا</span>
+          <span class="btn-subtitle">اختر الوقت المناسب عبر تقويم Google</span>
+          {{- else -}}
+          <span class="btn-text">Schedule a Meeting</span>
+          <span class="btn-subtitle">Use Google Calendar to pick a time</span>
+          {{- end -}}
+        </div>
+        {{- if eq site.Language.Lang "ar" -}}
+        <div class="btn-arrow" aria-hidden="true">&larr;</div>
+        {{- else -}}
+        <div class="btn-arrow" aria-hidden="true">&rarr;</div>
         {{- end -}}
       </a>
     </div>
+    <span id="google-calendar-scheduler-target" hidden></span>
   </div>
+
+  <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+  <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+  <script>
+  (function() {
+    const schedulerConfig = {
+      url: 'https://calendar.google.com/calendar/appointments/AcZssZ2GMwZShW9Xdn6-KsWAt5M2m_HyGtWv3-WEoj4=?gv=true',
+      color: '#F6BF26',
+      label: {{- if eq site.Language.Lang "ar" -}}"احجز اجتماعًا"{{- else -}}"Schedule a Meeting"{{- end }}
+    };
+
+    const placeholder = document.getElementById('google-calendar-scheduler-target');
+    if (!placeholder) {
+      return;
+    }
+
+    let hiddenTrigger = null;
+    let attempts = 0;
+    const maxAttempts = 20;
+
+    function createSchedulerButton() {
+      if (hiddenTrigger) {
+        return true;
+      }
+      if (!window.calendar || !window.calendar.schedulingButton) {
+        if (attempts < maxAttempts) {
+          attempts += 1;
+          setTimeout(createSchedulerButton, 250);
+        }
+        return false;
+      }
+
+      window.calendar.schedulingButton.load({
+        url: schedulerConfig.url,
+        color: schedulerConfig.color,
+        label: schedulerConfig.label,
+        target: placeholder
+      });
+
+      hiddenTrigger = placeholder.nextElementSibling;
+      if (hiddenTrigger) {
+        hiddenTrigger.style.display = 'none';
+        hiddenTrigger.setAttribute('aria-hidden', 'true');
+        hiddenTrigger.tabIndex = -1;
+      }
+      return !!hiddenTrigger;
+    }
+
+    function attachCustomHandler() {
+      const customBtn = document.querySelector('.quick-contact-btn.cal-btn');
+      if (!customBtn) {
+        return;
+      }
+      customBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (!hiddenTrigger && !createSchedulerButton()) {
+          if (attempts >= maxAttempts) {
+            window.open(schedulerConfig.url, '_blank', 'noopener,noreferrer');
+          }
+          return;
+        }
+        hiddenTrigger && hiddenTrigger.click();
+      });
+    }
+
+    function initScheduler() {
+      attachCustomHandler();
+      createSchedulerButton();
+    }
+
+    if (document.readyState === 'complete') {
+      initScheduler();
+    } else {
+      window.addEventListener('load', initScheduler, { once: true });
+    }
+  })();
+  </script>
 
   <!-- Contact Form -->
   <div class="contact-form-section">
