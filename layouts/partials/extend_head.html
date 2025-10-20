@@ -18,6 +18,10 @@
 {{- end -}}
 
 {{- $img := "" -}}
+{{- $scratch := newScratch -}}
+{{- $scratch.Set "imgResource" nil -}}
+{{- $imgWidth := 0 -}}
+{{- $imgHeight := 0 -}}
 {{- $candidates := slice -}}
 {{- with .Params.r }}
   {{- with .image }}{{ $candidates = $candidates | append . }}{{ end -}}
@@ -27,24 +31,37 @@
 {{- end -}}
 {{- with .Params.cover.image }}{{ $candidates = $candidates | append . }}{{ end -}}
 
-{{/* Resolve the first candidate into an absolute URL */}}
+{{/* Resolve best candidate: prefer page/global resources for processing */}}
 {{- range $candidates }}
-  {{- if not $img -}}
-    {{- $candidate := . -}}
-    {{- if $.IsPage }}
-      {{- with $.Resources.GetMatch (printf "*%s*" $candidate) }}
-        {{- $img = .Permalink -}}
-      {{- end -}}
-    {{- end -}}
-    {{- if not $img -}}
-      {{- with (resources.GetMatch (printf "*%s*" $candidate)) }}
-        {{- $img = .Permalink -}}
-      {{- end -}}
-    {{- end -}}
-    {{- if not $img -}}
-      {{- $img = $candidate | absURL -}}
+  {{- $candidate := . -}}
+  {{- if and $.IsPage (eq ($scratch.Get "imgResource") nil) }}
+    {{- with $.Resources.GetMatch (printf "*%s*" $candidate) }}
+      {{- $scratch.Set "imgResource" . -}}
     {{- end -}}
   {{- end -}}
+  {{- if and (eq ($scratch.Get "imgResource") nil) (not (strings.HasPrefix $candidate "http")) }}
+    {{- with (resources.GetMatch (printf "*%s*" $candidate)) }}
+      {{- $scratch.Set "imgResource" . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if and (eq ($scratch.Get "imgResource") nil) (eq $img "") }}
+    {{- $img = $candidate | absURL -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $imgResource := $scratch.Get "imgResource" -}}
+{{- if $imgResource }}
+  {{- $processed := $imgResource -}}
+  {{- $sourceWidth := $imgResource.Width | default 0 -}}
+  {{- if gt $sourceWidth 0 }}
+    {{- $targetWidth := cond (gt $sourceWidth 1200) 1200 $sourceWidth -}}
+    {{- $processed = $imgResource.Resize (printf "%dx jpg" $targetWidth) -}}
+  {{- else }}
+    {{- $processed = $imgResource.Resize "1200x jpg" -}}
+  {{- end -}}
+  {{- $img = $processed.Permalink -}}
+  {{- $imgWidth = $processed.Width | default $imgResource.Width -}}
+  {{- $imgHeight = $processed.Height | default $imgResource.Height -}}
 {{- end -}}
 
 {{/* 2) If no image, build a Cloudinary card from config */}}
@@ -66,6 +83,8 @@
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
 {{- if $img }}<meta property="og:image" content="{{ $img }}">{{ end -}}
+{{- if and $img ($imgWidth) }}<meta property="og:image:width" content="{{ $imgWidth }}">{{ end -}}
+{{- if and $img ($imgHeight) }}<meta property="og:image:height" content="{{ $imgHeight }}">{{ end -}}
 
 {{- template "_internal/opengraph.html" . -}}
 {{- template "_internal/twitter_cards.html" . -}}
