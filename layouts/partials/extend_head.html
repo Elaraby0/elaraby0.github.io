@@ -18,12 +18,33 @@
 {{- end -}}
 
 {{- $img := "" -}}
-{{/* 1) Try to use a page image first */}}
-{{- with .Params.images -}}
-  {{- $img = index . 0 | absURL -}}
+{{- $candidates := slice -}}
+{{- with .Params.r }}
+  {{- with .image }}{{ $candidates = $candidates | append . }}{{ end -}}
 {{- end -}}
-{{- if not $img -}}
-  {{- with .Params.cover.image }}{{ $img = . | absURL }}{{ end -}}
+{{- with .Params.images }}
+  {{- range . }}{{ $candidates = $candidates | append . }}{{ end -}}
+{{- end -}}
+{{- with .Params.cover.image }}{{ $candidates = $candidates | append . }}{{ end -}}
+
+{{/* Resolve the first candidate into an absolute URL */}}
+{{- range $candidates }}
+  {{- if not $img -}}
+    {{- $candidate := . -}}
+    {{- if $.IsPage }}
+      {{- with $.Resources.GetMatch (printf "*%s*" $candidate) }}
+        {{- $img = .Permalink -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $img -}}
+      {{- with (resources.GetMatch (printf "*%s*" $candidate)) }}
+        {{- $img = .Permalink -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $img -}}
+      {{- $img = $candidate | absURL -}}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
 
 {{/* 2) If no image, build a Cloudinary card from config */}}
