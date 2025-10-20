@@ -23,11 +23,11 @@ ShowWordCount: false
 comments: false
 hidemeta: false
 disableShare: true
-cover: 
-    image: Project.webp
-    alt: ""
-    caption: ""
-    relative: false
+cover:
+  image: Project.webp
+  alt: ""
+  caption: ""
+  relative: true
 math: true
 mermaid: true
 canonicalURL: ""
