@@ -27,7 +27,7 @@ cover:
     image: Project.webp
     alt: ""
     caption: ""
-    relative: true
+    relative: false
 math: true
 mermaid: true
 canonicalURL: ""
