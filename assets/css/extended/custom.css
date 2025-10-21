@@ -2029,9 +2029,9 @@ html {
   padding: 2rem;
 }
 
-.profile_inner { 
+.profile_inner {
   padding-bottom: 60px;
-  animation: fadeInUp 0.6s ease-out;
+  animation: none !important;
 }
 
 @keyframes fadeInUp {
