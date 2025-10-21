@@ -1,11 +1,6 @@
 {{ define "main" }}
 {{ $dir := default "ltr" .Language.LanguageDirection }}
 <main class="about-page" dir="{{ $dir }}" data-lang="{{ .Lang }}">
-  {{ if eq .Lang "en" }}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
-  {{ end }}
   {{ $hero := .Params.hero }}
   {{ $motionPreference := default "always" (and $hero $hero.motion) }}
   <section class="about-section about-hero observe-rise">
@@ -412,7 +407,7 @@
   }
 
   .about-page[data-lang="en"] {
-    font-family: 'STIX Two Text', "Georgia", serif;
+    font-family: "Rubik", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
   .about-page[data-lang="en"] h1,
