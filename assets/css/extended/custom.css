@@ -2379,6 +2379,77 @@ html {
   --service-accent-glow: rgba(20, 184, 166, 0.45);
 }
 
+/* Dark theme accent tuning for service icons */
+[data-theme="dark"] .service-card--writing {
+  --service-accent: #c7d2fe;
+  --service-accent-soft: rgba(129, 140, 248, 0.22);
+  --service-accent-glow: rgba(129, 140, 248, 0.4);
+}
+
+[data-theme="dark"] .service-card--analysis {
+  --service-accent: #67e8f9;
+  --service-accent-soft: rgba(34, 211, 238, 0.22);
+  --service-accent-glow: rgba(45, 212, 238, 0.42);
+}
+
+[data-theme="dark"] .service-card--synthesis {
+  --service-accent: #d8b4fe;
+  --service-accent-soft: rgba(168, 85, 247, 0.22);
+  --service-accent-glow: rgba(192, 132, 252, 0.42);
+}
+
+[data-theme="dark"] .service-card--design {
+  --service-accent: #86efac;
+  --service-accent-soft: rgba(34, 197, 94, 0.22);
+  --service-accent-glow: rgba(74, 222, 128, 0.42);
+}
+
+[data-theme="dark"] .service-card--editing {
+  --service-accent: #fdba74;
+  --service-accent-soft: rgba(251, 146, 60, 0.24);
+  --service-accent-glow: rgba(248, 150, 68, 0.45);
+}
+
+[data-theme="dark"] .service-card--visualisation {
+  --service-accent: #5eead4;
+  --service-accent-soft: rgba(45, 212, 191, 0.24);
+  --service-accent-glow: rgba(59, 216, 200, 0.45);
+}
+
+[data-theme="dark"] .service-card--writing .service-icon {
+  background: linear-gradient(155deg, rgba(76, 29, 149, 0.22), rgba(8, 11, 23, 0.97));
+  box-shadow: inset 0 0 0 1px rgba(165, 180, 252, 0.38), 0 18px 34px rgba(76, 29, 149, 0.22);
+}
+
+[data-theme="dark"] .service-card--analysis .service-icon {
+  background: linear-gradient(155deg, rgba(8, 145, 178, 0.22), rgba(6, 13, 25, 0.97));
+  box-shadow: inset 0 0 0 1px rgba(103, 232, 249, 0.35), 0 18px 34px rgba(14, 165, 233, 0.2);
+}
+
+[data-theme="dark"] .service-card--synthesis .service-icon {
+  background: linear-gradient(155deg, rgba(147, 51, 234, 0.22), rgba(8, 11, 23, 0.97));
+  box-shadow: inset 0 0 0 1px rgba(216, 180, 254, 0.35), 0 18px 34px rgba(147, 51, 234, 0.22);
+}
+
+[data-theme="dark"] .service-card--design .service-icon {
+  background: linear-gradient(155deg, rgba(22, 163, 74, 0.22), rgba(6, 13, 25, 0.97));
+  box-shadow: inset 0 0 0 1px rgba(134, 239, 172, 0.34), 0 18px 34px rgba(34, 197, 94, 0.2);
+}
+
+[data-theme="dark"] .service-card--editing .service-icon {
+  background: linear-gradient(155deg, rgba(249, 115, 22, 0.24), rgba(13, 12, 23, 0.97));
+  box-shadow: inset 0 0 0 1px rgba(253, 186, 116, 0.38), 0 18px 34px rgba(249, 115, 22, 0.22);
+}
+
+[data-theme="dark"] .service-card--visualisation .service-icon {
+  background: linear-gradient(155deg, rgba(13, 148, 136, 0.24), rgba(6, 13, 25, 0.97));
+  box-shadow: inset 0 0 0 1px rgba(94, 234, 212, 0.4), 0 18px 34px rgba(20, 184, 166, 0.24);
+}
+
+[data-theme="dark"] .service-icon .icon-backdrop {
+  opacity: 0.55;
+}
+
 .service-icon {
   position: relative;
   display: inline-flex;
@@ -2419,8 +2490,10 @@ html {
 }
 
 [data-theme="dark"] .service-icon {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.55));
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.25);
+  background: linear-gradient(160deg, rgba(6, 11, 25, 0.95), rgba(2, 6, 23, 0.85));
+  box-shadow:
+    inset 0 0 0 1px rgba(71, 85, 105, 0.35),
+    0 20px 42px rgba(2, 6, 23, 0.55);
 }
 
 .service-title {
