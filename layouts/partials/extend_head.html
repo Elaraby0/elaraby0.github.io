@@ -19,6 +19,7 @@
 
 {{- $img := "" -}}
 {{- $scratch := newScratch -}}
+{{- $.Scratch.Delete "ogImageOverride" -}}
 {{- $scratch.Set "imgResource" nil -}}
 {{- $imgWidth := 0 -}}
 {{- $imgHeight := 0 -}}
@@ -82,9 +83,6 @@
 <meta property="og:description" content="{{ .Params.summary | default .Summary | default .Site.Params.description | truncate 160 }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-{{- if $img }}<meta property="og:image" content="{{ $img }}">{{ end -}}
-{{- if and $img ($imgWidth) }}<meta property="og:image:width" content="{{ $imgWidth }}">{{ end -}}
-{{- if and $img ($imgHeight) }}<meta property="og:image:height" content="{{ $imgHeight }}">{{ end -}}
-
-{{- template "_internal/opengraph.html" . -}}
-{{- template "_internal/twitter_cards.html" . -}}
+{{- if $img -}}
+  {{- $.Scratch.Set "ogImageOverride" (dict "url" $img "width" $imgWidth "height" $imgHeight) -}}
+{{- end -}}

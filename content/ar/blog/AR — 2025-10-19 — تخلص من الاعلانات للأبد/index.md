@@ -25,7 +25,7 @@ comments: false
 hidemeta: false
 disableShare: true
 cover:
-  image: Project.webp
+  image: Project.jpg
   alt: ""
   caption: ""
   relative: true
