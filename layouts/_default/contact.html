@@ -111,6 +111,51 @@
     let hiddenTrigger = null;
     let attempts = 0;
     const maxAttempts = 20;
+    let overlayObserver = null;
+
+    const overlayClassName = 'scheduler-overlay--custom';
+    const frameClassName = 'scheduler-overlay__frame';
+    const closeClassName = 'scheduler-overlay__close';
+
+    const overlaySelector = '.hur54b';
+    const frameSelector = '.mmGMM';
+    const closeSelector = '.Xfsokf';
+
+    function enhanceSchedulerOverlay() {
+      const overlay = document.querySelector(overlaySelector);
+      if (!overlay) {
+        return false;
+      }
+
+      overlay.classList.add(overlayClassName);
+
+      const iframe = overlay.querySelector(frameSelector);
+      if (iframe) {
+        iframe.classList.add(frameClassName);
+      }
+
+      const closeButton = overlay.querySelector(closeSelector);
+      if (closeButton) {
+        closeButton.classList.add(closeClassName);
+      }
+
+      return true;
+    }
+
+    function ensureOverlayObserver() {
+      if (overlayObserver || !document.body) {
+        return;
+      }
+
+      overlayObserver = new MutationObserver(() => {
+        enhanceSchedulerOverlay();
+      });
+
+      overlayObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
 
     function createSchedulerButton() {
       if (hiddenTrigger) {
@@ -137,6 +182,8 @@
         hiddenTrigger.setAttribute('aria-hidden', 'true');
         hiddenTrigger.tabIndex = -1;
       }
+
+      ensureOverlayObserver();
       return !!hiddenTrigger;
     }
 
@@ -154,6 +201,7 @@
           return;
         }
         hiddenTrigger && hiddenTrigger.click();
+        setTimeout(enhanceSchedulerOverlay, 0);
       });
     }
 
