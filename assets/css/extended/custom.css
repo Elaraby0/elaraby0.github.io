@@ -2332,7 +2332,11 @@ body.dark .contact-btn:hover {
 }
 
 [data-theme="dark"] .service-card::before {
-  background: linear-gradient(135deg, transparent 35%, rgba(99, 102, 241, 0.22));
+  background: linear-gradient(135deg, transparent 35%, var(--service-accent-soft));
+}
+
+[data-theme="dark"] .service-card::after {
+  border: none;
 }
 
 .service-card--writing {
