@@ -1,5 +1,100 @@
 {{/* layouts/partials/extend_head.html */}}
 
+{{- $defaultTheme := site.Params.defaultTheme | default "auto" | lower -}}
+<script>
+(() => {
+  const storageKey = 'pref-theme';
+  const themeAttr = 'data-theme';
+  const darkClass = 'dark';
+  const root = document.documentElement;
+  const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  const defaultTheme = '{{ $defaultTheme }}';
+
+  const safeGet = () => {
+    try {
+      return window.localStorage.getItem(storageKey);
+    } catch (err) {
+      return null;
+    }
+  };
+
+  const safeSet = (value) => {
+    try {
+      if (value) {
+        window.localStorage.setItem(storageKey, value);
+      } else {
+        window.localStorage.removeItem(storageKey);
+      }
+    } catch (err) {
+      /* ignore storage errors */
+    }
+  };
+
+  const resolve = (pref) => {
+    if (pref === 'dark' || pref === 'light') {
+      return pref;
+    }
+    if (pref === 'auto') {
+      return mq && mq.matches ? 'dark' : 'light';
+    }
+    if (defaultTheme === 'dark' || defaultTheme === 'light') {
+      return defaultTheme;
+    }
+    return mq && mq.matches ? 'dark' : 'light';
+  };
+
+  const syncBody = (mode) => {
+    if (document.body) {
+      document.body.classList.toggle(darkClass, mode === 'dark');
+      document.body.setAttribute(themeAttr, mode);
+      document.body.style.colorScheme = mode;
+    } else {
+      document.addEventListener('DOMContentLoaded', () => syncBody(mode), { once: true });
+    }
+  };
+
+  const applyTheme = (pref) => {
+    const mode = resolve(pref);
+    root.classList.toggle(darkClass, mode === 'dark');
+    root.setAttribute(themeAttr, mode);
+    root.style.colorScheme = mode;
+    syncBody(mode);
+    window.__preferredTheme = mode;
+    const declared = (pref === 'dark' || pref === 'light') ? pref : defaultTheme;
+    window.__themePreference = (declared === 'dark' || declared === 'light') ? declared : 'auto';
+    return mode;
+  };
+
+  window.__applyTheme = (pref) => applyTheme(pref != null ? pref : (safeGet() || defaultTheme));
+  window.__setPreferredTheme = (pref) => {
+    if (pref === 'auto') {
+      safeSet(null);
+      return applyTheme(defaultTheme);
+    }
+    safeSet(pref);
+    return applyTheme(pref);
+  };
+  window.__getStoredTheme = safeGet;
+
+  const storedPref = safeGet();
+  applyTheme(storedPref || defaultTheme);
+
+  const onChange = (event) => {
+    if (defaultTheme === 'auto' && !safeGet()) {
+      applyTheme(event.matches ? 'dark' : 'light');
+    }
+  };
+
+  if (mq && defaultTheme === 'auto') {
+    if (typeof mq.addEventListener === 'function') {
+      mq.addEventListener('change', onChange);
+    } else if (typeof mq.addListener === 'function') {
+      mq.addListener(onChange);
+    }
+  }
+})();
+</script>
+
 {{- $rubikLatin := "fonts/Rubik-latin-300-900.woff2" | relURL -}}
 {{- $rubikArabic := "fonts/Rubik-arabic-300-900.woff2" | relURL -}}
 {{- $poppinsHeader := "fonts/Poppins-700-latin.woff2" | relURL -}}

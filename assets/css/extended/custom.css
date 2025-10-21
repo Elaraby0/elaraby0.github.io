@@ -2126,47 +2126,39 @@ html {
   cursor: pointer;
 }
 
-/* About Button - Solid Blue Flat */
-.about-btn {
-  background: transparent !important;
-  color: var(--primary) !important;
-  border: 1px solid var(--primary) !important;
-  box-shadow: none !important;
-}
-
-.about-btn:hover {
-    background: var(--primary) !important;
-    color: var(--theme) !important;
-}
-
-[data-theme="light"] .about-btn:hover {
-    background: #000 !important;
-    color: #fff !important;
-}
-
-[data-theme="dark"] .about-btn:hover {
-    background: #fff !important;
-    color: #000 !important;
-}
-
-/* Contact Button - Transparent with FLAT Theme-Based Glow */
+/* About / Contact buttons share the same outline style */
+.about-btn,
 .contact-btn {
   background: transparent !important;
-  border: 1px solid var(--primary) !important;
   color: var(--primary) !important;
-  position: relative;
+  border: 1px solid var(--primary) !important;
   box-shadow: none !important;
+  position: relative;
 }
 
+.about-btn:hover,
 .contact-btn:hover {
-    background-color: #0f12fc !important;
-    color: white !important;
-    border-color: #0f12fc !important;
+  background: var(--primary) !important;
+  color: var(--theme) !important;
+  border-color: var(--primary) !important;
 }
 
+[data-theme="light"] .about-btn:hover,
+body:not([data-theme="dark"]):not(.dark) .about-btn:hover,
+[data-theme="light"] .contact-btn:hover,
+body:not([data-theme="dark"]):not(.dark) .contact-btn:hover {
+  background: #000 !important;
+  border-color: #000 !important;
+  color: #fff !important;
+}
 
-.contact-btn:active {
-  transform: scale(1.0) !important;
+[data-theme="dark"] .about-btn:hover,
+body.dark .about-btn:hover,
+[data-theme="dark"] .contact-btn:hover,
+body.dark .contact-btn:hover {
+  background: #fff !important;
+  border-color: #fff !important;
+  color: #000 !important;
 }
 
 /* Flat Ripple Effect */
@@ -2862,12 +2854,9 @@ html {
   color: inherit !important;
 }
 
-.contact-btn:hover * {
-  color: inherit !important;
-}
-
+.contact-btn:hover *,
 .about-btn:hover * {
-  color: white !important;
+  color: inherit !important;
 }
 
 /* Additional specificity for stubborn themes */
@@ -2875,12 +2864,14 @@ body .profile-btn.contact-btn:hover .btn-text {
   color: inherit !important;
 }
 
-[data-theme="light"] body .profile-btn.contact-btn:hover .btn-text {
+[data-theme="light"] body .profile-btn.contact-btn:hover .btn-text,
+body:not([data-theme="dark"]):not(.dark) .profile-btn.contact-btn:hover .btn-text {
   color: #fff !important;
 }
 
-[data-theme="dark"] body .profile-btn.contact-btn:hover .btn-text {
-  color: #fff !important;
+[data-theme="dark"] body .profile-btn.contact-btn:hover .btn-text,
+body.dark .profile-btn.contact-btn:hover .btn-text {
+  color: #111111 !important;
 }
 
 /* --- Unified CTA Button Styling (home + about) --- */

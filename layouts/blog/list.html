@@ -35,15 +35,43 @@
 
       {{/* ------- PaperMod-accurate cover resolution ------- */}}
       {{ $cover := "" }}
+      {{ $coverScratch := newScratch }}
       {{ with $p.Params.cover }}
-        {{ if .image }}
-          {{/* Try page-bundle resource first, like PaperMod's partial */}}
-          {{ $res := ($p.Resources.ByType "image").GetMatch (printf "*%s*" .image) }}
-          {{ if $res }}
-            {{ $cover = $res.Permalink }}
+        {{ with .image }}
+          {{ $imgName := . }}
+          {{ $imgLower := lower $imgName }}
+          {{ $bundleImages := $p.Resources.ByType "image" }}
+
+          {{ range $bundleImages }}
+            {{ if and (not ($coverScratch.Get "res")) (eq (lower .Name) $imgLower) }}
+              {{ $coverScratch.Set "res" . }}
+            {{ end }}
+          {{ end }}
+
+          {{ if and (not ($coverScratch.Get "res")) $bundleImages }}
+            {{ with $bundleImages.GetMatch (printf "*%s*" $imgName) }}
+              {{ $coverScratch.Set "res" . }}
+            {{ end }}
+          {{ end }}
+
+          {{ if not ($coverScratch.Get "res") }}
+            {{ $globalImages := resources.ByType "image" }}
+            {{ range $globalImages }}
+              {{ if and (not ($coverScratch.Get "res")) (eq (lower .Name) $imgLower) }}
+                {{ $coverScratch.Set "res" . }}
+              {{ end }}
+            {{ end }}
+            {{ if and (not ($coverScratch.Get "res")) $globalImages }}
+              {{ with $globalImages.GetMatch (printf "*%s*" $imgName) }}
+                {{ $coverScratch.Set "res" . }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+
+          {{ with $coverScratch.Get "res" }}
+            {{ $cover = .Permalink }}
           {{ else }}
-            {{/* Not a bundle image -> treat as absolute/static path */}}
-            {{ $cover = ( .image | absURL ) }}
+            {{ $cover = ($imgName | absURL) }}
           {{ end }}
         {{ end }}
       {{ end }}
