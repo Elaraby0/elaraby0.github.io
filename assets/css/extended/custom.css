@@ -11,7 +11,7 @@
 
 [lang="en"] .header .logo a {
   font-family: 'Poppins', "Rubik", system-ui, sans-serif !important;
-  /* Header name size: tweak clamp values to adjust desktop scaling */
+  /* Make the English header name bigger by raising these clamp numbers; lower them to shrink it */
   font-size: clamp(0.9rem, 0.88rem + 0.2vw, 1.05rem);
   line-height: 1.1;
   letter-spacing: 0.015em;
@@ -19,18 +19,34 @@
 }
 
 .header .logo {
-  /* Header row alignment: tweak align-items to adjust logo/toggle vertical level */
   align-items: center;
-  /* Space between name and toggle: adjust clamp values (min, fluid vw, max) */
+}
+
+/* English header spacing next to the name */
+[lang="en"] .header .logo {
+  /* Increase this gap to push the icons further from the name; decrease to pull them closer */
+  gap: clamp(0.15rem, 0.6vw, 0.35rem);
+}
+
+/* Keep Arabic header gap matching the previous default */
+[lang="ar"] .header .logo {
   gap: clamp(0.15rem, 0.6vw, 0.35rem);
 }
 
 .header .logo-switches {
   align-items: center;
   margin: 0;
-  /* Theme toggle horizontal offset: tweak margin-inline-start to move closer/further */
+}
+
+[lang="en"] .header .logo-switches {
+  /* Increase this margin to move the toggle and language farther right; decrease to tuck them closer to the name */
   margin-inline-start: clamp(0.1rem, 0.5vw, 0.3rem);
-  /* Toggle-to-language spacing: adjust clamp to control space between icon, separator, languages */
+  /* Larger gap spreads the toggle, divider, and language links; smaller gap groups them tighter */
+  gap: clamp(0.08rem, 0.45vw, 0.22rem);
+}
+
+[lang="ar"] .header .logo-switches {
+  margin-inline-start: clamp(0.1rem, 0.5vw, 0.3rem);
   gap: clamp(0.08rem, 0.45vw, 0.22rem);
 }
 
@@ -43,7 +59,15 @@
   margin: 0;
   line-height: 1;
   border-radius: 999px;
-  transform: translateY(0.15rem); /* Vertical offset: positive rem value pushes toggle downward */
+}
+
+[lang="en"] .header .logo-switches #theme-toggle {
+  /* Positive value drops the light/dark button lower; negative lifts it closer to the text line */
+  transform: translateY(0.15rem);
+}
+
+[lang="ar"] .header .logo-switches #theme-toggle {
+  transform: translateY(0.15rem);
 }
 
 .header .logo-switches #theme-toggle svg {
@@ -53,15 +77,29 @@
 
 .header .logo-switches .lang-switch {
   margin: 0;
-  /* Language switch inline spacing: change gap to control space around | and language links */
+}
+
+[lang="en"] .header .logo-switches .lang-switch {
+  /* Increase this gap for more space around the divider and language text; decrease to tighten them */
   gap: clamp(0.08rem, 0.4vw, 0.2rem);
-  transform: translateY(0.05rem); /* Language switch vertical tweak: positive rem value moves group lower */
+  /* Positive value nudges the language links downward; negative pulls them upward */
+  transform: translateY(0.05rem);
+}
+
+[lang="ar"] .header .logo-switches .lang-switch {
+  gap: clamp(0.08rem, 0.4vw, 0.2rem);
+  transform: translateY(0.05rem);
+}
+
+/* English RSS/menu icon alignment */
+[lang="en"] .header #menu a svg {
+  /* Positive translateY pushes the RSS icon down; use a negative number to lift it up */
+  transform: translateY(0rem);
 }
 
 @media (max-width: 600px) {
   .header .logo {
     flex-wrap: wrap;
-    gap: 0.5rem;
   }
 
   .header .logo-switches {
@@ -72,7 +110,6 @@
   .header .logo-switches #theme-toggle {
     width: 2rem;
     height: 2rem;
-    transform: translateY(0.1rem); /* Mobile toggle drop: adjust rem to raise/lower button on small screens */
   }
 
   .header .logo-switches #theme-toggle svg {
@@ -80,15 +117,44 @@
     height: 1.1rem;
   }
 
-  .header .logo-switches .lang-switch {
-    gap: clamp(0.06rem, 0.3vw, 0.16rem); /* Mobile language spacing: tweak values for | and link separation */
-    transform: translateY(0.04rem); /* Mobile language switch offset: tweak rem value to refine alignment */
-  }
-
   [lang="en"] .header .logo a {
     white-space: normal;
-    /* Mobile header name size */
+    /* On phones/tablets, raise these numbers to enlarge the name; lower to shrink it */
     font-size: clamp(0.86rem, 0.84rem + 0.25vw, 1rem);
+  }
+
+  [lang="en"] .header .logo {
+    /* Increase this mobile gap to separate the name and icons; decrease to pull them together */
+    gap: 0.5rem;
+  }
+
+  [lang="ar"] .header .logo {
+    gap: 0.5rem;
+  }
+
+  [lang="en"] .header .logo-switches {
+    margin-inline-start: 0;
+  }
+
+  [lang="en"] .header .logo-switches #theme-toggle {
+    /* Positive value drops the toggle lower on small screens; negative lifts it */
+    transform: translateY(0.1rem);
+  }
+
+  [lang="ar"] .header .logo-switches #theme-toggle {
+    transform: translateY(0.1rem);
+  }
+
+  [lang="en"] .header .logo-switches .lang-switch {
+    /* Larger gap separates the divider and language text on mobile; smaller gap tightens them */
+    gap: clamp(0.06rem, 0.3vw, 0.16rem);
+    /* Positive value nudges the language links downward; negative lifts them */
+    transform: translateY(0.04rem);
+  }
+
+  [lang="ar"] .header .logo-switches .lang-switch {
+    gap: clamp(0.06rem, 0.3vw, 0.16rem);
+    transform: translateY(0.04rem);
   }
 }
 
