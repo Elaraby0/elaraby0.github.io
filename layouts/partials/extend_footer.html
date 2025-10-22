@@ -78,3 +78,45 @@
 })();
 </script>
 {{- end }}
+
+<script>
+(function () {
+  var body = document.body;
+  var root = document.documentElement;
+  if (!body || !root) {
+    return;
+  }
+
+  var themeAttr = "data-theme";
+  var darkClass = "dark";
+
+  function syncRootTheme() {
+    var isDark = body.classList.contains(darkClass);
+    root.classList.toggle(darkClass, isDark);
+    root.setAttribute(themeAttr, isDark ? "dark" : "light");
+    root.style.colorScheme = isDark ? "dark" : "light";
+  }
+
+  syncRootTheme();
+
+  var observer = null;
+  if (window.MutationObserver) {
+    observer = new MutationObserver(function (mutations) {
+      for (var i = 0; i < mutations.length; i++) {
+        if (mutations[i].attributeName === "class") {
+          syncRootTheme();
+          break;
+        }
+      }
+    });
+    observer.observe(body, { attributes: true, attributeFilter: ["class"] });
+  }
+
+  var toggle = document.getElementById("theme-toggle");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      window.requestAnimationFrame(syncRootTheme);
+    });
+  }
+})();
+</script>
