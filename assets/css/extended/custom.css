@@ -244,7 +244,7 @@
 
 /* Remove white backgrounds in light mode */
 [data-theme="light"] .profile,
-body:not([data-theme="dark"]):not(.dark) .profile {
+html:not([data-theme="dark"]):not(.dark) .profile {
   background: transparent !important;
 }
 
@@ -362,10 +362,10 @@ body:not([data-theme="dark"]):not(.dark) .profile {
 [data-theme="light"] .profile_inner,
 [data-theme="light"] .main,
 [data-theme="light"] .content-sections,
-body:not([data-theme="dark"]):not(.dark) .profile,
-body:not([data-theme="dark"]):not(.dark) .profile_inner,
-body:not([data-theme="dark"]):not(.dark) .main,
-body:not([data-theme="dark"]):not(.dark) .content-sections {
+html:not([data-theme="dark"]):not(.dark) .profile,
+html:not([data-theme="dark"]):not(.dark) .profile_inner,
+html:not([data-theme="dark"]):not(.dark) .main,
+html:not([data-theme="dark"]):not(.dark) .content-sections {
   background: transparent !important;
 }
 
@@ -409,8 +409,8 @@ body.list .main {
 /* FIXED LIGHT MODE: Keep homepage sections transparent */
 [data-theme="light"] .recent-posts,
 [data-theme="light"] .work-samples,
-body:not([data-theme="dark"]):not(.dark) .recent-posts,
-body:not([data-theme="dark"]):not(.dark) .work-samples {
+html:not([data-theme="dark"]):not(.dark) .recent-posts,
+html:not([data-theme="dark"]):not(.dark) .work-samples {
   background: transparent !important;
   border: none !important;
   border-radius: 0 !important;
@@ -421,9 +421,9 @@ body:not([data-theme="dark"]):not(.dark) .work-samples {
 [data-theme="light"] .post-row,
 [data-theme="light"] .service-card,
 [data-theme="light"] .review-card,
-body:not([data-theme="dark"]):not(.dark) .post-row,
-body:not([data-theme="dark"]):not(.dark) .service-card,
-body:not([data-theme="dark"]):not(.dark) .review-card {
+html:not([data-theme="dark"]):not(.dark) .post-row,
+html:not([data-theme="dark"]):not(.dark) .service-card,
+html:not([data-theme="dark"]):not(.dark) .review-card {
   background: rgba(255, 255, 255, 0.85) !important;
   border: 1px solid rgba(217, 226, 236, 0.8);
   box-shadow: 0 8px 24px rgba(15,23,42,0.06);
@@ -431,7 +431,7 @@ body:not([data-theme="dark"]):not(.dark) .review-card {
 }
 
 [data-theme="light"] .post-thumb,
-body:not([data-theme="dark"]):not(.dark) .post-thumb { 
+html:not([data-theme="dark"]):not(.dark) .post-thumb { 
   background: rgba(238, 242, 247, 0.8); 
 }
 
@@ -471,8 +471,8 @@ body:not([data-theme="dark"]):not(.dark) .post-thumb {
 }
 
 /* Enhanced CSS Variables for Perfect Theme Integration */
-body[data-theme="light"] .cv-page,
-body:not([data-theme="dark"]):not([class*="dark"]) .cv-page {
+html[data-theme="light"] .cv-page,
+html:not([data-theme="dark"]):not([class*="dark"]) .cv-page {
     --cv-bg-color: var(--theme, #ffffff);
     --cv-text-primary: var(--primary, #2d3748);
     --cv-text-secondary: var(--secondary, #4a5568);
@@ -485,8 +485,8 @@ body:not([data-theme="dark"]):not([class*="dark"]) .cv-page {
     --cv-blue-highlight: #0f12fc;
 }
 
-body[data-theme="dark"] .cv-page,
-body[class*="dark"] .cv-page {
+html[data-theme="dark"] .cv-page,
+html[class*="dark"] .cv-page {
     --cv-bg-color: var(--theme, #1a202c);
     --cv-text-primary: var(--primary, #f7fafc);
     --cv-text-secondary: var(--secondary, #e2e8f0);
@@ -2207,18 +2207,18 @@ html {
 }
 
 [data-theme="light"] .about-btn:hover,
-body:not([data-theme="dark"]):not(.dark) .about-btn:hover,
+html:not([data-theme="dark"]):not(.dark) .about-btn:hover,
 [data-theme="light"] .contact-btn:hover,
-body:not([data-theme="dark"]):not(.dark) .contact-btn:hover {
+html:not([data-theme="dark"]):not(.dark) .contact-btn:hover {
   background: #000 !important;
   border-color: #000 !important;
   color: #fff !important;
 }
 
 [data-theme="dark"] .about-btn:hover,
-body.dark .about-btn:hover,
+html.dark .about-btn:hover,
 [data-theme="dark"] .contact-btn:hover,
-body.dark .contact-btn:hover {
+html.dark .contact-btn:hover {
   background: #fff !important;
   border-color: #fff !important;
   color: #000 !important;
@@ -2932,12 +2932,12 @@ body .profile-btn.contact-btn:hover .btn-text {
 }
 
 [data-theme="light"] body .profile-btn.contact-btn:hover .btn-text,
-body:not([data-theme="dark"]):not(.dark) .profile-btn.contact-btn:hover .btn-text {
+html:not([data-theme="dark"]):not(.dark) .profile-btn.contact-btn:hover .btn-text {
   color: #fff !important;
 }
 
 [data-theme="dark"] body .profile-btn.contact-btn:hover .btn-text,
-body.dark .profile-btn.contact-btn:hover .btn-text {
+html.dark .profile-btn.contact-btn:hover .btn-text {
   color: #111111 !important;
 }
 
@@ -2963,18 +2963,18 @@ body.dark .profile-btn.contact-btn:hover .btn-text {
 }
 
 [data-theme="light"] .profile .profile-btn:hover,
-body:not([data-theme="dark"]):not(.dark) .profile .profile-btn:hover,
+html:not([data-theme="dark"]):not(.dark) .profile .profile-btn:hover,
 [data-theme="light"] .about-page .profile-btn:hover,
-body:not([data-theme="dark"]):not(.dark) .about-page .profile-btn:hover {
+html:not([data-theme="dark"]):not(.dark) .about-page .profile-btn:hover {
   background-color: #111111 !important; /* Hover fill on light mode — darker shade for inversion */
   border-color: #111111 !important;      /* Keep outline same as fill for seamless edges */
   color: #ffffff !important;             /* Text flips to white against the dark fill */
 }
 
 [data-theme="dark"] .profile .profile-btn:hover,
-body.dark .profile .profile-btn:hover,
+html.dark .profile .profile-btn:hover,
 [data-theme="dark"] .about-page .profile-btn:hover,
-body.dark .about-page .profile-btn:hover {
+html.dark .about-page .profile-btn:hover {
   background-color: #f4f4f4 !important;  /* Hover fill on dark mode — light tone for contrast */
   border-color: #f4f4f4 !important;      /* Outline matches light hover fill */
   color: #111111 !important;             /* Text switches to dark so it stays readable */
@@ -3319,36 +3319,36 @@ body.dark .about-page .profile-btn:hover {
 
 /* Light Theme Contact Button */
 [data-theme="light"] .contact-btn,
-body:not([data-theme="dark"]):not(.dark) .contact-btn {
+html:not([data-theme="dark"]):not(.dark) .contact-btn {
 }
 
 [data-theme="light"] .contact-btn *,
-body:not([data-theme="dark"]):not(.dark) .contact-btn * {
+html:not([data-theme="dark"]):not(.dark) .contact-btn * {
 }
 
 [data-theme="light"] .contact-btn:hover,
-body:not([data-theme="dark"]):not(.dark) .contact-btn:hover {
+html:not([data-theme="dark"]):not(.dark) .contact-btn:hover {
 }
 
 [data-theme="light"] .contact-btn:hover *,
-body:not([data-theme="dark"]):not(.dark) .contact-btn:hover * {
+html:not([data-theme="dark"]):not(.dark) .contact-btn:hover * {
 }
 
 /* Dark Theme Contact Button */
 [data-theme="dark"] .contact-btn,
-body.dark .contact-btn {
+html.dark .contact-btn {
 }
 
 [data-theme="dark"] .contact-btn *,
-body.dark .contact-btn * {
+html.dark .contact-btn * {
 }
 
 [data-theme="dark"] .contact-btn:hover,
-body.dark .contact-btn:hover {
+html.dark .contact-btn:hover {
 }
 
 [data-theme="dark"] .contact-btn:hover *,
-body.dark .contact-btn:hover * {
+html.dark .contact-btn:hover * {
 }
 
 /* Mobile button centering */
