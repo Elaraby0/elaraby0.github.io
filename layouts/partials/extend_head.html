@@ -44,12 +44,19 @@
   };
 
   const syncBody = (mode) => {
-    if (document.body) {
-      document.body.classList.toggle(darkClass, mode === 'dark');
-      document.body.setAttribute(themeAttr, mode);
-      document.body.style.colorScheme = mode;
-    } else {
-      document.addEventListener('DOMContentLoaded', () => syncBody(mode), { once: true });
+    const apply = () => {
+      const body = document.body;
+      if (!body) {
+        return false;
+      }
+      body.classList.toggle(darkClass, mode === 'dark');
+      body.setAttribute(themeAttr, mode);
+      body.style.colorScheme = mode;
+      return true;
+    };
+    if (!apply()) {
+      const schedule = window.requestAnimationFrame || window.setTimeout;
+      schedule(() => syncBody(mode));
     }
   };
 
