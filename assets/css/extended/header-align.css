@@ -23,9 +23,9 @@
   transform:translateY(var(--nudge-toggle));
   opacity:.95;
 }
-/* Show exactly one icon depending on body.dark (PaperMod adds .dark to <body>) */
-body:not(.dark) #theme-toggle #sun{ display:none !important; }
-body.dark        #theme-toggle #moon{ display:none !important; }
+/* Show exactly one icon depending on html.dark (PaperMod adds .dark to <html>) */
+html:not(.dark) #theme-toggle #sun{ display:none !important; }
+html.dark        #theme-toggle #moon{ display:none !important; }
 
 /* Main menu links (and any link with an SVG like RSS) */
 .header .nav #menu a{
