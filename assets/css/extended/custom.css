@@ -1542,17 +1542,10 @@ html {
   border-radius: 1.5rem;
   text-decoration: none;
   color: var(--primary);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   position: relative;
   overflow: hidden;
   box-shadow: var(--contact-shadow);
-  transform: translateY(20px);
-  opacity: 0;
-}
-
-.quick-contact-btn.animate-in {
-  transform: translateY(0);
-  opacity: 1;
 }
 
 .quick-contact-btn::before {
@@ -1731,14 +1724,7 @@ html {
   box-shadow: var(--contact-shadow);
   position: relative;
   overflow: hidden;
-  transform: translateY(30px);
-  opacity: 0;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.contact-form-section.animate-in {
-  transform: translateY(0);
-  opacity: 1;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .contact-form-section::before {
@@ -2030,34 +2016,6 @@ html {
 .quick-contact-btn:focus-visible {
   outline: 2px solid var(--contact-primary);
   outline-offset: 2px;
-}
-
-/* Animation entrance effects */
-@keyframes slideInUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.quick-contact-btn:nth-child(1) {
-  animation: slideInUp 0.6s ease 0.2s both;
-}
-
-.quick-contact-btn:nth-child(2) {
-  animation: slideInUp 0.6s ease 0.4s both;
-}
-
-.quick-contact-btn:nth-child(3) {
-  animation: slideInUp 0.6s ease 0.6s both;
-}
-
-.contact-form-section {
-  animation: slideInUp 0.8s ease 0.8s both;
 }
 
 /* ===========================================
@@ -2641,7 +2599,7 @@ html.dark .contact-btn:hover {
   --review-glow: rgba(15, 18, 252, 0.26);
   position: relative;
   background: var(--entry);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid color-mix(in oklab, var(--review-accent) 18%, rgba(15, 23, 42, 0.08));
   border-radius: 18px;
   padding: 1.5rem;
   display: flex;
@@ -2649,7 +2607,7 @@ html.dark .contact-btn:hover {
   gap: 1.05rem;
   isolation: isolate;
   overflow: hidden;
-  box-shadow: 0 18px 32px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 18px 32px color-mix(in oklab, var(--review-accent) 15%, rgba(15, 23, 42, 0.06));
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
@@ -2658,7 +2616,7 @@ html.dark .contact-btn:hover {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, 0.25), transparent 55%), linear-gradient(145deg, transparent 55%, var(--review-glow));
+  background: radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, 0.25), transparent 55%), linear-gradient(145deg, transparent 55%, color-mix(in oklab, var(--review-accent) 32%, transparent));
   opacity: 0;
   transition: opacity 0.35s ease, transform 0.35s ease;
   z-index: -1;
@@ -2666,22 +2624,22 @@ html.dark .contact-btn:hover {
 
 .review-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 26px 52px rgba(15, 23, 42, 0.14);
-  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 26px 52px color-mix(in oklab, var(--review-accent) 35%, rgba(15, 23, 42, 0.16));
+  border-color: color-mix(in oklab, var(--review-accent) 55%, transparent);
 }
 
 .review-card:hover::before {
-  opacity: 0.8;
+  opacity: 0.9;
   transform: scale(1.02);
 }
 
 [data-theme="dark"] .review-card {
-  border-color: rgba(148, 163, 184, 0.18);
-  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.45);
+  border-color: color-mix(in oklab, var(--review-accent) 20%, rgba(148, 163, 184, 0.18));
+  box-shadow: 0 24px 60px color-mix(in oklab, var(--review-accent) 25%, rgba(2, 6, 23, 0.5));
 }
 
 [data-theme="dark"] .review-card::before {
-  background: linear-gradient(155deg, rgba(99, 102, 241, 0.18), transparent 70%);
+  background: linear-gradient(155deg, color-mix(in oklab, var(--review-accent) 35%, transparent), transparent 70%);
 }
 
 .review-card--meta {
