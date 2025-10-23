@@ -424,10 +424,9 @@ html:not([data-theme="dark"]):not(.dark) .work-samples {
 html:not([data-theme="dark"]):not(.dark) .post-row,
 html:not([data-theme="dark"]):not(.dark) .service-card,
 html:not([data-theme="dark"]):not(.dark) .review-card {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border: 1px solid rgba(217, 226, 236, 0.8);
-  box-shadow: 0 8px 24px rgba(15,23,42,0.06);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(217, 226, 236, 0.7);
+  box-shadow: 0 6px 18px rgba(15,23,42,0.05);
 }
 
 [data-theme="light"] .post-thumb,
@@ -440,10 +439,10 @@ html:not([data-theme="dark"]):not(.dark) .post-thumb {
 .post-row {
   display: grid; grid-template-columns: 300px 1fr; gap: 1rem;
   background: var(--entry); border-radius: 12px; overflow: hidden;
-  border: 1px solid rgba(128,128,128,.15); box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  border: 1px solid rgba(128,128,128,.14); box-shadow: 0 1px 4px rgba(15,23,42,.1);
   transition: transform .18s ease, box-shadow .18s ease;
 }
-.post-row:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,.12); }
+.post-row:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(15,23,42,.14); }
 .post-thumb { display: block; aspect-ratio: 16 / 9; background: rgba(0,0,0,.03); }
 .post-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .post-body { padding: 1rem; display: flex; flex-direction: column; justify-content: center; }
@@ -1663,14 +1662,13 @@ html {
   align-items: center;
   justify-content: center;
   padding: clamp(1rem, 4vw, 3rem) !important;
-  backdrop-filter: blur(0.25rem);
 }
 
 .scheduler-overlay__frame {
   width: min(720px, 100%) !important;
   height: min(90vh, 720px) !important;
   border-radius: 1.25rem !important;
-  box-shadow: 0 28px 60px rgba(8, 15, 52, 0.28);
+  box-shadow: 0 16px 36px rgba(8, 15, 52, 0.18);
 }
 
 .scheduler-overlay__close {
@@ -2739,7 +2737,6 @@ html.dark .contact-btn:hover {
   background: var(--review-pill);
   color: var(--review-accent);
   border: 1px solid rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(6px);
 }
 
 .review-card blockquote {

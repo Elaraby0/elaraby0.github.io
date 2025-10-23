@@ -3,9 +3,12 @@
 {{- end -}}
 
 <!DOCTYPE html>
-<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}">
+{{- $defaultTheme := site.Params.defaultTheme | default "auto" | lower -}}
+{{- $initialTheme := cond (in (slice "dark" "light") $defaultTheme) $defaultTheme "auto" -}}
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}"{{ if eq $initialTheme "dark" }} class="dark"{{ end }} data-theme="{{ $initialTheme }}">
 
 <head>
+    {{- partial "theme-preload.html" . }}
     {{- partial "head.html" . }}
 </head>
 
@@ -17,49 +20,6 @@
 {{- print " dark" }}
 {{- end -}}
 " id="top">
-    <script>
-        (function () {
-            var storageKey = 'pref-theme';
-            var themeAttr = 'data-theme';
-            var darkClass = 'dark';
-            var root = document.documentElement;
-
-            var apply = typeof window.__applyTheme === 'function' ? window.__applyTheme : null;
-            var safeGet = function () {
-                try {
-                    return window.localStorage.getItem(storageKey);
-                } catch (err) {
-                    return null;
-                }
-            };
-
-            var ensureBody = function (mode) {
-                var body = document.body;
-                if (!body) {
-                    return;
-                }
-                body.classList.toggle(darkClass, mode === 'dark');
-                body.setAttribute(themeAttr, mode);
-                body.style.colorScheme = mode;
-            };
-
-            if (apply) {
-                var stored = typeof window.__getStoredTheme === 'function' ? window.__getStoredTheme() : safeGet();
-                var mode = apply(stored);
-                ensureBody(mode);
-                return;
-            }
-
-            var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
-            var pref = safeGet();
-            var mode = (pref === 'dark' || pref === 'light') ? pref : (mq && mq.matches ? 'dark' : 'light');
-
-            root.classList.toggle(darkClass, mode === 'dark');
-            root.setAttribute(themeAttr, mode);
-            root.style.colorScheme = mode;
-            ensureBody(mode);
-        })();
-    </script>
     {{- partialCached "header.html" . .Page -}}
     <main class="main">
         {{- block "main" . }}{{ end }}

@@ -39,7 +39,8 @@ markup:
 
 params:
   env: production
-  defaultTheme: auto
+  defaultTheme: dark
+  disableThemeToggle: true
   ShowReadingTime: true
   ShowShareButtons: true
   ShowCodeCopyButtons: true
@@ -59,7 +60,7 @@ params:
     inputPosition: "bottom"
     lang: "auto"
   cover:
-    responsiveImages: false
+    responsiveImages: true
   tagsLayout: "buckets"
   # Profile Mode enabled globally; per-language titles/buttons below
   profileMode:

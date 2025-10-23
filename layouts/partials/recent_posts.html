@@ -7,21 +7,37 @@
     {{- range first 3 $sorted -}}
       {{- $p := . -}}
       {{- $cover := "" -}}
+      {{- $coverWidth := 0 -}}
+      {{- $coverHeight := 0 -}}
 
       {{- /* 1) Resolve cover.image (prefer bundle resource) */}}
-      {{- with $p.Params.cover -}}
-        {{- if .image -}}
-          {{- $img := .image -}}
-          {{- if or (hasPrefix $img "http://") (hasPrefix $img "https://") -}}
-            {{- $cover = $img -}}
-          {{- else -}}
-            {{- $name := path.Base $img -}}
-            {{- $res := or ($p.Resources.GetMatch (printf "**/%s" $name)) ($p.Resources.Get $name) ($p.Resources.GetMatch $img) -}}
-            {{- if $res -}}
-              {{- $cover = $res.RelPermalink -}}
-            {{- else -}}
-              {{- $cover = ($img | absURL) -}}
+      {{- with $p.Params.cover.image -}}
+        {{- $img := . -}}
+        {{- if or (hasPrefix $img "http://") (hasPrefix $img "https://") -}}
+          {{- $cover = $img -}}
+        {{- else -}}
+          {{- $pattern := printf "*%s*" $img -}}
+          {{- $coverRes := ($p.Resources.ByType "image").GetMatch $pattern -}}
+          {{- if not $coverRes -}}
+            {{- $coverRes = $p.Resources.GetMatch $pattern -}}
+          {{- end -}}
+          {{- if not $coverRes -}}
+            {{- $coverRes = resources.GetMatch $pattern -}}
+          {{- end -}}
+          {{- if $coverRes -}}
+            {{- $processable := slice "jpg" "jpeg" "png" "tif" "tiff" "bmp" "gif" -}}
+            {{- if hugo.IsExtended -}}
+              {{- $processable = $processable | append "webp" -}}
             {{- end -}}
+            {{- $processed := $coverRes -}}
+            {{- if and ($coverRes.Width) (gt $coverRes.Width 720) (in $processable $coverRes.MediaType.SubType) -}}
+              {{- $processed = $coverRes.Resize "720x" -}}
+            {{- end -}}
+            {{- $cover = $processed.RelPermalink -}}
+            {{- $coverWidth = $processed.Width | default 0 -}}
+            {{- $coverHeight = $processed.Height | default 0 -}}
+          {{- else -}}
+            {{- $cover = (path.Join $p.RelPermalink $img) | absURL -}}
           {{- end -}}
         {{- end -}}
       {{- end -}}
@@ -44,7 +60,18 @@
       {{- if not $cover -}}
         {{- $imgs := $p.Resources.ByType "image" -}}
         {{- with first 1 $imgs -}}
-          {{- $cover = (index . 0).RelPermalink -}}
+          {{- $res := index . 0 -}}
+          {{- $processable := slice "jpg" "jpeg" "png" "tif" "tiff" "bmp" "gif" -}}
+          {{- if hugo.IsExtended -}}
+            {{- $processable = $processable | append "webp" -}}
+          {{- end -}}
+          {{- $processed := $res -}}
+          {{- if and ($res.Width) (gt $res.Width 720) (in $processable $res.MediaType.SubType) -}}
+            {{- $processed = $res.Resize "720x" -}}
+          {{- end -}}
+          {{- $cover = $processed.RelPermalink -}}
+          {{- $coverWidth = $processed.Width | default 0 -}}
+          {{- $coverHeight = $processed.Height | default 0 -}}
         {{- end -}}
       {{- end -}}
 
@@ -59,7 +86,7 @@
       <article class="post-row">
         {{- if $cover -}}
           <a class="post-thumb" href="{{ .Permalink }}" aria-label="cover">
-            <img src="{{ $cover }}" alt="{{ .Params.cover.alt | default .Title }}">
+            <img src="{{ $cover }}" alt="{{ .Params.cover.alt | default .Title }}" loading="lazy" decoding="async"{{- if gt $coverWidth 0 }} width="{{ $coverWidth }}"{{ end }}{{- if gt $coverHeight 0 }} height="{{ $coverHeight }}"{{ end }}>
           </a>
         {{- end -}}
         <div class="post-body">

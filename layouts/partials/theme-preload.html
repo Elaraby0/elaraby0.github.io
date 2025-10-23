@@ -1,0 +1,43 @@
+{{- $defaultTheme := site.Params.defaultTheme | default "auto" | lower -}}
+{{- $allowUserPref := not (site.Params.disableThemeToggle | default false) -}}
+<script>
+(function () {
+  var root = document.documentElement;
+  if (!root) {
+    return;
+  }
+
+  var defaultTheme = '{{ $defaultTheme }}';
+  var allowUserPref = {{ if $allowUserPref }}true{{ else }}false{{ end }};
+  var mode = defaultTheme;
+
+  if (allowUserPref) {
+    try {
+      var stored = window.localStorage.getItem('pref-theme');
+      if (stored) {
+        mode = stored;
+      }
+    } catch (err) {
+      mode = defaultTheme;
+    }
+  } else {
+    try {
+      window.localStorage.removeItem('pref-theme');
+    } catch (err) {
+      /* ignore */
+    }
+  }
+
+  if (mode === 'auto' || !mode) {
+    var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    mode = (mq && mq.matches) ? 'dark' : 'light';
+  }
+
+  if (mode !== 'dark' && mode !== 'light') {
+    mode = 'light';
+  }
+
+  root.classList.toggle('dark', mode === 'dark');
+  root.setAttribute('data-theme', mode);
+})();
+</script>
