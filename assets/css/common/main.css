@@ -28,16 +28,36 @@
 }
 
 .social-icons {
-    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
-.social-icons a:not(:last-of-type) {
-    margin-inline-end: 12px;
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .social-icons a svg {
-    height: 26px;
-    width: 26px;
+    height: 20px;
+    width: 20px;
+}
+
+@media (min-width: 640px) {
+    .social-icons {
+        gap: 12px;
+        overflow: visible;
+    }
+
+    .social-icons a svg {
+        height: 24px;
+        width: 24px;
+    }
 }
 
 code {

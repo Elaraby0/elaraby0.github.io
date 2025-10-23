@@ -1,7 +1,7 @@
 <div class="profile">
   <div class="profile_inner">
     {{- if site.Params.profileMode.imageUrl -}}
-    <img draggable="false" src="{{- site.Params.profileMode.imageUrl | absURL -}}" alt="{{- site.Params.profileMode.imageTitle | default site.Title -}}" title="{{- site.Params.profileMode.imageTitle | default site.Title -}}" height="150" width="150" class="profile-image" />
+    <img draggable="false" loading="eager" decoding="async" fetchpriority="high" src="{{- site.Params.profileMode.imageUrl | absURL -}}" alt="{{- site.Params.profileMode.imageTitle | default site.Title -}}" title="{{- site.Params.profileMode.imageTitle | default site.Title -}}" height="150" width="150" class="profile-image" />
     {{- end }}
 
     <div class="profile-text">
@@ -66,27 +66,27 @@ function smoothScrollToContent() {
   }
 }
 
-// Hide arrow on scroll
-window.addEventListener('scroll', () => {
-  const arrow = document.querySelector('.scroll-arrow');
-  const scrolled = window.pageYOffset;
-  
-  if (scrolled > 100) {
-    arrow.classList.add('hidden');
-  } else {
-    arrow.classList.remove('hidden');
-  }
-});
-
-// Animate buttons on load
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    document.querySelectorAll('.profile-btn, .social_icons').forEach((el, index) => {
-      setTimeout(() => {
-        el.classList.add('animate-in');
-      }, index * 100);
-    });
-  }, 300);
+  const arrow = document.querySelector('.scroll-arrow');
+  if (arrow) {
+    const toggleArrow = () => {
+      if (window.pageYOffset > 100) {
+        arrow.classList.add('hidden');
+      } else {
+        arrow.classList.remove('hidden');
+      }
+    };
+
+    toggleArrow();
+    window.addEventListener('scroll', toggleArrow, { passive: true });
+  }
+
+  const animatedItems = document.querySelectorAll('.profile-btn, .social-icons a');
+  animatedItems.forEach((el, index) => {
+    setTimeout(() => {
+      el.classList.add('animate-in');
+    }, 300 + index * 100);
+  });
 });
 </script>
 {{- end }}
