@@ -11,9 +11,10 @@
     {{- $bc_pg := site.GetPage ($scratch.Get "path") -}}
 
     {{- if (and ($bc_pg) (gt (len . ) 0))}}
-    {{- print "&nbsp;A�&nbsp;" | safeHTML -}}<a href="{{ $bc_pg.RelPermalink }}">{{ $bc_pg.Name }}</a>
+    {{- print "&nbsp;&rsaquo;&nbsp;" | safeHTML -}}<a href="{{ $bc_pg.RelPermalink }}">{{ $bc_pg.Name }}</a>
     {{- end }}
 
     {{- end -}}
 </div>
 {{- end -}}
+

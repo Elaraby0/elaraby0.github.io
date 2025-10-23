@@ -129,6 +129,19 @@
 })();
 </script>
 
+<style>
+  html.dark {
+    --theme: #0d1016;
+    --entry: #141822;
+    --border: #202532;
+    --code-bg: #161b26;
+  }
+
+  body.dark {
+    background: var(--theme);
+  }
+</style>
+
 {{- $rubikLatin := "fonts/Rubik-latin-300-900.woff2" | relURL -}}
 {{- $rubikArabic := "fonts/Rubik-arabic-300-900.woff2" | relURL -}}
 {{- $poppinsHeader := "fonts/Poppins-700-latin.woff2" | relURL -}}

@@ -37,7 +37,7 @@
             {{- $coverWidth = $processed.Width | default 0 -}}
             {{- $coverHeight = $processed.Height | default 0 -}}
           {{- else -}}
-            {{- $cover = (path.Join $p.RelPermalink $img) | absURL -}}
+            {{- $cover = (path.Join $p.RelPermalink $img) | relURL -}}
           {{- end -}}
         {{- end -}}
       {{- end -}}
@@ -50,7 +50,7 @@
             {{- if or (hasPrefix $maybe "http://") (hasPrefix $maybe "https://") -}}
               {{- $cover = $maybe -}}
             {{- else -}}
-              {{- $cover = ($maybe | absURL) -}}
+              {{- $cover = ($maybe | relURL) -}}
             {{- end -}}
           {{- end -}}
         {{- end -}}
@@ -85,12 +85,12 @@
 
       <article class="post-row">
         {{- if $cover -}}
-          <a class="post-thumb" href="{{ .Permalink }}" aria-label="cover">
+          <a class="post-thumb" href="{{ .RelPermalink }}" aria-label="cover">
             <img src="{{ $cover }}" alt="{{ .Params.cover.alt | default .Title }}" loading="lazy" decoding="async"{{- if gt $coverWidth 0 }} width="{{ $coverWidth }}"{{ end }}{{- if gt $coverHeight 0 }} height="{{ $coverHeight }}"{{ end }}>
           </a>
         {{- end -}}
         <div class="post-body">
-          <h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+          <h3 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
           <p class="post-excerpt">{{ .Summary | plainify | truncate 140 }}</p>
           <time class="post-meta">{{ .Date.Format "January 2, 2006" }}</time>
         </div>
