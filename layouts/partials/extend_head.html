@@ -52,6 +52,15 @@
       body.classList.toggle(darkClass, mode === 'dark');
       body.setAttribute(themeAttr, mode);
       body.style.colorScheme = mode;
+      let palette = window.__currentThemePalette || null;
+      if (!palette && window.__themePalettes) {
+        const key = mode === 'dark' ? 'dark' : 'light';
+        palette = window.__themePalettes[key] || null;
+      }
+      if (palette) {
+        body.style.backgroundColor = palette['--theme'];
+        body.style.color = palette['--content'];
+      }
       return true;
     };
     if (!apply()) {
@@ -65,6 +74,9 @@
     root.classList.toggle(darkClass, mode === 'dark');
     root.setAttribute(themeAttr, mode);
     root.style.colorScheme = mode;
+    if (typeof window.__setThemePalette === 'function') {
+      window.__setThemePalette(mode);
+    }
     syncBody(mode);
     window.__preferredTheme = mode;
     const declared = (pref === 'dark' || pref === 'light') ? pref : defaultTheme;
