@@ -2143,16 +2143,16 @@ html {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.2rem;
-  border-radius: 22px;
+  padding: 0.45rem 0.75rem;
+  border-radius: 14px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.58rem;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  min-width: 96px;
-  height: 42px;
+  min-width: 60px;
+  height: 26px;
   font-family: system-ui, -apple-system, sans-serif;
   letter-spacing: 0.02em;
   border: none;
@@ -2918,13 +2918,13 @@ html.dark .profile-btn.contact-btn:hover .btn-text {
   background: transparent !important; /* Base state: keep background see-through */
   border: 1px solid var(--primary) !important; /* Outline uses accent color */
   color: var(--primary) !important; /* Text inherits accent until hover */
-  border-radius: 12px !important; /* Button corner radius — match cards above by adjusting 12px */
+  border-radius: 8px !important; /* Button corner radius scaled with smaller size */
   box-shadow: none !important;
   transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease; /* 0.25s = smooth but snappy transitions */
-  font-size: 0.62rem !important; /* Adjust to scale button text size (smaller = more compact) */
-  padding: 0.5rem 0.9rem !important; /* Outer padding controls button height/width */
-  min-width: 68px !important; /* Minimum width governs pillar size on short labels */
-  min-height: 24px !important; /* Minimum height ensures consistent small footprint */
+  font-size: 0.45rem !important; /* Adjust to scale button text size (smaller = more compact) */
+  padding: 0.36rem 0.62rem !important; /* Outer padding controls button height/width */
+  min-width: 48px !important; /* Minimum width governs pillar size on short labels */
+  min-height: 18px !important; /* Minimum height ensures consistent small footprint */
 }
 
 .profile .profile-btn:focus-visible,
@@ -2958,11 +2958,11 @@ html.dark .about-page .profile-btn:hover {
   }
 
   .profile-btn {
-    padding: 0.85rem 1.3rem;
-    font-size: 0.85rem;
-    min-width: 100px;
-    height: 46px;
-    border-radius: 25px;
+    padding: 0.42rem 0.7rem;
+    font-size: 0.55rem;
+    min-width: 56px;
+    height: 24px;
+    border-radius: 12px;
   }
 
   .section-wide {
@@ -3138,11 +3138,11 @@ html.dark .about-page .profile-btn:hover {
   }
 
   .profile-btn {
-    padding: 0.75rem 1.2rem;
-    font-size: 0.8rem;
-    min-width: 90px;
-    height: 42px;
-    border-radius: 22px;
+    padding: 0.38rem 0.62rem;
+    font-size: 0.5rem;
+    min-width: 50px;
+    height: 22px;
+    border-radius: 10px;
   }
 
   .section-wide {
@@ -3325,11 +3325,11 @@ html.dark .contact-btn:hover * {
 /* Mobile button centering */
 @media (max-width: 768px) {
   .profile-btn {
-    padding: 0.85rem 1.3rem;
-    font-size: 0.85rem;
-    min-width: 100px;
-    height: 46px;
-    border-radius: 25px;
+    padding: 0.42rem 0.7rem;
+    font-size: 0.55rem;
+    min-width: 56px;
+    height: 24px;
+    border-radius: 12px;
     line-height: 1 !important;
   }
   
@@ -3343,11 +3343,11 @@ html.dark .contact-btn:hover * {
 
 @media (max-width: 480px) {
   .profile-btn {
-    padding: 0.75rem 1.2rem;
-    font-size: 0.8rem;
-    min-width: 90px;
-    height: 42px;
-    border-radius: 22px;
+    padding: 0.38rem 0.62rem;
+    font-size: 0.5rem;
+    min-width: 50px;
+    height: 22px;
+    border-radius: 10px;
     line-height: 1 !important;
   }
   
