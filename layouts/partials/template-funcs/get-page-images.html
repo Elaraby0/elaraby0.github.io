@@ -1,0 +1,50 @@
+{{- $page := . -}}
+{{- $images := slice -}}
+
+{{- if $page.IsPage -}}
+  {{- with $page.Resources.ByType "image" -}}
+    {{- range . -}}
+      {{- $images = append $images . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $candidates := slice -}}
+{{- with $page.Params.image -}}
+  {{- $candidates = append $candidates . -}}
+{{- end -}}
+{{- with $page.Params.images -}}
+  {{- range . -}}
+    {{- $candidates = append $candidates . -}}
+  {{- end -}}
+{{- end -}}
+{{- with $page.Params.cover.image -}}
+  {{- $candidates = append $candidates . -}}
+{{- end -}}
+
+{{- range $candidates -}}
+  {{- $candidate := . -}}
+  {{- $resource := nil -}}
+  {{- if and $page.IsPage (not (strings.HasPrefix $candidate "http")) -}}
+    {{- $resource = $page.Resources.GetMatch (printf "*%s*" $candidate) -}}
+  {{- end -}}
+  {{- if and (not $resource) (not (strings.HasPrefix $candidate "http")) -}}
+    {{- $resource = resources.GetMatch (printf "*%s*" $candidate) -}}
+  {{- end -}}
+  {{- if $resource -}}
+    {{- $images = append $images $resource -}}
+  {{- else -}}
+    {{- $abs := cond (strings.HasPrefix $candidate "http") $candidate ($candidate | absURL) -}}
+    {{- $images = append $images (dict "Permalink" $abs "Width" 0 "Height" 0) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if eq (len $images) 0 -}}
+  {{- with site.Params.images -}}
+    {{- range . -}}
+      {{- $images = append $images (dict "Permalink" (. | absURL) "Width" 0 "Height" 0) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $images -}}
