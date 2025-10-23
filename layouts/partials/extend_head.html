@@ -1,7 +1,7 @@
 {{/* layouts/partials/extend_head.html */}}
 
 {{- $defaultTheme := site.Params.defaultTheme | default "auto" | lower -}}
-<script>
+<script data-cfasync="false">
 (function () {
   var storageKey = 'pref-theme';
   var declaredDefault = '{{ $defaultTheme }}';

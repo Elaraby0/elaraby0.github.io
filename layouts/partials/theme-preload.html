@@ -1,6 +1,6 @@
 {{- $defaultTheme := site.Params.defaultTheme | default "auto" | lower -}}
 {{- $allowUserPref := not (site.Params.disableThemeToggle | default false) -}}
-<script>
+<script data-cfasync="false">
 (function () {
   var root = document.documentElement;
   if (!root) {
@@ -128,4 +128,3 @@
   }
 })();
 </script>
-
