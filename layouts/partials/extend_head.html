@@ -2,6 +2,52 @@
 
 {{- $defaultTheme := site.Params.defaultTheme | default "auto" | lower -}}
 <script>
+(function () {
+  var storageKey = 'pref-theme';
+  var defaultTheme = '{{ $defaultTheme }}';
+  var darkClass = 'dark';
+  var themeAttr = 'data-theme';
+  var root = document.documentElement;
+  if (!root) {
+    return;
+  }
+
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+  var safeGet = function () {
+    try {
+      return window.localStorage.getItem(storageKey);
+    } catch (err) {
+      return null;
+    }
+  };
+
+  var resolve = function (pref) {
+    if (pref === 'dark' || pref === 'light') {
+      return pref;
+    }
+    if (pref === 'auto') {
+      return mq && mq.matches ? 'dark' : 'light';
+    }
+    if (defaultTheme === 'dark' || defaultTheme === 'light') {
+      return defaultTheme;
+    }
+    return mq && mq.matches ? 'dark' : 'light';
+  };
+
+  var mode = resolve(safeGet());
+  var palette = mode === 'dark'
+    ? { bg: 'rgb(29, 30, 32)', text: 'rgb(196, 196, 197)' }
+    : { bg: 'rgb(255, 255, 255)', text: 'rgb(31, 31, 31)' };
+
+  root.classList.toggle(darkClass, mode === 'dark');
+  root.setAttribute(themeAttr, mode);
+  root.style.colorScheme = mode;
+  root.style.backgroundColor = palette.bg;
+  root.style.color = palette.text;
+})();
+</script>
+<script>
 (() => {
   const storageKey = 'pref-theme';
   const themeAttr = 'data-theme';
@@ -52,15 +98,11 @@
       body.classList.toggle(darkClass, mode === 'dark');
       body.setAttribute(themeAttr, mode);
       body.style.colorScheme = mode;
-      let palette = window.__currentThemePalette || null;
-      if (!palette && window.__themePalettes) {
-        const key = mode === 'dark' ? 'dark' : 'light';
-        palette = window.__themePalettes[key] || null;
-      }
-      if (palette) {
-        body.style.backgroundColor = palette['--theme'];
-        body.style.color = palette['--content'];
-      }
+      const palette = mode === 'dark'
+        ? { bg: 'rgb(29, 30, 32)', text: 'rgb(196, 196, 197)' }
+        : { bg: 'rgb(255, 255, 255)', text: 'rgb(31, 31, 31)' };
+      body.style.backgroundColor = palette.bg;
+      body.style.color = palette.text;
       return true;
     };
     if (!apply()) {
@@ -74,9 +116,6 @@
     root.classList.toggle(darkClass, mode === 'dark');
     root.setAttribute(themeAttr, mode);
     root.style.colorScheme = mode;
-    if (typeof window.__setThemePalette === 'function') {
-      window.__setThemePalette(mode);
-    }
     syncBody(mode);
     window.__preferredTheme = mode;
     const declared = (pref === 'dark' || pref === 'light') ? pref : defaultTheme;
