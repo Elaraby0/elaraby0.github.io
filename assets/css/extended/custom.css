@@ -2,6 +2,17 @@
    CUSTOM STYLES
    =========================================== */
 
+:root {
+  color-scheme: light dark;
+}
+
+.dark {
+  --theme: #0d1016;
+  --entry: #141822;
+  --border: #202532;
+  --code-bg: #161b26;
+}
+
 /* --- Local font-face declarations --- */
 @font-face {
   font-family: "Rubik";

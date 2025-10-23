@@ -39,8 +39,8 @@ markup:
 
 params:
   env: production
-  defaultTheme: dark
-  disableThemeToggle: true
+  defaultTheme: auto
+  disableThemeToggle: false
   ShowReadingTime: true
   ShowShareButtons: true
   ShowCodeCopyButtons: true
