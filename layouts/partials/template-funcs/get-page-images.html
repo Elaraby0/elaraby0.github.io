@@ -4,15 +4,7 @@
 {{- if $page.IsPage -}}
   {{- with $page.Resources.ByType "image" -}}
     {{- range . -}}
-      {{- $width := 0 -}}
-      {{- $height := 0 -}}
-      {{- with .Width -}}
-        {{- $width = . -}}
-      {{- end -}}
-      {{- with .Height -}}
-        {{- $height = . -}}
-      {{- end -}}
-      {{- $images = append $images (dict "Permalink" (.Permalink) "Width" $width "Height" $height) -}}
+      {{- $images = append $images . -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
@@ -49,6 +41,7 @@
       {{- $height = . -}}
     {{- end -}}
     {{- $images = append $images (dict "Permalink" ($resource.Permalink) "Width" $width "Height" $height) -}}
+    {{- $images = append $images $resource -}}
   {{- else -}}
     {{- $abs := cond (strings.HasPrefix $candidate "http") $candidate ($candidate | absURL) -}}
     {{- $images = append $images (dict "Permalink" $abs "Width" 0 "Height" 0) -}}
