@@ -32,6 +32,15 @@
     {{- $resource = resources.GetMatch (printf "*%s*" $candidate) -}}
   {{- end -}}
   {{- if $resource -}}
+    {{- $width := 0 -}}
+    {{- $height := 0 -}}
+    {{- with $resource.Width -}}
+      {{- $width = . -}}
+    {{- end -}}
+    {{- with $resource.Height -}}
+      {{- $height = . -}}
+    {{- end -}}
+    {{- $images = append $images (dict "Permalink" ($resource.Permalink) "Width" $width "Height" $height) -}}
     {{- $images = append $images $resource -}}
   {{- else -}}
     {{- $abs := cond (strings.HasPrefix $candidate "http") $candidate ($candidate | absURL) -}}
