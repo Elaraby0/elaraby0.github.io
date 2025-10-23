@@ -3,7 +3,6 @@ title: تابِع المجلات العلمية والكلمات المفتاح�
 date: 2025-08-16T19:21:24+03:00
 lastmod: 2025-08-16T19:21:24+03:00
 draft: false
-lang: ar
 translationKey: "1755353729-Never Miss a Paper Again: PubMed-Scopus RSS → Telegram in 10 Minutes"
 description: دليل عملي للباحثين الذين يريدون أن تصلهم الأوراق الجديدة تلقائيًا—سواء في قارئ RSS أو مباشرةً إلى قناة/مجموعة على تيليجرام.
 summary: ""

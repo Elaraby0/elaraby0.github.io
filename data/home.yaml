@@ -1,0 +1,69 @@
+cta:
+  about:
+    en: "About Me"
+    ar: "نبذة عني"
+  contact:
+    en: "Contact Now"
+    ar: "تواصل الآن"
+services:
+  heading:
+    en: "Services"
+    ar: "الخدمات"
+  intro:
+    en: "End-to-end support for evidence-based research, writing, and analysis — from first draft to publication"
+    ar: "حلول متكاملة للبحث والكتابة والتحليل - من الفكرة وحتى النشر"
+  cards:
+    - id: "writing"
+      title:
+        en: "Medical Writing"
+        ar: "الكتابة الطبية"
+      points:
+        - en: "Publication-ready manuscripts and articles"
+          ar: "مخطوطات ومقالات جاهزة للنشر"
+        - en: "Plain-language clarity backed by precise referencing"
+          ar: "لغة مبسطة مدعومة بمراجع دقيقة"
+    - id: "analysis"
+      title:
+        en: "Biostatistics & Analysis"
+        ar: "الإحصاء الحيوي والتحليل"
+      points:
+        - en: "Data cleaning, modelling, and interpretation"
+          ar: "تنظيف البيانات ونمذجتها وتفسيرها"
+        - en: "Publication-quality dashboards and reports"
+          ar: "لوحات وتقارير بمستوى النشر العلمي"
+    - id: "synthesis"
+      title:
+        en: "Systematic & Meta-analysis"
+        ar: "المراجعات المنهجية والتحليلات المجمعة"
+      points:
+        - en: "Evidence synthesis compliant with international standards"
+          ar: "تجميع أدلة متوافق مع المعايير الدولية"
+        - en: "Network meta-analysis with publishable outputs"
+          ar: "تحليلات شبكية بنتائج قابلة للنشر"
+    - id: "design"
+      title:
+        en: "Study Design & Methods"
+        ar: "تصميم الدراسات والمنهجيات"
+      points:
+        - en: "Robust study protocols and trial methodology"
+          ar: "بروتوكولات دراسات قوية ومنهجيات للتجارب"
+        - en: "Sample-size calculations and SAP development"
+          ar: "حساب حجم العينة ووضع خطط التحليل الإحصائي"
+    - id: "editing"
+      title:
+        en: "Editing & Publication Support"
+        ar: "التحرير ودعم النشر"
+      points:
+        - en: "Scientific editing with polished reviewer responses"
+          ar: "تحرير علمي مع ردود مصقولة على المراجعين"
+        - en: "Full compliance with target journal guidelines"
+          ar: "التزام كامل بإرشادات المجلات المستهدفة"
+    - id: "visualisation"
+      title:
+        en: "Data Visualisation"
+        ar: "تصور البيانات"
+      points:
+        - en: "Clear storytelling through bespoke visuals"
+          ar: "سرد بصري واضح عبر مخططات مصممة خصيصاً"
+        - en: "Deliverables ready for slide decks and journals"
+          ar: "مخرجات جاهزة للشرائح والعروض البحثية"

@@ -2,7 +2,6 @@
 title: "Never Miss a Paper Again: PubMed/Scopus RSS → Telegram in 10 Minutes"
 date: 2025-08-16T17:15:29+03:00
 draft: false
-lang: en
 translationKey: "1755353729-Never Miss a Paper Again: PubMed-Scopus RSS → Telegram in 10 Minutes"
 description: A practical, copy-and-paste guide for researchers who want new papers to come to them—in an RSS reader or straight into a Telegram channel/group.
 summary: ""

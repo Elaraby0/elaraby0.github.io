@@ -13,27 +13,21 @@
 
     {{- partial "social_icons.html" site.Params.socialIcons -}}
 
+    {{- $lang := site.Language.Lang | default "en" -}}
+    {{- if not (in (slice "en" "ar") $lang) }}{{- $lang = "en" -}}{{ end -}}
+    {{- $cta := site.Data.home.cta -}}
+    {{- $aboutText := index $cta.about $lang | default (index $cta.about "en") -}}
+    {{- $contactText := index $cta.contact $lang | default (index $cta.contact "en") -}}
     <!-- FIXED About Me and Contact Now Buttons -->
     <div class="profile-buttons">
-      {{- if eq site.Language.Lang "ar" -}}
-      <a class="profile-btn about-btn" href="/ar/about/">
-        <span class="btn-text">نبذة عني</span>
+      <a class="profile-btn about-btn" href="{{ "/about/" | relLangURL }}">
+        <span class="btn-text">{{ $aboutText }}</span>
         <div class="btn-shine"></div>
       </a>
-      <a class="profile-btn contact-btn" href="/ar/contact/">
-        <span class="btn-text">تواصل الآن</span>
+      <a class="profile-btn contact-btn" href="{{ "/contact/" | relLangURL }}">
+        <span class="btn-text">{{ $contactText }}</span>
         <div class="btn-shine"></div>
       </a>
-      {{- else -}}
-      <a class="profile-btn about-btn" href="/en/about/">
-        <span class="btn-text">About Me</span>
-        <div class="btn-shine"></div>
-      </a>
-      <a class="profile-btn contact-btn" href="/en/contact/">
-        <span class="btn-text">Contact Now</span>
-        <div class="btn-shine"></div>
-      </a>
-      {{- end -}}
     </div>
   </div>
 

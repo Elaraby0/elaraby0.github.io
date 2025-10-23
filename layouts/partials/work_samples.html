@@ -1,13 +1,24 @@
-﻿<section class="work-samples section-wide">
+<section class="work-samples section-wide">
+  {{- $services := site.Data.home.services -}}
+  {{- $lang := $.Site.Language.Lang | default "en" -}}
+  {{- if not (in (slice "en" "ar") $lang) }}{{- $lang = "en" -}}{{ end -}}
+  {{- $cardsByID := dict -}}
+  {{- range $services.cards }}
+    {{- $cardsByID = merge $cardsByID (dict .id .) -}}
+  {{- end -}}
+  {{- $heading := index $services.heading $lang | default (index $services.heading "en") -}}
+  {{- $intro := index $services.intro $lang | default (index $services.intro "en") -}}
   <div class="services-section" aria-labelledby="services-heading">
     <div class="section-header">
-      <h2 id="services-heading">{{ if eq $.Site.Language.Lang "ar" }}الخدمات{{ else }}Services{{ end }}</h2>
+      <h2 id="services-heading">{{ $heading }}</h2>
       <p class="section-intro">
-        {{ if eq $.Site.Language.Lang "ar" }}حلول متكاملة للبحث والكتابة والتحليل - من الفكرة وحتى النشر{{ else }}End-to-end support for evidence-based research, writing, and analysis — from first draft to publication{{ end }}
+        {{ $intro }}
       </p>
     </div>
 
     <div class="services-grid" role="list">
+      {{- $writing := index $cardsByID "writing" -}}
+      {{- $writingPoints := $writing.points -}}
       <article class="service-card service-card--writing" role="listitem">
         <div class="service-icon" aria-hidden="true">
           <span class="icon-backdrop"></span>
@@ -20,13 +31,17 @@
             <path d="M6.5 10H10"></path>
           </svg>
         </div>
-        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}الكتابة الطبية{{ else }}Medical Writing{{ end }}</h3>
+        <h3 class="service-title">{{ index $writing.title $lang | default (index $writing.title "en") }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}مخطوطات ومقالات جاهزة للنشر{{ else }}Publication-ready manuscripts and articles{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}لغة مبسطة مدعومة بمراجع دقيقة{{ else }}Plain-language clarity backed by precise referencing{{ end }}</li>
+          {{- $writingPointOne := index $writingPoints 0 -}}
+          {{- $writingPointTwo := index $writingPoints 1 -}}
+          <li>{{ index $writingPointOne $lang | default (index $writingPointOne "en") }}</li>
+          <li>{{ index $writingPointTwo $lang | default (index $writingPointTwo "en") }}</li>
         </ul>
       </article>
 
+      {{- $analysis := index $cardsByID "analysis" -}}
+      {{- $analysisPoints := $analysis.points -}}
       <article class="service-card service-card--analysis" role="listitem">
         <div class="service-icon" aria-hidden="true">
           <span class="icon-backdrop"></span>
@@ -41,13 +56,17 @@
             <circle cx="18.5" cy="10" r="0.75"></circle>
           </svg>
         </div>
-        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}الإحصاء الحيوي والتحليل{{ else }}Biostatistics & Analysis{{ end }}</h3>
+        <h3 class="service-title">{{ index $analysis.title $lang | default (index $analysis.title "en") }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}تنظيف البيانات ونمذجتها وتفسيرها{{ else }}Data cleaning, modelling, and interpretation{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}لوحات وتقارير بمستوى النشر العلمي{{ else }}Publication-quality dashboards and reports{{ end }}</li>
+          {{- $analysisPointOne := index $analysisPoints 0 -}}
+          {{- $analysisPointTwo := index $analysisPoints 1 -}}
+          <li>{{ index $analysisPointOne $lang | default (index $analysisPointOne "en") }}</li>
+          <li>{{ index $analysisPointTwo $lang | default (index $analysisPointTwo "en") }}</li>
         </ul>
       </article>
 
+      {{- $synthesis := index $cardsByID "synthesis" -}}
+      {{- $synthesisPoints := $synthesis.points -}}
       <article class="service-card service-card--synthesis" role="listitem">
         <div class="service-icon" aria-hidden="true">
           <span class="icon-backdrop"></span>
@@ -64,13 +83,17 @@
             <path d="M12 14.3v2.7"></path>
           </svg>
         </div>
-        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}المراجعات المنهجية والتحليلات المجمعة{{ else }}Systematic & Meta-analysis{{ end }}</h3>
+        <h3 class="service-title">{{ index $synthesis.title $lang | default (index $synthesis.title "en") }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}تجميع أدلة متوافق مع المعايير الدولية{{ else }}Evidence synthesis compliant with international standards{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}تحليلات شبكية بنتائج قابلة للنشر{{ else }}Network meta-analysis with publishable outputs{{ end }}</li>
+          {{- $synthesisPointOne := index $synthesisPoints 0 -}}
+          {{- $synthesisPointTwo := index $synthesisPoints 1 -}}
+          <li>{{ index $synthesisPointOne $lang | default (index $synthesisPointOne "en") }}</li>
+          <li>{{ index $synthesisPointTwo $lang | default (index $synthesisPointTwo "en") }}</li>
         </ul>
       </article>
 
+      {{- $design := index $cardsByID "design" -}}
+      {{- $designPoints := $design.points -}}
       <article class="service-card service-card--design" role="listitem">
         <div class="service-icon" aria-hidden="true">
           <span class="icon-backdrop"></span>
@@ -80,34 +103,51 @@
             <path d="M7.5 10h9"></path>
             <path d="M7.5 13.5h3.5"></path>
             <path d="M13 14l2.2 2.2 3.3-3.3"></path>
+            <path d="M9 3v4a2 2 0 0 0 2 2h6"></path>
+            <path d="M9 17.5 11.7 14l2.4 2.7 3.3-4.5 2.6 3.3"></path>
           </svg>
         </div>
-        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}تصميم الدراسات والمنهجيات{{ else }}Study Design & Methods{{ end }}</h3>
+        <h3 class="service-title">{{ index $design.title $lang | default (index $design.title "en") }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}بروتوكولات دراسات قوية ومنهجيات للتجارب{{ else }}Robust study protocols and trial methodology{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}حساب حجم العينة ووضع خطط التحليل الإحصائي{{ else }}Sample-size calculations and SAP development{{ end }}</li>
+          {{- $designPointOne := index $designPoints 0 -}}
+          {{- $designPointTwo := index $designPoints 1 -}}
+          <li>{{ index $designPointOne $lang | default (index $designPointOne "en") }}</li>
+          <li>{{ index $designPointTwo $lang | default (index $designPointTwo "en") }}</li>
         </ul>
       </article>
 
+      {{- $editing := index $cardsByID "editing" -}}
+      {{- $editingPoints := $editing.points -}}
       <article class="service-card service-card--editing" role="listitem">
         <div class="service-icon" aria-hidden="true">
           <span class="icon-backdrop"></span>
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 4h7l4 4v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
-            <path d="M15 4v4h4"></path>
-            <path d="M9 11h4.5"></path>
-            <path d="M9 15h6"></path>
-            <path d="M9 19h3"></path>
-            <path d="M12 15l2 2 3-3"></path>
+            <path d="M4 20h16"></path>
+            <path d="M9 4h9"></path>
+            <path d="M9 8h9"></path>
+            <path d="M9 12h9"></path>
+            <path d="M9 16h9"></path>
+            <path d="M7 4h.01"></path>
+            <path d="M7 8h.01"></path>
+            <path d="M7 12h.01"></path>
+            <path d="M7 16h.01"></path>
+            <path d="M4 4h.01"></path>
+            <path d="M4 8h.01"></path>
+            <path d="M4 12h.01"></path>
+            <path d="M4 16h.01"></path>
           </svg>
         </div>
-        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}التحرير ودعم النشر{{ else }}Editing & Publication Support{{ end }}</h3>
+        <h3 class="service-title">{{ index $editing.title $lang | default (index $editing.title "en") }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}تحرير علمي مع ردود مصقولة على المراجعين{{ else }}Scientific editing with polished reviewer responses{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}التزام كامل بإرشادات المجلات المستهدفة{{ else }}Full compliance with target journal guidelines{{ end }}</li>
+          {{- $editingPointOne := index $editingPoints 0 -}}
+          {{- $editingPointTwo := index $editingPoints 1 -}}
+          <li>{{ index $editingPointOne $lang | default (index $editingPointOne "en") }}</li>
+          <li>{{ index $editingPointTwo $lang | default (index $editingPointTwo "en") }}</li>
         </ul>
       </article>
 
+      {{- $visualisation := index $cardsByID "visualisation" -}}
+      {{- $visualisationPoints := $visualisation.points -}}
       <article class="service-card service-card--visualisation" role="listitem">
         <div class="service-icon" aria-hidden="true">
           <span class="icon-backdrop"></span>
@@ -118,10 +158,12 @@
             <path d="M10 20h4"></path>
           </svg>
         </div>
-        <h3 class="service-title">{{ if eq $.Site.Language.Lang "ar" }}تصور البيانات{{ else }}Data Visualisation{{ end }}</h3>
+        <h3 class="service-title">{{ index $visualisation.title $lang | default (index $visualisation.title "en") }}</h3>
         <ul class="service-points">
-          <li>{{ if eq $.Site.Language.Lang "ar" }}سرد بصري واضح عبر مخططات مصممة خصيصاً{{ else }}Clear storytelling through bespoke visuals{{ end }}</li>
-          <li>{{ if eq $.Site.Language.Lang "ar" }}مخرجات جاهزة للشرائح والعروض البحثية{{ else }}Deliverables ready for slide decks and journals{{ end }}</li>
+          {{- $visualisationPointOne := index $visualisationPoints 0 -}}
+          {{- $visualisationPointTwo := index $visualisationPoints 1 -}}
+          <li>{{ index $visualisationPointOne $lang | default (index $visualisationPointOne "en") }}</li>
+          <li>{{ index $visualisationPointTwo $lang | default (index $visualisationPointTwo "en") }}</li>
         </ul>
       </article>
     </div>
@@ -240,5 +282,3 @@
   {{- end }}
 
 </section>
-
-
