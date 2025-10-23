@@ -40,7 +40,7 @@ markup:
 params:
   env: production
   defaultTheme: auto
-  disableThemeToggle: false
+  disableThemeToggle: false 
   ShowReadingTime: true
   ShowShareButtons: true
   ShowCodeCopyButtons: true
