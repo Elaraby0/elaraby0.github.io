@@ -2957,14 +2957,6 @@ html.dark .about-page .profile-btn:hover {
     gap: 0.8rem;
   }
 
-  .profile-btn {
-    padding: 0.42rem 0.7rem;
-    font-size: 0.55rem;
-    min-width: 56px;
-    height: 24px;
-    border-radius: 12px;
-  }
-
   .section-wide {
     padding: 0 1.35rem;
   }
@@ -3135,14 +3127,6 @@ html.dark .about-page .profile-btn:hover {
   .profile .profile-image {
     width: 140px !important;
     height: 140px !important;
-  }
-
-  .profile-btn {
-    padding: 0.38rem 0.62rem;
-    font-size: 0.5rem;
-    min-width: 50px;
-    height: 22px;
-    border-radius: 10px;
   }
 
   .section-wide {
@@ -3324,15 +3308,6 @@ html.dark .contact-btn:hover * {
 
 /* Mobile button centering */
 @media (max-width: 768px) {
-  .profile-btn {
-    padding: 0.42rem 0.7rem;
-    font-size: 0.55rem;
-    min-width: 56px;
-    height: 24px;
-    border-radius: 12px;
-    line-height: 1 !important;
-  }
-  
   .profile-btn *,
   .profile-btn span,
   .profile-btn .btn-text {
@@ -3342,15 +3317,6 @@ html.dark .contact-btn:hover * {
 }
 
 @media (max-width: 480px) {
-  .profile-btn {
-    padding: 0.38rem 0.62rem;
-    font-size: 0.5rem;
-    min-width: 50px;
-    height: 22px;
-    border-radius: 10px;
-    line-height: 1 !important;
-  }
-  
   .profile-btn *,
   .profile-btn span,
   .profile-btn .btn-text {
