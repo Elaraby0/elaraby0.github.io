@@ -31,50 +31,11 @@
     </div>
   </div>
 
-  <!-- Scroll arrow -->
-  <div class="scroll-arrow" onclick="smoothScrollToContent()">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <polyline points="6,9 12,15 18,9"></polyline>
-    </svg>
-  </div>
 </div>
 
 {{- if not site.Params.profileMode.disableProfileView }}
-<div class="content-sections">
-  <!-- Latest Articles -->
-  <div class="section-wide recent-posts">
-    {{- partial "recent_posts.html" . -}}
-  </div>
-
-  <!-- Services Section -->
-  <div class="section-wide work-samples">
-    {{- partial "work_samples.html" . -}}
-  </div>
-</div>
-
 <script>
-function smoothScrollToContent() {
-  const contentSection = document.querySelector('.content-sections');
-  if (contentSection) {
-    contentSection.scrollIntoView({ behavior: 'smooth' });
-  }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-  const arrow = document.querySelector('.scroll-arrow');
-  if (arrow) {
-    const toggleArrow = () => {
-      if (window.pageYOffset > 100) {
-        arrow.classList.add('hidden');
-      } else {
-        arrow.classList.remove('hidden');
-      }
-    };
-
-    toggleArrow();
-    window.addEventListener('scroll', toggleArrow, { passive: true });
-  }
-
   const animatedItems = document.querySelectorAll('.profile-btn, .social-icons a');
   animatedItems.forEach((el, index) => {
     setTimeout(() => {
