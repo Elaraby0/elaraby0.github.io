@@ -1,0 +1,132 @@
+{
+  "projects": [
+    {
+      "id": "daybar",
+      "name": "DayBar",
+      "repository": "https://github.com/Elaraby0/daybar",
+      "cover": "/images/projects/daybar.svg",
+      "coverWidth": 800,
+      "coverHeight": 700,
+      "featured": true,
+      "download": {
+        "url": "https://github.com/Elaraby0/daybar/releases/download/v0.2.0/DayBar-0.2.0-arm64.dmg",
+        "format": "DMG"
+      },
+      "en": {
+        "description": "Keep upcoming dates in view with menu bar countdowns and desktop cards.",
+        "platform": "macOS 14+ · Apple silicon",
+        "downloadLabel": "Download for Mac",
+        "version": "v0.2.0 Preview",
+        "note": "Unnotarized preview; macOS may block launch."
+      },
+      "ar": {
+        "description": "تابع مواعيدك القادمة مع عدّ تنازلي في شريط القوائم وبطاقات على سطح المكتب.",
+        "platform": "macOS 14 فأحدث · Apple silicon",
+        "downloadLabel": "تحميل للـMac",
+        "version": "v0.2.0 — نسخة تجريبية",
+        "note": "نسخة تجريبية غير موثّقة لدى Apple؛ قد يمنع macOS تشغيلها."
+      }
+    },
+    {
+      "id": "sci-humanizer",
+      "name": "SciHumanizer",
+      "repository": "https://github.com/Elaraby0/sci-humanizer",
+      "cover": "/images/projects/sci-humanizer.svg",
+      "coverWidth": 800,
+      "coverHeight": 480,
+      "featured": false,
+      "download": {
+        "url": "https://github.com/Elaraby0/sci-humanizer/archive/refs/tags/v1.1.1.zip",
+        "format": "ZIP"
+      },
+      "en": {
+        "description": "Clearer scientific writing, while preserving results, citations, and the strength of the evidence.",
+        "platform": "AI agent skill",
+        "downloadLabel": "Download skill"
+      },
+      "ar": {
+        "description": "كتابة علمية أوضح، مع الحفاظ على النتائج والمراجع وقوة الأدلة.",
+        "platform": "مهارة لمساعدي الذكاء الاصطناعي",
+        "downloadLabel": "تحميل المهارة"
+      }
+    },
+    {
+      "id": "drafton",
+      "name": "Drafton",
+      "repository": "https://github.com/Elaraby0/drafton",
+      "cover": "/images/projects/drafton.svg",
+      "coverWidth": 800,
+      "coverHeight": 480,
+      "featured": false,
+      "download": {
+        "url": "https://github.com/Elaraby0/drafton/archive/refs/heads/main.zip",
+        "format": "ZIP"
+      },
+      "en": {
+        "description": "Send existing Gmail drafts in paced batches, with pause, resume, and progress controls.",
+        "platform": "Gmail · Tampermonkey",
+        "downloadLabel": "Download script",
+        "screenshotAlt": "Drafton control panel with presets, batch count, spacing, and Start batch controls.",
+        "screenshotCaption": "Actual v5.2 interface, before the Drafton rename."
+      },
+      "ar": {
+        "description": "أرسل مسودات Gmail الموجودة على دفعات بفواصل زمنية، مع الإيقاف المؤقت والاستئناف ومتابعة التقدم.",
+        "platform": "Gmail · Tampermonkey",
+        "downloadLabel": "تحميل السكربت",
+        "screenshotAlt": "لوحة Drafton لاختيار الإعدادات وعدد المسودات والفاصل الزمني وبدء الدفعة.",
+        "screenshotCaption": "لقطة فعلية للإصدار 5.2 قبل تغيير الاسم إلى Drafton."
+      },
+      "screenshot": {
+        "src": "/images/projects/drafton-panel.jpg",
+        "width": 286,
+        "height": 387
+      }
+    },
+    {
+      "id": "km-ipd-reconstruction",
+      "name": "KM IPD Reconstruction",
+      "repository": "https://github.com/Elaraby0/km-ipd-reconstruction",
+      "cover": "/images/projects/km-ipd-reconstruction.svg",
+      "coverWidth": 800,
+      "coverHeight": 480,
+      "featured": false,
+      "download": {
+        "url": "https://github.com/Elaraby0/km-ipd-reconstruction/archive/refs/heads/main.zip",
+        "format": "ZIP"
+      },
+      "en": {
+        "description": "Reconstruct approximate patient-level data from published Kaplan–Meier curves and risk tables.",
+        "platform": "R · IPDfromKM",
+        "downloadLabel": "Download code"
+      },
+      "ar": {
+        "description": "أعِد بناء بيانات تقريبية على مستوى المرضى من منحنيات Kaplan–Meier المنشورة وجداول أعداد المعرّضين للخطر.",
+        "platform": "R · IPDfromKM",
+        "downloadLabel": "تحميل الكود"
+      }
+    },
+    {
+      "id": "draft-creator",
+      "name": "Draft Creator",
+      "repository": "https://github.com/Elaraby0/draft-creator",
+      "cover": "/images/projects/draft-creator.svg",
+      "coverWidth": 800,
+      "coverHeight": 480,
+      "featured": false,
+      "download": {
+        "url": "https://github.com/Elaraby0/draft-creator/archive/refs/heads/main.zip",
+        "format": "ZIP"
+      },
+      "en": {
+        "description": "Turn spreadsheet rows into unsent Gmail drafts and track their status in Google Sheets.",
+        "platform": "Google Sheets · Apps Script",
+        "downloadLabel": "Download code"
+      },
+      "ar": {
+        "description": "حوّل صفوف الجدول إلى مسودات Gmail غير مُرسلة وتابع حالتها في Google Sheets.",
+        "platform": "Google Sheets · Apps Script",
+        "downloadLabel": "تحميل الكود"
+      }
+    }
+  ]
+}

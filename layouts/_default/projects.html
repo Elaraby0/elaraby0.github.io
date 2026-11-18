@@ -1,0 +1,54 @@
+{{- define "main" }}
+{{- $language := .Language.Lang -}}
+{{- $isArabic := eq $language "ar" -}}
+{{- $githubLabel := cond $isArabic "مستودع GitHub" "GitHub repository" -}}
+{{- $screenshotLabel := cond $isArabic "عرض لقطة شاشة" "View screenshot" -}}
+<article class="software-page">
+  <header class="software-intro">
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Description }}</p>
+  </header>
+
+  <div class="software-gallery">
+    {{- range site.Data.projects.projects }}
+    {{- $copy := index . $language -}}
+    {{- $downloadName := printf "%s — %s (%s)" $copy.downloadLabel .name .download.format -}}
+    <article class="software-card{{ if .featured }} software-card--featured{{ end }}" aria-labelledby="name-{{ .id }}">
+      <div class="software-cover">
+        <img src="{{ .cover | relURL }}" width="{{ .coverWidth }}" height="{{ .coverHeight }}" alt="" decoding="async"{{ if .featured }} fetchpriority="high"{{ else }} loading="lazy"{{ end }}>
+      </div>
+      <div class="software-body">
+        <p class="software-platform"><bdi>{{ $copy.platform }}</bdi></p>
+        <h2 class="software-title" id="name-{{ .id }}"><bdi dir="ltr">{{ .name }}</bdi></h2>
+        <p class="software-description">{{ $copy.description }}</p>
+        {{- with $copy.version }}
+        <p class="software-version">{{ . }}</p>
+        {{- end }}
+        {{- with .screenshot }}
+        <details class="software-screenshot">
+          <summary>{{ $screenshotLabel }}</summary>
+          <figure>
+            <img src="{{ .src | relURL }}" width="{{ .width }}" height="{{ .height }}" alt="{{ $copy.screenshotAlt }}" loading="lazy" decoding="async">
+            <figcaption>{{ $copy.screenshotCaption }}</figcaption>
+          </figure>
+        </details>
+        {{- end }}
+        <div class="software-actions">
+          <a class="software-download" href="{{ .download.url }}" aria-label="{{ $downloadName }}" title="{{ $downloadName }}">
+            {{- partial "projects-icon.html" "download" -}}
+            <span>{{ $copy.downloadLabel }} <small class="software-download-format" dir="ltr">{{ .download.format }}</small></span>
+          </a>
+          <a class="software-github" href="{{ .repository }}" aria-label="{{ $githubLabel }} — {{ .name }}">
+            {{- partial "projects-icon.html" "github" -}}
+            <span dir="ltr">GitHub</span>
+          </a>
+        </div>
+        {{- with $copy.note }}
+        <p class="software-note">{{ . }}</p>
+        {{- end }}
+      </div>
+    </article>
+    {{- end }}
+  </div>
+</article>
+{{- end }}

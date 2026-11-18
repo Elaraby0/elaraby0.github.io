@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" fill="none">
+  <rect width="800" height="480" fill="#F3F8D8"/>
+  <defs>
+    <clipPath id="grid-clip"><rect x="57" y="112" width="312" height="272" rx="18"/></clipPath>
+  </defs>
+  <g clip-path="url(#grid-clip)">
+    <path d="M57 112h312v91H57Z" fill="#39AE68"/>
+    <path d="M57 203h312v90H57Z" fill="#C2DA26"/>
+    <path d="M57 293h312v91H57Z" fill="#FF941F"/>
+    <path d="M161 112v272M265 112v272M57 203h312M57 293h312" stroke="#103E32" stroke-width="8"/>
+  </g>
+  <rect x="57" y="112" width="312" height="272" rx="18" stroke="#103E32" stroke-width="9"/>
+  <path d="M422 248h61m-23-24 24 24-24 24" stroke="#143E35" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  <g stroke-linecap="round" stroke-width="22">
+    <path d="M539 122h207M539 165h153" stroke="#2D9663"/>
+    <path d="M539 229h207M539 272h153" stroke="#BDD72B"/>
+    <path d="M539 336h207M539 379h153" stroke="#FF8D1C"/>
+  </g>
+</svg>

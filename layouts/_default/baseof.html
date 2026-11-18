@@ -20,8 +20,11 @@
 {{- print " dark" }}
 {{- end -}}
 " id="top">
+    {{- if eq .Layout "projects" }}
+    <a class="software-skip" href="#projects-content">{{ if eq .Language.Lang "ar" }}انتقل إلى المشاريع{{ else }}Skip to projects{{ end }}</a>
+    {{- end }}
     {{- partialCached "header.html" . .Page -}}
-    <main class="main">
+    <main class="main{{ if eq .Layout "projects" }} software-main{{ end }}"{{ if eq .Layout "projects" }} id="projects-content" tabindex="-1"{{ end }}>
         {{- block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") -}}

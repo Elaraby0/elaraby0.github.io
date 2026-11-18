@@ -1,0 +1,331 @@
+/* Projects shares the site's fonts and theme; artwork supplies the color. */
+.software-skip {
+  position: absolute;
+  inset-inline-start: 20px;
+  inset-block-start: -100px;
+  z-index: 100;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--theme);
+}
+
+.software-skip:focus {
+  inset-block-start: 12px;
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+.main.software-main {
+  --main-width: 1024px;
+  padding-block: 54px 48px;
+}
+
+.software-page {
+  --software-muted: #62646a;
+  --software-border: #d9dce1;
+  --software-surface: #fff;
+  --software-action: #202124;
+  --software-action-text: #fff;
+  --software-focus: #2563eb;
+  color: var(--primary);
+}
+
+html.dark .software-page {
+  --software-muted: #b0b6c1;
+  --software-border: #343d4d;
+  --software-surface: var(--entry);
+  --software-action: #edf0f5;
+  --software-action-text: #141822;
+  --software-focus: #8cb6ff;
+}
+
+.software-intro {
+  margin-block-end: 48px;
+}
+
+.software-intro h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+  line-height: 1.15;
+  font-weight: 750;
+  text-wrap: balance;
+}
+
+.software-intro p {
+  max-width: 65ch;
+  margin: 0;
+  color: var(--software-muted);
+  font-size: 20px;
+  line-height: 1.65;
+}
+
+.software-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+.software-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  overflow: hidden;
+  border: 1px solid var(--software-border);
+  border-radius: 16px;
+  background: var(--software-surface);
+}
+
+.software-cover {
+  min-width: 0;
+  aspect-ratio: 5 / 3;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.software-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.software-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 24px;
+}
+
+.software-platform {
+  margin: 0 0 8px;
+  color: var(--software-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.software-title {
+  margin: 0 0 12px;
+  font-size: clamp(22px, 2.1vw, 28px);
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  scroll-margin-block-start: 24px;
+}
+
+.software-description {
+  margin: 0 0 24px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--content);
+  text-wrap: pretty;
+}
+
+.software-version {
+  margin: 0 0 24px;
+  color: var(--software-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.software-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-block-start: auto;
+}
+
+.software-actions a {
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 10px 16px;
+  border: 1px solid var(--software-action);
+  border-radius: 8px;
+  color: var(--primary);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.software-actions .software-download {
+  flex-grow: 1.4;
+  background: var(--software-action);
+  color: var(--software-action-text);
+}
+
+.software-actions svg {
+  width: 21px;
+  height: 21px;
+  flex-shrink: 0;
+}
+
+.software-download-format {
+  margin-inline-start: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.software-actions .software-download:hover {
+  background: #354562;
+  border-color: #354562;
+  color: #fff;
+}
+
+.software-actions .software-github:hover {
+  background: var(--software-action);
+  color: var(--software-action-text);
+}
+
+html.dark .software-actions .software-download:hover {
+  background: #bed6ff;
+  border-color: #bed6ff;
+  color: #141822;
+}
+
+.software-page a:focus-visible,
+.software-page summary:focus-visible {
+  outline: 3px solid var(--software-focus);
+  outline-offset: 4px;
+}
+
+.software-note {
+  margin: 16px 0 0;
+  color: var(--software-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.software-card--featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.software-card--featured .software-cover {
+  aspect-ratio: 8 / 7;
+  width: 100%;
+  height: 100%;
+}
+
+.software-card--featured .software-cover img {
+  object-fit: contain;
+  background: #fff0d9;
+}
+
+.software-card--featured .software-body {
+  justify-content: center;
+  padding: 32px;
+}
+
+.software-card--featured .software-title {
+  margin-block-end: 16px;
+  font-size: 42px;
+}
+
+.software-card--featured .software-actions {
+  margin-block-start: 4px;
+}
+
+.software-screenshot {
+  margin-block: -8px 16px;
+  color: var(--software-muted);
+  font-size: 14px;
+}
+
+.software-screenshot summary {
+  width: fit-content;
+  max-width: 100%;
+  min-height: 44px;
+  padding-block: 10px;
+  cursor: pointer;
+  color: var(--primary);
+  text-underline-offset: 4px;
+}
+
+.software-screenshot summary:hover {
+  text-decoration: underline;
+}
+
+.software-screenshot figure {
+  margin: 12px 0 0;
+}
+
+.software-screenshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 286px;
+  margin-inline: auto;
+  border: 1px solid var(--software-border);
+  border-radius: 8px;
+}
+
+.software-screenshot figcaption {
+  margin-block-start: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.software-page ::selection {
+  background: #cbdfff;
+  color: #15233a;
+}
+
+[dir="rtl"] .software-description,
+[dir="rtl"] .software-intro p {
+  line-height: 1.85;
+}
+
+@media (max-width: 850px) {
+  .software-gallery { gap: 20px; }
+  .software-body { padding: 20px; }
+  .software-card--featured .software-body { padding: 24px; }
+  .software-card--featured .software-title { font-size: 34px; }
+  .software-actions { gap: 10px; }
+  .software-actions a { padding-inline: 12px; font-size: 14px; }
+}
+
+@media (max-width: 680px) {
+  /* The extra navigation item needs wrapping on narrow screens. */
+  .header .nav #menu {
+    position: relative;
+    flex-wrap: wrap;
+    column-gap: 12px;
+    row-gap: 0;
+    white-space: normal;
+    overflow: visible;
+  }
+  .header .nav #menu li + li { margin-inline-start: 0; }
+  .header .nav #menu a { min-height: 44px; font-size: 14px; }
+  .main.software-main { padding-block: 36px; }
+  .software-intro { margin-block-end: 28px; }
+  .software-intro h1 { font-size: 38px; }
+  .software-intro p { font-size: 17px; }
+  .software-gallery { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .software-card--featured { display: flex; }
+  .software-card--featured .software-cover { aspect-ratio: 5 / 3; height: auto; }
+  .software-card--featured .software-cover img { object-fit: contain; background: #fff0d9; }
+  .software-card--featured .software-body { padding: 22px; }
+  .software-title { font-size: 25px; }
+  .software-card--featured .software-title { font-size: 32px; }
+  .software-description { font-size: 16px; margin-block-end: 20px; }
+  .software-version { margin-block-end: 20px; }
+  .software-actions a { font-size: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .software-actions a { transition: none; }
+}
