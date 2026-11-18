@@ -1,0 +1,8 @@
+{{- $isArabic := eq .Page.Language.Lang "ar" -}}
+{{- with site.Data.scholar -}}
+{{- if $isArabic -}}
+<p><strong><bdi>{{ .citations }}</bdi> استشهادًا علميًا</strong> على <a href="{{ .profile_url }}" target="_blank" rel="noopener noreferrer"><bdi>Google Scholar</bdi></a>.</p>
+{{- else -}}
+<p><strong>{{ .citations }} citations</strong> on <a href="{{ .profile_url }}" target="_blank" rel="noopener noreferrer">Google Scholar</a>.</p>
+{{- end -}}
+{{- end -}}

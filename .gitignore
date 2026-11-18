@@ -15,6 +15,9 @@ node_modules/
 package-lock.json
 yarn.lock
 
+# Python citation-refresh scripts and tests
+__pycache__/
+
 # Sass/SCSS cache
 .sass-cache/
 
